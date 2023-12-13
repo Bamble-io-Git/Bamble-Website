@@ -1,45 +1,91 @@
 "use client";
+import Card from "@/components/elements/card";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
 
 const Hero = () => {
+  const [selectedCard, setSelectedCard] = useState(0);
+
+  const performanceIndex = [
+    {
+      id: 0,
+      metric: "96%",
+      outcome: "Time saved",
+    },
+    {
+      id: 1,
+      metric: "5X",
+      outcome: "more qualified referrals",
+    },
+    {
+      id: 2,
+      metric: "+10",
+      outcome: "countries reached",
+    },
+  ];
+
+  const handleSelectCard = useCallback(() => {
+    setSelectedCard((previousState) =>
+      previousState === performanceIndex.length - 1 ? 0 : previousState + 1,
+    );
+  }, [performanceIndex.length]);
+
+  useEffect(() => {
+    const intervalId = setInterval(handleSelectCard, 2000);
+
+    return () => clearInterval(intervalId);
+  }, [handleSelectCard]);
+
   const isTablet = useMediaQuery(1024);
   return (
-    <section className="relative ">
+    <section className="relative">
       <Image
-        className="absolute top-0 -left-[5%] xl:-left-[30%] hidden md:block"
+        className="absolute top-0 -left-[5%] xl:-left-[32%] hidden md:block"
         src="/assets/landing-page-z.svg"
         alt=""
         width={isTablet ? 220 : 400}
         height={isTablet ? 200 : 400}
       />
       <Image
-        className="absolute hidden md:block top-0 right-0 xl:-right-[29%]"
+        className="absolute hidden md:block top-0 right-0 xl:-right-[38%]"
         src="/assets/zig-zag.svg"
         alt=""
         width={isTablet ? 220 : 400}
         height={400}
       />
-      <div className="flex justify-center flex-col text-center gap-y-10 py-16">
-        <h1>Affordable Recruitment as a Service for Start-ups & Companies</h1>
+      <div className="flex justify-center flex-col text-center gap-y-10 pt-12 pb-24 max-w-[728px] mx-auto">
+        <h1>
+          Affordable{" "}
+          <span className="text-blue-primary">Recruitment as a Service</span>{" "}
+          for Start-ups & Companies
+        </h1>
 
-        <h2>
-          Do you struggle to find top tier tech talent within your budget? We
-          have been there too. We understand the pain, the wasted time and the
-          frustration that comes with limited resources. Our aim is to fix
+        <h4>
+          Do you struggle to find top tier tech talent within your budget?
+        </h4>
+        <h4>
+          {" "}
+          We have been there too. We understand the pain, the wasted time and
+          the frustration that comes with limited resources. Our aim is to fix
           these!
-        </h2>
-
-        <h3>We’ll fix your recruiting issues in a blink!</h3>
-
-        <div
-          className="background: var(#005FDF, #005FDF);
-box-shadow: 0px 25.6px 57.6px 0px rgba(0, 0, 0, 0.22);
-filter: blur(57.400001525878906px);"
-        >
-          Blur
-        </div>
+        </h4>
+        <h3 className="font-secondary text-2xl font-semibold">
+          We’ll fix your recruiting issues in a blink!
+        </h3>
       </div>
+      <div className="flex gap-x-5 mx-auto justify-center">
+        {performanceIndex.map(({ metric, outcome }, index) => (
+          <Card
+            isActive={index === selectedCard}
+            metric={metric}
+            outcome={outcome}
+            key={metric}
+          />
+        ))}
+      </div>
+
+      <div className="custom-background custom-box-shadow custom-blur h-[50px]"></div>
     </section>
   );
 };

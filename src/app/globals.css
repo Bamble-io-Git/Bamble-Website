@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-[42px] font-semibold leading-[52px];
+  }
+  h4 {
+    @apply text-gray-text text-[20px] font-primary;
+  }
+
+  .custom-background {
+    background: #005fdf;
+  }
+
+  .custom-box-shadow {
+    box-shadow: 0px 25.6px 57.6px 0px rgba(0, 0, 0, 0.22);
+  }
+
+  .custom-blur {
+    filter: blur(47.4px);
+  }
+}
+
 @layer utilities {
   .wrapper {
     @apply px-4 md:px-[260px];
