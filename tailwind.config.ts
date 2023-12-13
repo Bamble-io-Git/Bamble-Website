@@ -14,9 +14,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        primary: ["var(--font-inter)"],
-        secondary: ["var(--font-roboto)"],
-        tertiary: ["var(--font-chelsea-market)"],
+        primary: ["var(--font-noto-sans)"],
+        secondary: ["var(--font-montserrat)"],
       },
     },
   },
