@@ -1,5 +1,6 @@
 "use client";
 import Card from "@/components/elements/card";
+import LinkComponent from "@/components/elements/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
@@ -54,7 +55,7 @@ const Hero = () => {
         width={isTablet ? 220 : 400}
         height={400}
       />
-      <div className="flex justify-center flex-col text-center gap-y-10 pt-12 pb-24 max-w-[728px] mx-auto">
+      <div className="flex justify-center flex-col text-center gap-y-6 pt-12 pb-24 max-w-[728px] mx-auto">
         <h1>
           Affordable{" "}
           <span className="text-blue-primary">Recruitment as a Service</span>{" "}
@@ -70,11 +71,19 @@ const Hero = () => {
           the frustration that comes with limited resources. Our aim is to fix
           these!
         </h4>
+
+        <div className="flex justify-center gap-x-10 py-5">
+          <LinkComponent
+            url="https://calendly.com/bamble-melissa/30min"
+            text="Book a call"
+          />
+          <button>View pricing</button>
+        </div>
         <h3 className="font-secondary text-2xl font-semibold">
           We’ll fix your recruiting issues in a blink!
         </h3>
       </div>
-      <div className="flex gap-x-5 mx-auto justify-center">
+      <div className="flex gap-x-5 mx-auto justify-center -mt-4">
         {performanceIndex.map(({ metric, outcome }, index) => (
           <Card
             isActive={index === selectedCard}

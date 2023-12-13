@@ -1,3 +1,4 @@
+import LinkComponent from "@/components/elements/link";
 import Image from "next/image";
 
 const Header = () => {
@@ -17,7 +18,10 @@ const Header = () => {
           height={24}
         />
       </div>
-      <div className="border">Book</div>
+      <LinkComponent
+        url="https://calendly.com/bamble-melissa/30min"
+        text="Book a call"
+      />
     </header>
   );
 };
