@@ -1,0 +1,13 @@
+# `components/elements`
+
+- All components that are used at least twice.
+- Elements are Molecules equivalent on [atomic design](https://bradfrost.com/blog/post/atomic-web-design/)
+- Elements are the basic building blocks of matter. Applied to web interfaces, atoms are our HTML tags, such as a form label, an input or a button.
+
+# Examples
+
+- `/avatar`
+- `/button`
+- `/title`
+- `/input`
+- `/link`
