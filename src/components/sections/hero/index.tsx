@@ -1,23 +1,26 @@
+"use client";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
 
 const Hero = () => {
+  const isTablet = useMediaQuery(1024);
   return (
-    <section>
-      <div className="relative flex justify-center flex-col text-center border">
-        <Image
-          className="absolute top-0 left-0 xl:-left-[30%] hidden md:block"
-          src="/assets/landing-page-z.svg"
-          alt=""
-          width={400}
-          height={400}
-        />
-        <Image
-          className="absolute hidden md:block top-0 right-0 xl:-right-[29%]"
-          src="/assets/zig-zag.svg"
-          alt=""
-          width={400}
-          height={700}
-        />
+    <section className="relative ">
+      <Image
+        className="absolute top-0 -left-[5%] xl:-left-[30%] hidden md:block"
+        src="/assets/landing-page-z.svg"
+        alt=""
+        width={isTablet ? 220 : 400}
+        height={isTablet ? 200 : 400}
+      />
+      <Image
+        className="absolute hidden md:block top-0 right-0 xl:-right-[29%]"
+        src="/assets/zig-zag.svg"
+        alt=""
+        width={isTablet ? 220 : 400}
+        height={400}
+      />
+      <div className="flex justify-center flex-col text-center gap-y-10 py-16">
         <h1>Affordable Recruitment as a Service for Start-ups & Companies</h1>
 
         <h2>
