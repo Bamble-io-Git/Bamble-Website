@@ -1,4 +1,5 @@
 import PageLayout from "@/components/layout";
+import DedicatedRecruiters from "@/components/sections/dedicated-recruiters";
 import GiveTeamLife from "@/components/sections/give-life";
 import Hero from "@/components/sections/hero";
 import RecruitingExcellence from "@/components/sections/recruiting-excellence";
@@ -10,6 +11,7 @@ export default function Home() {
         <Hero />
         <GiveTeamLife />
         <RecruitingExcellence />
+        <DedicatedRecruiters />
       </PageLayout>
     </main>
   );

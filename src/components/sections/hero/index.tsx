@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/components/elements/card";
+import Card from "@/components/elements/cards/card";
 import LinkComponent from "@/components/elements/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
@@ -42,14 +42,14 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden">
       <Image
-        className="absolute top-0 -left-[25%] xl:-left-[10%] hidden xl:block"
+        className="absolute top-0 -left-[25%] xl:-left-[10%] hidden xl:block 2xl:-left-14"
         src="/assets/landing-page-z.svg"
         alt=""
         width={isTablet ? 220 : 477}
         height={isTablet ? 200 : 600}
       />
       <Image
-        className="absolute hidden xl:block top-0 -right-[14%]"
+        className="absolute hidden xl:block top-0 -right-[14%] 2xl:-right-10"
         src="/assets/zig-zag.svg"
         alt=""
         width={isTablet ? 220 : 477}

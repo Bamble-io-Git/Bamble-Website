@@ -68,15 +68,14 @@ const GiveTeamLife = () => {
             </div>
           ))}
         </div>
-
-        <div className="flex flex-col sm:flex-row justify-center gap-y-5 gap-x-10 pt-6 pb-7 sm:mx-0 mx-auto">
-          <LinkComponent
-            url="https://calendly.com/bamble-melissa/30min"
-            text="Book a call"
-          />
-          {/* TODO: scroll to pricing section here */}
-          <button>View pricing</button>
-        </div>
+      </div>{" "}
+      <div className="flex flex-col sm:flex-row items-center justify-normal sm:justify-center gap-y-5 gap-x-10 pt-6 pb-7 sm:mx-0 mx-auto">
+        <LinkComponent
+          url="https://calendly.com/bamble-melissa/30min"
+          text="Book a call"
+        />
+        {/* TODO: scroll to pricing section here */}
+        <button>View pricing</button>
       </div>
     </section>
   );

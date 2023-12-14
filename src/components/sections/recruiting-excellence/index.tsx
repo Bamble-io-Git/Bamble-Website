@@ -1,3 +1,4 @@
+import VerticalCards from "@/components/elements/cards/vertical-card";
 import clsx from "clsx";
 import Image from "next/image";
 import { IMAGES } from "../../../../public/assets/images/images";
@@ -18,51 +19,43 @@ const RecruitingExcellence = () => {
     },
   ];
   return (
-    <section className="bg-blue-primary wrapper py-10 sm:py-[90px] relative overflow-hidden">
+    <section className="bg-blue-primary wrapper py-20 sm:py-[90px] relative overflow-hidden">
       <Image
         src="/assets/blue-z.svg"
         alt=""
         width={400}
         height={400}
-        className="absolute -right-40 2xl:right-0 -top-2 2xl:-top-10"
+        className="absolute -right-40 2xl:right-0 -top-2 2xl:-top-10 md:block hidden"
       />
-      <div className="relative">
-        <h2 className="text-white">Recruiting excellence within reach</h2>
+      <div className="relative sm:text-start text-center">
+        <h2 className="text-white-primary sm:block hidden">
+          Recruiting excellence within reach
+        </h2>
+        <h2 className="text-white-primary sm:hidden block w-[200px] mx-auto mb-3">
+          Give life to your team
+        </h2>
 
         <Image
           src="/assets/yellow-adornment.svg"
           alt=""
           width={95}
           height={2}
-          className="absolute -top-4 left-0"
+          className="absolute -top-8 sm:-top-4 left-[40%] sm:left-0"
         />
       </div>
 
-      <p className="text-white">
+      <p className="text-white-primary sm:block hidden">
         Affordable subscription services for start-ups and companies
       </p>
+      <p className="text-white-primary sm:hidden block max-w-[318px] text-center mx-auto">
+        Build or grow your team hustle-free! Simple, effective and efficient
+      </p>
 
-      <div className="flex justify-between max-w-6xl mt-40 ">
+      <div className="flex justify-between max-w-6xl mt-12 lg:mt-40">
         <div className="w-full lg:w-[392px] flex flex-col gap-y-12">
           {CARDS.map(({ title, text }) => (
             <>
-              <div className="flex gap-7">
-                <div className="rounded-[10px] bg-[#ECF1FF] min-w-[51px] h-[51px] flex justify-center items-center">
-                  <Image
-                    src="/assets/Diamond.svg"
-                    alt=""
-                    width={24}
-                    height={24}
-                  />
-                </div>
-
-                <div className="flex flex-col gap-y-2">
-                  <h4 className="text-xl lg:text-2xl text-white font-semibold">
-                    {title}
-                  </h4>
-                  <p className="text-white text-base lg:text-[20px]">{text}</p>
-                </div>
-              </div>
+              <VerticalCards title={title} text={text} />
             </>
           ))}
         </div>
