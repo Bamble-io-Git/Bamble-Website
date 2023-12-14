@@ -25,13 +25,24 @@ const RecruitingExcellence = () => {
         height={400}
         className="absolute -right-40 2xl:right-0 -top-2 2xl:-top-10"
       />
-      <h2 className="text-white">Recruiting excellence within reach</h2>
+      <div className="relative">
+        <h2 className="text-white">Recruiting excellence within reach</h2>
+
+        <Image
+          src="/assets/yellow-adornment.svg"
+          alt=""
+          width={95}
+          height={2}
+          className="absolute -top-4 left-0"
+        />
+      </div>
+
       <p className="text-white">
         Affordable subscription services for start-ups and companies
       </p>
 
       <div className="flex justify-between max-w-6xl mt-40 ">
-        <div className="max-w-[392px] flex flex-col gap-y-12">
+        <div className="w-full lg:w-[392px] flex flex-col gap-y-12">
           {CARDS.map(({ title, text }) => (
             <>
               <div className="flex gap-7">
@@ -54,7 +65,7 @@ const RecruitingExcellence = () => {
             </>
           ))}
         </div>
-        <div className="bg-[#ECF1FF] rounded-t-[36px] relative h-[517px] w-[502px]">
+        <div className="bg-[#ECF1FF] rounded-t-[36px] relative h-[517px] w-[502px] lg:block hidden">
           {" "}
           <Image
             src={IMAGES.designer}
