@@ -2,6 +2,20 @@ import Image from "next/image";
 import { IMAGES } from "../../../../public/assets/images/images";
 
 const RecruitingExcellence = () => {
+  const CARDS = [
+    {
+      title: "Cost-effective",
+      text: "Affordable recruitment solutions tailored for startups on a budget.",
+    },
+    {
+      title: "Scalability",
+      text: "Flexible services that grow with your startup, adapting to changing staffing requirements.",
+    },
+    {
+      title: "Access to Valuable Experience",
+      text: "Tap into the experience of seasoned recruiters for strategic hiring insights.",
+    },
+  ];
   return (
     <section className="bg-blue-primary wrapper py-10 sm:py-[90px] relative overflow-hidden">
       <Image
@@ -16,23 +30,29 @@ const RecruitingExcellence = () => {
         Affordable subscription services for start-ups and companies
       </p>
 
-      <div className="flex justify-between max-w-5xl mt-40 border">
-        <div className="max-w-[392px]">
-          <div className="flex gap-7">
-            <div className="rounded-[10px] bg-[#ECF1FF] min-w-[51px] h-[51px] flex justify-center items-center">
-              <Image src="/assets/Diamond.svg" alt="" width={24} height={24} />
-            </div>
+      <div className="flex justify-between max-w-6xl mt-40 ">
+        <div className="max-w-[392px] flex flex-col gap-y-12">
+          {CARDS.map(({ title, text }) => (
+            <>
+              <div className="flex gap-7">
+                <div className="rounded-[10px] bg-[#ECF1FF] min-w-[51px] h-[51px] flex justify-center items-center">
+                  <Image
+                    src="/assets/Diamond.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                  />
+                </div>
 
-            <div className="flex flex-col gap-y-4">
-              <h4 className="text-xl lg:text-2xl text-white font-semibold">
-                Cost-effective
-              </h4>
-              <p>
-                Affordable recruitment solutions tailored for startups on a
-                budget.
-              </p>
-            </div>
-          </div>
+                <div className="flex flex-col gap-y-2">
+                  <h4 className="text-xl lg:text-2xl text-white font-semibold">
+                    {title}
+                  </h4>
+                  <p className="text-white text-base lg:text-[20px]">{text}</p>
+                </div>
+              </div>
+            </>
+          ))}
         </div>
         <div className="bg-[#ECF1FF] rounded-t-[36px] relative h-[517px] w-[502px]">
           {" "}
