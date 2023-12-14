@@ -1,6 +1,7 @@
+import clsx from "clsx";
 import Image from "next/image";
 import { IMAGES } from "../../../../public/assets/images/images";
-
+import styles from "./styles.module.css";
 const RecruitingExcellence = () => {
   const CARDS = [
     {
@@ -72,7 +73,7 @@ const RecruitingExcellence = () => {
             alt=""
             height={664}
             width={502}
-            className="mb-20 absolute -top-36"
+            className={clsx(styles.image, "mb-20 absolute -top-36")}
           />
         </div>
       </div>

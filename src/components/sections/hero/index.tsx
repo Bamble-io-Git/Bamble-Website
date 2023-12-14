@@ -95,7 +95,7 @@ const Hero = () => {
         ))}
       </div>
 
-      <div className="custom-background custom-box-shadow custom-blur mx-auto h-[50px] max-w-[728px] mt-16 hidden sm:block"></div>
+      <div className="custom-background custom-box-shadow custom-blur mx-auto h-[40px] max-w-[728px] mt-16 hidden sm:block"></div>
     </section>
   );
 };
