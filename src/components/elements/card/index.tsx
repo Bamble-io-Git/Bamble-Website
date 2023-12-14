@@ -14,12 +14,28 @@ const Card = ({
       key={metric}
       className={clsx(
         isActive &&
-          "transform -translate-y-6 bg-blue-primary text-blue-primary   transition-all",
-        "rounded-[36px] min-w-[377px] py-[20px] text-center border bg-[#ECF1FF] font-primary z-10",
+          "transform -translate-y-6 bg-blue-primary text-white transition-all my-5 lg:my-0",
+        "rounded-[36px] min-w-[377px] py-[48px] text-center border bg-[#ECF1FF] font-primary z-10",
       )}
     >
-      <p className="text-[70px] text-white font-semibold ">{metric}</p>
-      <p className="text-[28px] text-white font-semibold ">{outcome}</p>
+      <p
+        className={clsx(
+          isActive
+            ? "text-white text-[70px] mb-10"
+            : "text-blue-primary font-semibold text-[70px] mb-10",
+        )}
+      >
+        {metric}
+      </p>
+      <p
+        className={clsx(
+          isActive
+            ? "text-white text-[28px]"
+            : "text-[28px] text-blue-primary font-semibold mt-10",
+        )}
+      >
+        {outcome}
+      </p>
     </div>
   );
 };

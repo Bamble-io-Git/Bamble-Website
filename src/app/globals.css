@@ -4,14 +4,18 @@
 
 @layer base {
   h1 {
-    @apply text-[42px] font-semibold leading-[52px];
+    @apply text-[32px] sm:text-[42px] font-semibold leading-[40px] sm:leading-[52px];
   }
   h4 {
-    @apply text-gray-text text-[20px] font-primary;
+    @apply text-gray-text text-lg sm:text-[20px] font-primary leading-[155%] sm:leading-7;
+  }
+
+  p {
+    @apply font-primary text-lg text-gray-text font-normal;
   }
 
   .custom-background {
-    background: #005fdf;
+    @apply bg-blue-primary;
   }
 
   .custom-box-shadow {
@@ -19,12 +23,12 @@
   }
 
   .custom-blur {
-    filter: blur(47.4px);
+    filter: blur(57.4px);
   }
 }
 
 @layer utilities {
   .wrapper {
-    @apply px-4 md:px-[260px];
+    @apply px-4 md:px-[160px]  2xl:px-[260px];
   }
 }

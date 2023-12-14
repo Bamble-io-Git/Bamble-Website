@@ -21,11 +21,6 @@ const config: Config = {
           primary: "#F3F2F1",
         },
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       fontFamily: {
         primary: ["var(--font-noto-sans)"],
         secondary: ["var(--font-montserrat)"],

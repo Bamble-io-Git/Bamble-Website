@@ -16,7 +16,7 @@ const LinkComponent = ({
       href={url}
       className={clsx(
         outline && "",
-        "px-[58px] py-[11px] bg-blue-primary rounded-lg text-white font-semibold text-lg",
+        "px-10 sm:px-[58px] py-[11px] bg-blue-primary rounded-lg text-white font-semibold text-[17px] sm:text-lg sm:w-auto w-[179px]",
       )}
     >
       {text}

@@ -40,22 +40,22 @@ const Hero = () => {
 
   const isTablet = useMediaQuery(1024);
   return (
-    <section className="relative">
+    <section className="relative overflow-hidden">
       <Image
-        className="absolute top-0 -left-[5%] xl:-left-[32%] hidden md:block"
+        className="absolute top-0 -left-[25%] xl:-left-[10%] hidden xl:block"
         src="/assets/landing-page-z.svg"
         alt=""
-        width={isTablet ? 220 : 400}
-        height={isTablet ? 200 : 400}
+        width={isTablet ? 220 : 477}
+        height={isTablet ? 200 : 600}
       />
       <Image
-        className="absolute hidden md:block top-0 right-0 xl:-right-[38%]"
+        className="absolute hidden xl:block top-0 -right-[14%]"
         src="/assets/zig-zag.svg"
         alt=""
-        width={isTablet ? 220 : 400}
+        width={isTablet ? 220 : 477}
         height={400}
       />
-      <div className="flex justify-center flex-col text-center gap-y-6 pt-12 pb-24 max-w-[728px] mx-auto">
+      <div className="flex justify-center flex-col text-center gap-y-6 pt-5 sm:pt-12 pb-20 max-w-[728px] mx-auto px-7 md:px-0">
         <h1>
           Affordable{" "}
           <span className="text-blue-primary">Recruitment as a Service</span>{" "}
@@ -72,18 +72,19 @@ const Hero = () => {
           these!
         </h4>
 
-        <div className="flex justify-center gap-x-10 py-5">
+        <div className="flex flex-col sm:flex-row justify-center gap-y-5 gap-x-10 pt-6 pb-7 sm:mx-0 mx-auto">
           <LinkComponent
             url="https://calendly.com/bamble-melissa/30min"
             text="Book a call"
           />
+          {/* TODO: scroll to pricing section here */}
           <button>View pricing</button>
         </div>
         <h3 className="font-secondary text-2xl font-semibold">
           We’ll fix your recruiting issues in a blink!
         </h3>
       </div>
-      <div className="flex gap-x-5 mx-auto justify-center -mt-4">
+      <div className="flex gap-5 mx-auto justify-center -mt-4 xl:flex-nowrap flex-wrap">
         {performanceIndex.map(({ metric, outcome }, index) => (
           <Card
             isActive={index === selectedCard}
@@ -94,7 +95,7 @@ const Hero = () => {
         ))}
       </div>
 
-      <div className="custom-background custom-box-shadow custom-blur h-[50px]"></div>
+      <div className="custom-background custom-box-shadow custom-blur mx-auto h-[50px] max-w-[728px] mt-16 hidden sm:block"></div>
     </section>
   );
 };
