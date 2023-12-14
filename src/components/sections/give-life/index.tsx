@@ -55,7 +55,9 @@ const GiveTeamLife = () => {
               </div>
 
               <div className="my-4 flex-1">
-                <h4 className="font-semibold text-2xl mb-3">{title}</h4>
+                <h4 className="font-semibold text-xl lg:text-2xl mb-3">
+                  {title}
+                </h4>
                 <div className="block flex-1">
                   <p className={clsx(text.length > 150 ? "break-words" : "")}>
                     {text}

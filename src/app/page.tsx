@@ -1,6 +1,7 @@
 import PageLayout from "@/components/layout";
 import GiveTeamLife from "@/components/sections/give-life";
 import Hero from "@/components/sections/hero";
+import RecruitingExcellence from "@/components/sections/recruiting-excellence";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <PageLayout>
         <Hero />
         <GiveTeamLife />
+        <RecruitingExcellence />
       </PageLayout>
     </main>
   );
