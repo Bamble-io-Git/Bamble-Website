@@ -1,4 +1,5 @@
 "use client";
+import LinkComponent from "@/components/elements/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import clsx from "clsx";
 import Image from "next/image";
@@ -35,7 +36,7 @@ const GiveTeamLife = () => {
           </span>
         </p>
 
-        <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-20">
+        <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-20 mb-14">
           {CARDS.map(({ title, icon, text }, index) => (
             <div
               key={text}
@@ -66,6 +67,15 @@ const GiveTeamLife = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-center gap-y-5 gap-x-10 pt-6 pb-7 sm:mx-0 mx-auto">
+          <LinkComponent
+            url="https://calendly.com/bamble-melissa/30min"
+            text="Book a call"
+          />
+          {/* TODO: scroll to pricing section here */}
+          <button>View pricing</button>
         </div>
       </div>
     </section>
