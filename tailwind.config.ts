@@ -20,6 +20,9 @@ const config: Config = {
         gray: {
           primary: "#F3F2F1",
         },
+        yellow: {
+          primary: "#F2E205",
+        },
       },
       fontFamily: {
         primary: ["var(--font-noto-sans)"],
