@@ -18,16 +18,16 @@ const DedicatedRecruiters = () => {
     },
   ];
   return (
-    <section className="bg-[#000040] wrapper py-10 sm:py-0 relative overflow-hidden">
-      <div className="flex gap-x-40 max-w-7xl mt-12 lg:mt-40 mx-auto">
-        <div className="rounded-t-[36px] relative h-[575px] w-[480px] lg:block hidden">
+    <section className="bg-[#000040] wrapper pt-16 pb-24 lg:pt-0 lg:pb-0 relative overflow-hidden">
+      <div className="flex gap-x-8 xl:gap-x-40 max-w-7xl mt-12 lg:mt-40 mx-auto">
+        <div className="rounded-t-[36px] relative h-[563px] 2xl:h-[575px] w-[480px] lg:block hidden">
           {" "}
           <Image
             src={IMAGES.funcionario}
             alt=""
             height={575}
             width={480}
-            className={"absolute top-0 w-full rounded-t-[36px]"}
+            className={"absolute top-0 w-full rounded-t-[36px] z-10"}
             quality={100}
           />
         </div>
@@ -44,7 +44,7 @@ const DedicatedRecruiters = () => {
         alt=""
         width={280}
         height={240}
-        className="absolute -left-0 2xl:right-0 -top-2 2xl:top-40 md:block hidden"
+        className="absolute -left-20 2xl:-left-0 top-40 2xl:top-40 lg:block hidden"
       />
     </section>
   );
