@@ -2,6 +2,7 @@ import PageLayout from "@/components/layout";
 import DedicatedRecruiters from "@/components/sections/dedicated-recruiters";
 import GiveTeamLife from "@/components/sections/give-life";
 import Hero from "@/components/sections/hero";
+import ReadyToGetStarted from "@/components/sections/ready-to-start";
 import RecruitingExcellence from "@/components/sections/recruiting-excellence";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
         <GiveTeamLife />
         <RecruitingExcellence />
         <DedicatedRecruiters />
+        <ReadyToGetStarted />
       </PageLayout>
     </main>
   );

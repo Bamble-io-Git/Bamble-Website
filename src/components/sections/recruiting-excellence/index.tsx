@@ -1,7 +1,7 @@
 import VerticalCards from "@/components/elements/cards/vertical-card";
 import clsx from "clsx";
 import Image from "next/image";
-import { IMAGES } from "../../../../public/assets/images/images";
+import { IMAGES } from "../../../app/theme/images/images";
 import styles from "./styles.module.css";
 const RecruitingExcellence = () => {
   const CARDS = [

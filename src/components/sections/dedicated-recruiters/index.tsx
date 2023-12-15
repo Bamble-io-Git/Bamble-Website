@@ -1,6 +1,6 @@
 import VerticalCards from "@/components/elements/cards/vertical-card";
 import Image from "next/image";
-import { IMAGES } from "../../../../public/assets/images/images";
+import { IMAGES } from "../../../app/theme/images/images";
 
 const DedicatedRecruiters = () => {
   const CARDS = [
