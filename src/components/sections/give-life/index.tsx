@@ -70,7 +70,7 @@ const GiveTeamLife = ({ handleScroll }: { handleScroll: () => void }) => {
           ))}
         </div>
       </div>{" "}
-      <div className="flex flex-col sm:flex-row items-center justify-normal sm:justify-center gap-y-5 gap-x-10 pt-6 pb-7 sm:mx-0 mx-auto">
+      <div className="flex flex-col sm:flex-row items-center justify-normal sm:justify-center gap-5 pt-6 pb-7 sm:mx-0 mx-auto">
         <LinkComponent
           url="https://calendly.com/bamble-melissa/30min"
           text="Book a call"
