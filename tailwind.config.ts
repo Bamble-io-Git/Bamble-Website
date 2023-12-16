@@ -31,6 +31,9 @@ const config: Config = {
         primary: ["var(--font-noto-sans)"],
         secondary: ["var(--font-montserrat)"],
       },
+      borderColor: {
+        primary: "#323130",
+      },
       backgroundImage: {
         "gradient-black":
           "linear-gradient(0deg, #000 0%, rgba(130, 130, 130, 0.00) 49.41%)",

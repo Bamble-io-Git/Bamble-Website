@@ -95,12 +95,12 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
 
       <div className="flex flex-col sm:flex-row justify-center mx-auto max-w-6xl mt-8 lg:mt-16">
         <div
-          className="w-full flex sm:justify-center gap-10 sm:gap-4 flex-col lg:flex-row items-center lg:items-start"
+          className="w-full flex sm:justify-center gap-14 lg:gap-4 flex-col lg:flex-row items-center lg:items-start"
           ref={scrollRef}
         >
           {CARDS.map(({ title, pricing, incentives }, index) => (
             <div
-              className="max-w-[480px] xl:max-w-[580px] flex flex-col gap-y-7 border bg-gray-primary h-fit"
+              className="max-w-[480px] xl:max-w-[580px] flex flex-col gap-y-7 border bg-gray-primary h-fit sm:border-gray-200 border-primary"
               key={title}
             >
               <div className="relative hidden sm:block w-[480px] xl:w-[580px] h-[183px]">
@@ -113,11 +113,18 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                 />
               </div>
 
-              <div className="px-10 flex flex-col gap-y-7 pb-10">
+              <div className="px-7 lg:px-10 flex flex-col gap-y-7 pb-10 pt-8 sm:pt-0">
+                {isMobile && title.includes("Pro") && (
+                  <div className="max-w-[128px]">
+                    <InfoComponent text="Recommended" />
+                  </div>
+                )}
                 <span className="flex gap-4 items-center">
-                  <h4 className="font-semibold text-[28px]">{title} </h4>
+                  <h4 className="font-semibold sm:text-[28px] text-2xl">
+                    {title}{" "}
+                  </h4>
 
-                  {title.includes("Pro") && (
+                  {!isMobile && title.includes("Pro") && (
                     <InfoComponent text="Recommended" />
                   )}
                 </span>
@@ -165,7 +172,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                               {item}
 
                               {item.includes("Intelligence") && (
-                                <span className="text-sm text-[#605E5C] font-normal absolute top-7 left-0">
+                                <span className="text-xs sm:text-sm text-[#605E5C] font-normal absolute top-16 sm:top-7 left-0">
                                   * only markets where we have presence
                                 </span>
                               )}
