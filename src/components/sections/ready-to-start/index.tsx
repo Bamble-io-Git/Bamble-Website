@@ -3,7 +3,7 @@ import LinkComponent from "@/components/elements/link";
 import Image from "next/image";
 import { forwardRef } from "react";
 
-const ReadyToGetStarted = forwardRef((props, scrollRef) => {
+const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
   const CARDS = [
     {
       title: "RAAS Basic",

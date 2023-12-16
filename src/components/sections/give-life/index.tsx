@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/elements/button";
 import LinkComponent from "@/components/elements/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import clsx from "clsx";
@@ -22,7 +23,7 @@ const CARDS = [
   },
 ];
 
-const GiveTeamLife = () => {
+const GiveTeamLife = ({ handleScroll }: { handleScroll: () => void }) => {
   const isTablet = useMediaQuery(1240);
   return (
     <section className="wrapper py-10 sm:py-[118px]">
@@ -74,8 +75,7 @@ const GiveTeamLife = () => {
           url="https://calendly.com/bamble-melissa/30min"
           text="Book a call"
         />
-        {/* TODO: scroll to pricing section here */}
-        <button>View pricing</button>
+        <Button text="View pricing" handleClick={handleScroll} />
       </div>
     </section>
   );

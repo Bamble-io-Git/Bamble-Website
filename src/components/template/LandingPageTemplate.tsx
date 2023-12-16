@@ -15,7 +15,7 @@ const LandingPageTemplate = () => {
   return (
     <PageLayout>
       <Hero handleScroll={handleScroll} />
-      <GiveTeamLife />
+      <GiveTeamLife handleScroll={handleScroll} />
       <RecruitingExcellence />
       <DedicatedRecruiters />
       <ReadyToGetStarted ref={ref} />
