@@ -1,5 +1,7 @@
 import { IMAGES } from "@/app/theme/images/images";
+import InfoComponent from "@/components/elements/info";
 import LinkComponent from "@/components/elements/link";
+import clsx from "clsx";
 import Image from "next/image";
 import { forwardRef } from "react";
 
@@ -48,7 +50,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
     },
   ];
   return (
-    <section className=" wrapper py-20 sm:py-[90px]">
+    <section className=" wrapper py-20 sm:py-[110px]">
       <div className="sm:text-start text-center mx-auto">
         <h2 className="text-black text-center">Ready to Get Started?</h2>
         <p className="text-[#434B53] text-lg sm:text-[20px] max-w-[420px] text-center mx-auto mt-5">
@@ -57,28 +59,34 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
         </p>
       </div>
 
-      <div className="flex justify-between max-w-6xl mt-12 lg:mt-40">
-        <div className="w-full flex  gap-10 sm:gap-4" ref={scrollRef}>
+      <div className="flex justify-center mx-auto max-w-6xl mt-8 lg:mt-16">
+        <div
+          className="w-full flex justify-center gap-10 sm:gap-4"
+          ref={scrollRef}
+        >
           {CARDS.map(({ title, pricing, incentives }, index) => (
             <div
-              className="max-w-[580px] flex flex-col gap-y-7 border"
+              className="max-w-[580px] flex flex-col gap-y-7 border bg-gray-primary h-fit"
               key={title}
             >
               <div className="relative w-[580px] h-[183px]">
                 <Image
                   src={IMAGES.colleague}
                   alt=""
-                  // width={580}
-                  // height={183}
                   fill
                   className="object-cover w-full h-full"
                   quality={100}
                 />
-                {/* <div className="absolute w-full h-full bg-gradient-black top-0 left-0" />{" "} */}
               </div>
 
-              <div className="px-10 flex flex-col gap-y-7">
-                <h4 className="font-semibold text-[28px]">{title}</h4>
+              <div className="px-10 flex flex-col gap-y-7 pb-10">
+                <span className="flex gap-4 items-center">
+                  <h4 className="font-semibold text-[28px]">{title} </h4>
+
+                  {title.includes("Pro") && (
+                    <InfoComponent text="Recommended" />
+                  )}
+                </span>
 
                 <span className="flex gap-x-3">
                   <Image
@@ -90,21 +98,55 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                   <p className="text-blue-primary"> Pricing: {pricing} </p>
                 </span>
 
-                <div className="w-2/3 mt-[49px] mb-[40px]">
+                <div className="w-2/3 mt-5 -mb-2">
                   <LinkComponent text="Pay now" outline={index === 0} url="#" />
                 </div>
               </div>
 
-              <div className="flex flex-col gap-y-7 px-10">
+              <div className="flex flex-col gap-y-7 px-10 pb-12">
                 {incentives.map((incentive) => (
                   <>
                     <p className="font-semibold text-[28px]">
                       {incentive.heading}
                     </p>
 
-                    <div className="flex flex-col gap-y-7">
+                    <div className="flex flex-col gap-y-5">
                       {incentive.items.map((item) => (
-                        <p>{item}</p>
+                        <span className="flex gap-x-3 items-center" key={item}>
+                          <Image
+                            alt=""
+                            width={30}
+                            height={30}
+                            src="/assets/blue-check.svg"
+                          />
+
+                          <span className="flex gap-x-3 items-center">
+                            <p
+                              key={item}
+                              className={clsx(
+                                item.includes("Intelligence") && "pb-7",
+                                "relative",
+                              )}
+                            >
+                              {item}
+
+                              {item.includes("Intelligence") && (
+                                <span className="text-sm text-[#605E5C] font-normal absolute top-7 left-0">
+                                  * only markets where we have presence
+                                </span>
+                              )}
+                            </p>
+
+                            {item.includes("Embedded hiring") && (
+                              <Image
+                                alt=""
+                                width={30}
+                                height={30}
+                                src="/assets/exclaim.svg"
+                              />
+                            )}
+                          </span>
+                        </span>
                       ))}
                     </div>
                   </>
