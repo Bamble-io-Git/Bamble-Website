@@ -63,15 +63,15 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
           for Start-ups & Companies
         </h1>
 
-        <h4>
+        <h2 className="text-gray-text text-lg sm:text-[20px] font-primary leading-[155%] sm:leading-7 font-normal">
           Do you struggle to find top tier tech talent within your budget?
-        </h4>
-        <h4>
+        </h2>
+        <h2 className="text-gray-text text-lg sm:text-[20px] font-primary leading-[155%] sm:leading-7 font-normal">
           {" "}
           We have been there too. We understand the pain, the wasted time and
           the frustration that comes with limited resources. Our aim is to fix
           these!
-        </h4>
+        </h2>
 
         <div className="flex flex-col sm:flex-row justify-center gap-5 pt-6 pb-7 sm:mx-0 mx-auto">
           <LinkComponent

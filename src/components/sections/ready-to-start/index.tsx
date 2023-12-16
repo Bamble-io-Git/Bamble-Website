@@ -58,9 +58,12 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
       </div>
 
       <div className="flex justify-between max-w-6xl mt-12 lg:mt-40">
-        <div className="w-full flex gap-y-12  gap-10 sm:gap-4" ref={scrollRef}>
-          {CARDS.map(({ title, pricing }) => (
-            <div className="max-w-[580px]   border" key={title}>
+        <div className="w-full flex  gap-10 sm:gap-4" ref={scrollRef}>
+          {CARDS.map(({ title, pricing, incentives }, index) => (
+            <div
+              className="max-w-[580px] flex flex-col gap-y-7 border"
+              key={title}
+            >
               <div className="relative w-[580px] h-[183px]">
                 <Image
                   src={IMAGES.colleague}
@@ -74,12 +77,38 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                 {/* <div className="absolute w-full h-full bg-gradient-black top-0 left-0" />{" "} */}
               </div>
 
-              <div>
-                <h4>{title}</h4>
+              <div className="px-10 flex flex-col gap-y-7">
+                <h4 className="font-semibold text-[28px]">{title}</h4>
 
-                <p>{pricing}</p>
+                <span className="flex gap-x-3">
+                  <Image
+                    src="/assets/Money.svg"
+                    alt=""
+                    width={30}
+                    height={30}
+                  />{" "}
+                  <p className="text-blue-primary"> Pricing: {pricing} </p>
+                </span>
 
-                <LinkComponent text="Pay now" outline url="" />
+                <div className="w-2/3 mt-[49px] mb-[40px]">
+                  <LinkComponent text="Pay now" outline={index === 0} url="#" />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-y-7 px-10">
+                {incentives.map((incentive) => (
+                  <>
+                    <p className="font-semibold text-[28px]">
+                      {incentive.heading}
+                    </p>
+
+                    <div className="flex flex-col gap-y-7">
+                      {incentive.items.map((item) => (
+                        <p>{item}</p>
+                      ))}
+                    </div>
+                  </>
+                ))}
               </div>
             </div>
           ))}
