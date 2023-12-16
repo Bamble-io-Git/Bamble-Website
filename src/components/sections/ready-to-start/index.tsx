@@ -1,8 +1,9 @@
 import { IMAGES } from "@/app/theme/images/images";
 import LinkComponent from "@/components/elements/link";
 import Image from "next/image";
+import { forwardRef } from "react";
 
-const ReadyToGetStarted = () => {
+const ReadyToGetStarted = forwardRef((props, scrollRef) => {
   const CARDS = [
     {
       title: "RAAS Basic",
@@ -57,7 +58,7 @@ const ReadyToGetStarted = () => {
       </div>
 
       <div className="flex justify-between max-w-6xl mt-12 lg:mt-40">
-        <div className="w-full flex gap-y-12  gap-10 sm:gap-4">
+        <div className="w-full flex gap-y-12  gap-10 sm:gap-4" ref={scrollRef}>
           {CARDS.map(({ title, pricing }) => (
             <div className="max-w-[580px]   border" key={title}>
               <div className="relative w-[580px] h-[183px]">
@@ -78,7 +79,7 @@ const ReadyToGetStarted = () => {
 
                 <p>{pricing}</p>
 
-                <LinkComponent text="Pay now" outline  url=""/>
+                <LinkComponent text="Pay now" outline url="" />
               </div>
             </div>
           ))}
@@ -86,6 +87,8 @@ const ReadyToGetStarted = () => {
       </div>
     </section>
   );
-};
+});
 
 export default ReadyToGetStarted;
+
+ReadyToGetStarted.displayName = "ReadyToGetStarted";

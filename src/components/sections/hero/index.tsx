@@ -1,11 +1,12 @@
 "use client";
+import Button from "@/components/elements/button";
 import Card from "@/components/elements/cards/card";
 import LinkComponent from "@/components/elements/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
-const Hero = () => {
+const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
   const [selectedCard, setSelectedCard] = useState(0);
 
   const performanceIndex = [
@@ -77,8 +78,7 @@ const Hero = () => {
             url="https://calendly.com/bamble-melissa/30min"
             text="Book a call"
           />
-          {/* TODO: scroll to pricing section here */}
-          <button>View pricing</button>
+          <Button text="View pricing" handleClick={handleScroll} />
         </div>
         <h3 className="font-secondary text-2xl font-semibold">
           We’ll fix your recruiting issues in a blink!
