@@ -86,26 +86,33 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
 
             return (
               <div
+                style={{
+                  border: isMobile && isSelected ? "1px solid #005FDF" : "",
+                }}
                 className={clsx(
-                  isMobile && isSelected
-                    ? "border border-blue-primary"
-                    : "border border-primary sm:border-[#D4D4D4]",
+                  "border-r border-t-0 sm:border-t-0 border-l border-b border-primary sm:border-[#D4D4D4]",
 
+                  isMobile && index === 0 && "!border-t border-primary",
                   "max-w-[480px] xl:max-w-[580px] flex flex-col gap-y-7 border bg-gray-primary h-fit relative transition-all",
                 )}
                 key={title}
               >
-                <div className="relative hidden sm:block w-[480px] xl:w-[580px] h-[183px]">
+                <div
+                  className={clsx(
+                    index === 1 && "border-t-[13px] !border-blue-primary",
+                    "relative w-[480px] xl:w-[579px] h-0 sm:h-[183px]",
+                  )}
+                >
                   <Image
                     src={image}
                     alt=""
                     fill
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full hidden sm:block "
                     quality={100}
                   />
                 </div>
 
-                <div className="px-7 lg:px-10 flex flex-col gap-y-7 pb-10 pt-8 sm:pt-0">
+                <div className="px-7 lg:px-10 flex flex-col gap-y-7 pb-10 pt-4 sm:pt-0">
                   {isMobile && title.includes("Pro") && (
                     <div className="max-w-[128px]">
                       <InfoComponent text="Recommended" />
