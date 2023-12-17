@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import PageLayout from "../layout";
 import DedicatedRecruiters from "../sections/dedicated-recruiters";
+import FAQ from "../sections/faq";
 import GiveTeamLife from "../sections/give-life";
 import Hero from "../sections/hero";
 import ReadyToGetStarted from "../sections/ready-to-start";
@@ -19,6 +20,7 @@ const LandingPageTemplate = () => {
       <RecruitingExcellence />
       <DedicatedRecruiters />
       <ReadyToGetStarted ref={ref} />
+      <FAQ />
     </PageLayout>
   );
 };

@@ -26,6 +26,9 @@ const config: Config = {
         yellow: {
           primary: "#F2E205",
         },
+        purple: {
+          primary: "#000040",
+        },
       },
       fontFamily: {
         primary: ["var(--font-noto-sans)"],
