@@ -1,56 +1,10 @@
-import { IMAGES } from "@/app/theme/images/images";
 import InfoComponent from "@/components/elements/info";
 import LinkComponent from "@/components/elements/link";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import clsx from "clsx";
 import Image from "next/image";
 import { forwardRef, useState } from "react";
-
-const CARDS = [
-  {
-    id: 0,
-    title: "RAAS Basic",
-    pricing: "€ 1,000",
-    image: IMAGES.colleague,
-    incentives: [
-      {
-        heading: "What do you get?",
-        items: [
-          "One opening = one time fee",
-          "Profile definition based on company needs",
-          "Job description creation",
-          "Salary Intelligence per role and market",
-          "2-3 days to receive a shortlist",
-          "3 months candidate replacement guarantee",
-          "Support during the interviews",
-          "Slack Updates",
-        ],
-      },
-    ],
-  },
-  {
-    id: 1,
-    title: "Subscription RAAS Pro",
-    pricing: "€ 2,500",
-    image: IMAGES.jovial,
-    incentives: [
-      {
-        heading: "What do you get?",
-        items: [
-          "Two role requests at a time = Uncapped requests",
-          "Unlimited recruiting requests",
-          "Embedded hiring",
-          "Salary Intelligence per role and market",
-          "Ready to hire shortlist",
-          "3 months candidate replacement guarantee",
-          "Priority Support",
-          "Slack Updates",
-          "+ other benefits offered in basic tier",
-        ],
-      },
-    ],
-  },
-];
+import { CARDS } from "./mocks/data";
 
 const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
   const isMobile = useMediaQuery(640);
@@ -91,16 +45,15 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                 }}
                 className={clsx(
                   "border-r border-t-0 sm:border-t-0 border-l border-b border-primary sm:border-[#D4D4D4]",
-
                   isMobile && index === 0 && "!border-t border-primary",
-                  "max-w-[480px] xl:max-w-[580px] flex flex-col gap-y-7 border bg-gray-primary h-fit relative transition-all",
+                  "max-w-[350px] sm:max-w-[480px] xl:max-w-[580px] flex flex-col gap-y-7 border bg-gray-primary h-fit relative transition-all",
                 )}
                 key={title}
               >
                 <div
                   className={clsx(
                     index === 1 && "border-t-[13px] !border-blue-primary",
-                    "relative w-[480px] xl:w-[579px] h-0 sm:h-[183px]",
+                    "relative w-[350px] sm:w-[480px] xl:w-[579px] h-0 sm:h-[183px]",
                   )}
                 >
                   <Image
@@ -112,7 +65,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                   />
                 </div>
 
-                <div className="px-7 lg:px-10 flex flex-col gap-y-7 pb-10 pt-4 sm:pt-0">
+                <div className="px-10 flex flex-col gap-y-7 pb-10 pt-4 sm:pt-0">
                   {isMobile && title.includes("Pro") && (
                     <div className="max-w-[128px]">
                       <InfoComponent text="Recommended" />
@@ -134,17 +87,16 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                       alt=""
                       width={30}
                       height={30}
-                    />{" "}
+                    />
                     <p className="text-blue-primary"> Pricing: {pricing} </p>
                   </span>
 
-                  <div className="w-2/3 mt-5 -mb-2">
-                    <LinkComponent
-                      text="Pay now"
-                      outline={index === 0}
-                      url="#"
-                    />
-                  </div>
+                  <LinkComponent
+                    text="Pay now"
+                    outline={index === 0}
+                    url="#"
+                    cardLink
+                  />
                 </div>
 
                 <div className="flex flex-col gap-y-7 px-10 pb-12">
@@ -181,7 +133,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                                   )}
                                 >
                                   {item.includes("Intelligence") && (
-                                    <span className="text-xs sm:text-sm text-[#605E5C] font-normal absolute top-16 sm:top-7 left-0">
+                                    <span className="text-xs sm:text-sm text-[#605E5C] font-normal absolute top-8   left-0">
                                       * only markets where we have presence
                                     </span>
                                   )}

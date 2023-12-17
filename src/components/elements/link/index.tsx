@@ -5,10 +5,12 @@ const LinkComponent = ({
   url,
   outline,
   text,
+  cardLink,
 }: {
   url: string;
   text: string;
   outline?: boolean;
+  cardLink?: boolean;
 }) => {
   return (
     <Link
@@ -18,6 +20,7 @@ const LinkComponent = ({
         outline
           ? "border border-blue-primary bg-white-primary text-blue-primary"
           : "text-white-primary",
+        cardLink && "sm:w-[207px]  w-[100%] text-center mt-5 -mb-2",
         "px-10 sm:px-[58px] bg-blue-primary rounded-lg  font-semibold text-[17px] sm:text-lg sm:w-auto py-[14.5px]",
       )}
     >
@@ -25,7 +28,5 @@ const LinkComponent = ({
     </Link>
   );
 };
-
-// sm:px-[58px] py-[11px] w-[179px]
 
 export default LinkComponent;
