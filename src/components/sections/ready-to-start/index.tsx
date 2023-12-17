@@ -11,12 +11,17 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
   const [limit, setLimit] = useState(2);
   const [selectedCardIndex, setSelectedCardIndex] = useState<number>();
 
-  const handleMore = (array: any[], limit: number, selected: boolean) => {
+  const handleMore = (
+    array: any[],
+    limit: number,
+    selected: boolean,
+    index: number,
+  ) => {
     if (!isMobile) return array;
     if (selected && isMobile) {
       return array.slice(0, limit + 10);
     } else {
-      return array.slice(0, 4);
+      return index === 0 ? array.slice(0, 3) : array.slice(0, 4);
     }
   };
 
@@ -112,6 +117,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                             incentive.items,
                             index === 0 ? limit : limit + 1,
                             isSelected,
+                            index,
                           )?.map((item) => {
                             return (
                               <span
