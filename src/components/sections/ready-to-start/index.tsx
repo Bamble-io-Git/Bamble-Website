@@ -133,7 +133,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                                   )}
                                 >
                                   {item.includes("Intelligence") && (
-                                    <span className="text-xs sm:text-sm text-[#605E5C] font-normal absolute top-8   left-0">
+                                    <span className="text-xs sm:text-sm text-[#605E5C] font-normal absolute top-14 sm:top-8   left-0">
                                       * only markets where we have presence
                                     </span>
                                   )}
