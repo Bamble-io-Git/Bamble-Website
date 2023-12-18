@@ -6,6 +6,7 @@ export const CARDS = [
     title: "RAAS Basic",
     pricing: "€ 1,000",
     image: IMAGES.colleague,
+    paymentLink: " https://buy.stripe.com/6oEcQee5LaFn9qgdQQ",
     incentives: [
       {
         heading: "What do you get?",
@@ -27,6 +28,7 @@ export const CARDS = [
     title: "Subscription RAAS Pro",
     pricing: "€ 2,500",
     image: IMAGES.jovial,
+    paymentLink: "https://buy.stripe.com/fZe8zY7Hn3cV5a07st",
     incentives: [
       {
         heading: "What do you get?",
