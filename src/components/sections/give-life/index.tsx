@@ -75,7 +75,11 @@ const GiveTeamLife = ({ handleScroll }: { handleScroll: () => void }) => {
           url="https://calendly.com/bamble-melissa/30min"
           text="Book a call"
         />
-        <Button text="View pricing" handleClick={handleScroll} />
+        <Button
+          text="View pricing"
+          className="text-gray-text"
+          handleClick={handleScroll}
+        />
       </div>
     </section>
   );

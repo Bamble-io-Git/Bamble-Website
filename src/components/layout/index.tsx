@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
-const PageLayout = ({ children }: { children: ReactNode }) => {
-  return <div className=" w-full">{children}</div>;
+type TLayoutProps = { children: ReactNode };
+
+const PageLayout = ({ children }: TLayoutProps) => {
+  return <div className="w-full">{children}</div>;
 };
 
 export default PageLayout;
-
-// xl:max-w-[923px]

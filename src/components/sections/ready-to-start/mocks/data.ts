@@ -6,7 +6,7 @@ export const CARDS = [
     title: "RAAS Basic",
     pricing: "€ 1,000",
     image: IMAGES.colleague,
-    paymentLink: " https://buy.stripe.com/6oEcQee5LaFn9qgdQQ",
+    paymentLink: "https://buy.stripe.com/6oEcQee5LaFn9qgdQQ",
     incentives: [
       {
         heading: "What do you get?",

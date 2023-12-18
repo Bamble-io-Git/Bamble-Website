@@ -78,7 +78,11 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
             url="https://calendly.com/bamble-melissa/30min"
             text="Book a call"
           />
-          <Button text="View pricing" handleClick={handleScroll} />
+          <Button
+            text="View pricing"
+            className="text-gray-text"
+            handleClick={handleScroll}
+          />
         </div>
         <h3 className="font-secondary text-2xl font-semibold">
           We’ll fix your recruiting issues in a blink!
