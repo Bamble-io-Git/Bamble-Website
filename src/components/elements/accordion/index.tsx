@@ -26,9 +26,9 @@ const Accordion = ({
     <div className="transition-all ease-in-out duration-500">
       <div
         className={clsx(
-          isSelected ? "absolute" : "hidden",
-
-          ` bg-purple-primary rounded-2xl text-white-primary w-[680px] p-9 transition-all ease-in-out duration-500 ${
+          // isSelected ? "absolute" : "hidden",
+          !isSelected && "hidden",
+          ` bg-purple-primary rounded-2xl text-white-primary  max-w-full lg:max-w-[680px] p-9 transition-all ease-in-out duration-500 ${
             isOpen
               ? "transform translate-y-12 mt-20"
               : "transform -translate-y-full z-10"
@@ -54,7 +54,7 @@ const Accordion = ({
       <button
         className={clsx(
           isOpen ? "mt-[0px] z-0" : "mt-[20px]",
-          "bg-white-primary p-9 rounded-2xl transform focus:outline-none  w-[680px] text-gray-text flex justify-between items-center transition-all ease-in-out duration-500",
+          "bg-white-primary p-9 rounded-2xl transform focus:outline-none w-full lg:w-[680px] text-gray-text flex justify-between items-center transition-all ease-in-out duration-500",
         )}
         onClick={() => {
           toggleAccordion();

@@ -52,7 +52,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                   className={clsx(
                     "border-r border-t-0 sm:border-t-0 border-l border-b border-primary sm:border-[#D4D4D4]",
                     isMobile && index === 0 && "!border-t border-primary",
-                    "max-w-[350px] sm:max-w-[480px] xl:max-w-[580px] flex flex-col gap-y-7 border bg-gray-primary h-fit relative transition-all",
+                    "max-w-[350px] sm:max-w-[480px] xl:max-w-[580px] flex flex-col gap-y-4 sm:gap-y-7 border bg-gray-primary h-fit relative transition-all",
                   )}
                   key={title}
                 >
@@ -71,7 +71,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                     />
                   </div>
 
-                  <div className="px-10 flex flex-col gap-y-7 pb-10 pt-4 sm:pt-0">
+                  <div className="px-6 sm:px-10 flex flex-col gap-y-7 pb-10 pt-4 sm:pt-0">
                     {isMobile && title.includes("Pro") && (
                       <div className="max-w-[128px]">
                         <InfoComponent text="Recommended" />
@@ -105,7 +105,7 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                     />
                   </div>
 
-                  <div className="flex flex-col gap-y-7 px-10 pb-12">
+                  <div className="flex flex-col gap-y-7 px-6 sm:px-10 pb-12">
                     {incentives.map((incentive, idx) => {
                       return (
                         <>
