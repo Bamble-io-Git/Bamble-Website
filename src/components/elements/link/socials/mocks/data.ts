@@ -6,8 +6,14 @@ const icons = {
 };
 
 export const SOCIAL_LINKS = [
-  { url: "#", logo: icons.facebook },
+  {
+    url: "https://www.facebook.com/Bamble-582181665744970/",
+    logo: icons.facebook,
+  },
   { url: "#", logo: icons.twitter },
-  { url: "#", logo: icons.linkedin },
-  { url: "#", logo: icons.instagram },
+  { url: "https://www.linkedin.com/company/bamble", logo: icons.linkedin },
+  {
+    url: "https://instagram.com/bamble.io?igshid=YmMyMTA2M2Y=",
+    logo: icons.instagram,
+  },
 ];

@@ -6,7 +6,7 @@ const Socials = () => {
   return (
     <div className="flex gap-x-8 items-center">
       {SOCIAL_LINKS.map(({ logo, url }, index) => (
-        <Link href={url}>
+        <Link href={url} key={url}>
           <Image
             alt=""
             src={logo}
