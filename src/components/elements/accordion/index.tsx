@@ -4,47 +4,65 @@ import { useState } from "react";
 type TAccordion = {
   title: string;
   content: string;
-  icon: "transparent" | "profitability" | "engagement" | "limitless";
+  selectAccordionItem: (id: number) => void;
+  index: number;
+  isSelected: boolean;
 };
 
-const Accordion = ({ title, content, icon }: TAccordion) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
+const Accordion = ({
+  title,
+  content,
+  selectAccordionItem,
+  index,
+  isSelected,
+}: TAccordion) => {
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className="relative transition-all ease-in-out">
+    <div className="relative transition-all ease-in-out duration-500">
       <div
-        className={`absolute bg-purple-primary rounded-2xl text-white-primary   transition-transform duration-300 w-[680px] p-9 ${
-          isOpen
-            ? "transform translate-y-12 mt-[100px]"
-            : "transform -translate-y-full"
-        }`}
+        className={clsx(
+          isSelected ? "block" : "hidden",
+          `absolute bg-purple-primary rounded-2xl text-white-primary w-[680px] p-9 transition-all ease-in-out duration-500 ${
+            isOpen
+              ? "transform translate-y-12 mt-20"
+              : "transform -translate-y-full z-10"
+          }`,
+        )}
       >
-        {content}
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem
-        numquam harum saepe in consectetur minus, suscipit quasi placeat
-        consequatur architecto provident similique voluptas, illum id!
-        Recusandae suscipit repellast laborum ipsa!
+        <div className="flex justify-between mb-7">
+          <h3 className="text-[28px] font-primary max-w-[400px]">{title}</h3>
+          <Image
+            src="/assets/socials/ArrowUp.svg"
+            width={24}
+            height={0}
+            alt=""
+            className="p-0 h-12"
+          />
+        </div>
+
+        <p className="text-base sm:text-xl font-normal text-white-primary">
+          {content}
+        </p>
       </div>
+
       <button
         className={clsx(
-          isOpen ? "mt-[0px]" : "mt-[20px] border",
-          "bg-white-primary p-9 rounded-md transition-transform duration-300 transform focus:outline-none relative z-10 w-[680px] text-gray-text flex justify-between items-center",
+          isOpen ? "mt-[0px] z-0" : "mt-[20px]",
+          "bg-white-primary p-9 rounded-2xl transform focus:outline-none relative w-[680px] text-gray-text flex justify-between items-center transition-all ease-in-out duration-500",
         )}
-        onClick={toggleAccordion}
+        onClick={() => {
+          toggleAccordion();
+          selectAccordionItem(index);
+        }}
       >
-        {title}
-        <p className="text-[20px] font-normal">
+        <p className="text-start text-base sm:text-xl font-light break-words max-w-[510px]">
           {" "}
-          consequatur architecto provident similique voluptas, illum id!
-          Recusandae suscipit repellast laborum ipsa!{" "}
+          {title}
         </p>
 
         <Image

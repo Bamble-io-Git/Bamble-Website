@@ -1,21 +1,11 @@
 import AccordionList from "@/components/elements/accordion";
+import { AccordionData } from "@/components/elements/accordion/data";
 import Image from "next/image";
+import { useState } from "react";
 
 const FAQ = () => {
-  const CARDS = [
-    {
-      title: "Cost-effective",
-      text: "Affordable recruitment solutions tailored for startups on a budget.",
-    },
-    {
-      title: "Scalability",
-      text: "Flexible services that grow with your startup, adapting to changing staffing requirements.",
-    },
-    {
-      title: "Access to Valuable Experience",
-      text: "Tap into the experience of seasoned recruiters for strategic hiring insights.",
-    },
-  ];
+  const [selected, setSelected] = useState<number | null>(null);
+  const selectAccordionItem = (id: number) => setSelected(id);
   return (
     <section className="bg-blue-primary wrapper py-10 sm:py-20 relative flex  justify-between">
       <Image
@@ -25,14 +15,25 @@ const FAQ = () => {
         height={584}
         className="absolute -left-5 2xl:left-0 -bottom-0 2xl:-bottom-0 md:block hidden"
       />
-      <div className="relative sm:text-start text-center  w-[350px]">
-        <h2 className="text-white-primary sm:block hidden">
-          FAQ´s Frequently asked questions
-        </h2>
+      <div className="relative sm:text-start text-center w-[350px] lg:block hidden">
+        <h2 className="text-white-primary">FAQ´s Frequently asked questions</h2>
       </div>
 
-      <div className="flex   max-w-6xl mt-12 lg:mt-40 ">
-        <AccordionList />
+      <div className="flex gap-y-4 flex-col lg:justify-start justify-center mx-auto lg:mx-0">
+        {AccordionData.map(({ title, content }, index) => {
+          const isSelected = selected === index;
+
+          return (
+            <AccordionList
+              title={title}
+              key={title}
+              content={content}
+              index={index}
+              selectAccordionItem={selectAccordionItem}
+              isSelected={isSelected}
+            />
+          );
+        })}
       </div>
     </section>
   );
