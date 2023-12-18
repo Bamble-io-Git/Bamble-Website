@@ -37,7 +37,7 @@ const GiveTeamLife = ({ handleScroll }: { handleScroll: () => void }) => {
           </span>
         </p>
 
-        <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-20 mb-14">
+        <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-10 sm:mt-20 mb-14">
           {CARDS.map(({ title, icon, text }, index) => (
             <div
               key={text}
