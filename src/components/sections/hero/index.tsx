@@ -34,7 +34,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
   }, [performanceIndex.length]);
 
   useEffect(() => {
-    const intervalId = setInterval(handleSelectCard, 2000);
+    const intervalId = setInterval(handleSelectCard, 1200);
 
     return () => clearInterval(intervalId);
   }, [handleSelectCard]);
