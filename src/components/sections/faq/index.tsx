@@ -7,7 +7,7 @@ const FAQ = () => {
   const [selected, setSelected] = useState<number | null>(null);
   const selectAccordionItem = (id: number) => setSelected(id);
   return (
-    <section className="bg-blue-primary wrapper py-10 sm:py-20 relative flex  justify-between">
+    <section className="bg-white sm:bg-blue-primary px-4 lg:px-10 2xl:px-[260px] py-10 sm:py-20 relative flex justify-between">
       <Image
         src="/assets/inverted-z.svg"
         alt=""
@@ -19,7 +19,7 @@ const FAQ = () => {
         <h2 className="text-white-primary">FAQ´s Frequently asked questions</h2>
       </div>
 
-      <div className="flex gap-y-4 flex-col lg:justify-start justify-center mx-auto lg:mx-0">
+      <div className="flex gap-y-1 flex-col lg:justify-start justify-center mx-auto lg:mx-0">
         {AccordionData.map(({ title, content }, index) => {
           const isSelected = selected === index;
 

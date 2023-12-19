@@ -1,44 +1,17 @@
-.wrapper {
-  /* box model (from outside in) */
-  @apply border-b  py-8 w-full lg:max-w-[552px];
-
-  /* position and layout */
-  @apply relative;
-
-  /* background */
-  /* @apply border-custom-main; */
-}
-
-.button {
-  /* display and visibility */
-  @apply flex flex-col-reverse items-center justify-between cursor-pointer;
-
-  /* animation */
-  @apply transition-all duration-300 ease-in-out;
-}
-
-.icon {
-  /* box model (from outside in) */
-  @apply w-28 h-32;
-}
-
-.title {
-  /* typography */
-  /* @apply text-base md:text-lg lg:text-[22px] font-bold font-secondary text-left break-words  hover:text-blue-base; */
-
-  /* box model (from outside in) */
-  @apply ml-6 sm:ml-8 mr-auto max-w-[200px] sm:max-w-max;
-}
-
-.chevron {
-  /* position and layout */
-  @apply absolute right-0;
-}
+/* Accordion.css */
 
 .content {
-  /* box model (from outside in) */
-  @apply mt-2 max-h-32 ml-auto;
+  /* max-height: 0; */
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  @apply bg-purple-primary rounded-2xl text-white-primary max-w-full lg:max-w-[680px] p-5 sm:p-9 transition-all ease-in-out duration-500 block my-6;
+}
 
-  /* animation */
-  @apply overflow-hidden overflow-y-scroll transition-all duration-500 ease-in w-3/4;
+.open {
+  max-height: fit-content;
+  border: 3px solid bluered;
+}
+
+.closed {
+  max-height: fit-content;
 }
