@@ -1,15 +1,20 @@
 import InfoComponent from "@/components/elements/info";
 import LinkComponent from "@/components/elements/link";
+import { useOnClickOutside } from "@/components/modules/modal/hook/useClickOutside";
+import useModal from "@/components/modules/modal/hook/useModal";
+import Modal from "@/components/modules/modal/modal";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import clsx from "clsx";
 import Image from "next/image";
-import { forwardRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import { CARDS } from "./mocks/data";
 
 const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
   const isMobile = useMediaQuery(640);
   const [limit, setLimit] = useState(2);
   const [selectedCardIndex, setSelectedCardIndex] = useState<number>();
+  const ref = useRef(null);
+  const { state, handleIsOpen, handleIsClose } = useModal();
 
   const handleMore = (
     array: any[],
@@ -25,8 +30,11 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
     }
   };
 
+  useOnClickOutside(ref, handleIsClose);
+
   return (
-    <section className="wrapper py-20 sm:py-[110px]">
+    <section className="wrapper py-20 sm:py-[110px]" ref={ref}>
+      <Modal isOpen={state.isOpen} handleClose={handleIsClose} />
       <div className="sm:text-start text-center mx-auto">
         <h2 className="text-black text-center">Ready to Get Started?</h2>
         <p className="text-[#434B53] text-lg sm:text-[20px] max-w-[420px] text-center mx-auto mt-5">
@@ -147,12 +155,14 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
                                     <p key={item}>{item}</p>
 
                                     {item.includes("Embedded hiring") && (
-                                      <Image
-                                        alt=""
-                                        width={30}
-                                        height={30}
-                                        src="/assets/exclaim.svg"
-                                      />
+                                      <button onClick={handleIsOpen}>
+                                        <Image
+                                          alt=""
+                                          width={30}
+                                          height={30}
+                                          src="/assets/exclaim.svg"
+                                        />
+                                      </button>
                                     )}
                                   </span>
                                 </span>

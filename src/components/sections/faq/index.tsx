@@ -7,15 +7,15 @@ const FAQ = () => {
   const [selected, setSelected] = useState<number | null>(null);
   const selectAccordionItem = (id: number) => setSelected(id);
   return (
-    <section className="bg-white lg:bg-blue-primary px-4 lg:px-8 2xl:px-[260px] py-8 lg:py-20 relative flex justify-between">
+    <section className="bg-white lg:bg-blue-primary px-5 lg:px-9 2xl:px-[260px] pt-1 lg:pt-16 pb-24  relative flex justify-center lg:gap-x-28">
       <Image
         src="/assets/inverted-z.svg"
         alt=""
         width={596}
         height={584}
-        className="absolute -left-5 2xl:left-0 -bottom-0 2xl:-bottom-0 md:block hidden"
+        className="absolute -left-5 2xl:left-0 -bottom-0 2xl:-bottom-0 lg:block hidden"
       />
-      <div className="relative sm:text-start text-center  w-[350px] lg:block hidden">
+      <div className="relative sm:text-start text-center w-[350px] lg:block hidden">
         <h2 className="text-white-primary">FAQ´s Frequently asked questions</h2>
       </div>
 

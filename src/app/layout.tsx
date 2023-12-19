@@ -18,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GTag />
-      <body className={`${montserrat.variable} ${notoSans.variable}`}>
+      <body
+        className={`${montserrat.variable} ${notoSans.variable}`}
+        id="portal"
+      >
         <Header />
         {children}
         <Footer />

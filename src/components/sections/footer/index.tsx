@@ -24,7 +24,7 @@ const Footer = () => {
       </div>
 
       <p className="text-center text-xl text-white-primary mt-12">
-        © 2022 BambleTech| Recruitment
+        © 2024 BambleTech| Recruitment
       </p>
     </footer>
   );
