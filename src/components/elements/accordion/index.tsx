@@ -21,14 +21,14 @@ const Accordion = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   return (
     <div className="relative w-full">
-      {isOpen && (
+      {isOpen && isSelected && (
         <div className={clsx(styles.content, styles.open)}>
-          <div className="flex justify-between mb-7">
+          <div className="flex justify-between mb-2">
             <h3 className="text-[28px] font-primary max-w-[400px]">{title}</h3>
             <Image
               src="/assets/socials/ArrowUp.svg"
@@ -46,7 +46,7 @@ const Accordion = ({
 
       <button
         className={`${
-          isOpen ? "mt-0 z-0 h-20" : "mt-4"
+          isOpen ? "mt-0 z-0 h-20" : "mt-1"
         } bg-white-primary p-5 sm:p-9 rounded-2xl focus:outline-none w-full lg:w-[680px] text-gray-text flex justify-between items-center transition-all ease-in-out duration-500`}
         onClick={() => {
           toggleAccordion();

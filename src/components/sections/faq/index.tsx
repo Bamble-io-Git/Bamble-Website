@@ -19,7 +19,7 @@ const FAQ = () => {
         <h2 className="text-white-primary">FAQ´s Frequently asked questions</h2>
       </div>
 
-      <div className="flex gap-y-1 flex-col lg:justify-start justify-center mx-auto lg:mx-0">
+      <div className="flex gap-y-3 flex-col lg:justify-start justify-center mx-auto lg:mx-0">
         {AccordionData.map(({ title, content }, index) => {
           const isSelected = selected === index;
 
