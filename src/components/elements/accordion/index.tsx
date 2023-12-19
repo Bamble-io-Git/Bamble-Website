@@ -28,7 +28,7 @@ const Accordion = ({
     <div className="relative w-full">
       {isOpen && isSelected && (
         <div className={clsx(styles.content, styles.open)}>
-          <div className="flex justify-between mb-2">
+          <div className="flex justify-between">
             <h3 className="text-[28px] font-primary max-w-[400px]">{title}</h3>
             <Image
               src="/assets/socials/ArrowUp.svg"
