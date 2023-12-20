@@ -49,8 +49,8 @@ const Accordion = ({
       {!isSelected && (
         <button
           className={`${
-            isOpen ? "mt-0 z-0 h-20" : "mt-1"
-          } bg-white-primary p-7 sm:p-9 rounded-2xl focus:outline-none w-full lg:w-[550px]  xl:w-[680px] text-gray-text flex justify-between items-center transition-all ease-in-out duration-500`}
+            isOpen ? "mt-0 z-0" : "mt-1"
+          } bg-white-primary p-7 sm:p-8 rounded-2xl focus:outline-none w-full lg:w-[550px] xl:w-[680px] text-gray-text flex justify-between items-center transition-all ease-in-out duration-500`}
           onClick={() => {
             toggleAccordion();
             selectAccordionItem(index);
