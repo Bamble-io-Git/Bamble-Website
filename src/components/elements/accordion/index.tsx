@@ -29,7 +29,7 @@ const Accordion = ({
       {isOpen && isSelected && (
         <div className={clsx(styles.content, styles.open)}>
           <div className="flex justify-between">
-            <h3 className="text-[28px] font-primary max-w-[520px] mb-3">
+            <h3 className="text-[28px] font-semibold font-primary max-w-[520px] mb-4 text-[#fff]">
               {title}
             </h3>
             <Image
@@ -40,7 +40,7 @@ const Accordion = ({
               className="p-0 h-12"
             />
           </div>
-          <p className="text-base sm:text-xl font-normal text-white-primary">
+          <p className="text-base sm:text-xl font-normal text-[#E1DFDD]">
             {content}
           </p>
         </div>
@@ -71,7 +71,9 @@ const Accordion = ({
       {isSelected && !isOpen && (
         <div className={clsx(styles.content, styles.closed)}>
           <div className="flex justify-between mb-7">
-            <h3 className="text-[28px] font-primary max-w-[400px]">{title}</h3>
+            <h3 className="text-[28px] text-[#fff] font-semibold font-primary max-w-[400px] mb-4">
+              {title}
+            </h3>
             <Image
               src="/assets/socials/ArrowUp.svg"
               width={24}
@@ -80,7 +82,7 @@ const Accordion = ({
               className="p-0 h-12"
             />
           </div>
-          <p className="text-base sm:text-xl font-normal text-white-primary">
+          <p className="text-base sm:text-xl font-normal text-[#E1DFDD]">
             {content}
           </p>
         </div>

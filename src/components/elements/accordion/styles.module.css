@@ -1,5 +1,5 @@
 .content {
-  @apply bg-purple-primary rounded-2xl text-white-primary max-w-full lg:w-[550px] xl:w-[680px] p-7 sm:p-9 transition-all ease-in-out duration-1000 block my-6;
+  @apply bg-purple-primary rounded-2xl text-white-primary max-w-full lg:w-[550px] xl:w-[680px] p-7 sm:p-12 transition-all ease-in-out duration-1000 block my-6;
 }
 
 .open {
