@@ -1,8 +1,8 @@
 import InfoComponent from "@/components/elements/info";
 import LinkComponent from "@/components/elements/link";
-import { useOnClickOutside } from "@/components/modules/modal/hook/useClickOutside";
-import useModal from "@/components/modules/modal/hook/useModal";
 import Modal from "@/components/modules/modal/modal";
+import { useOnClickOutside } from "@/hooks/use-click-outside";
+import useModal from "@/hooks/use-modal";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import clsx from "clsx";
 import Image from "next/image";
