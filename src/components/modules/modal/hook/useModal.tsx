@@ -2,24 +2,30 @@ import { useReducer } from "react";
 
 const INITIAL_STATE = {
   isOpen: false,
+  isClose: false,
 };
 interface IInitialState {
   isOpen: boolean;
+  isClose: boolean;
 }
-type TAction = any;
+
+type TAction<T extends IInitialState> = {
+  [K in keyof IInitialState]: { type: K; payload: T[K] };
+}[keyof IInitialState];
+
 const useModal = () => {
   const [state, dispatch] = useReducer(
-    (state: IInitialState, action: TAction) => {
+    (state: IInitialState, action: TAction<IInitialState>) => {
       switch (action.type) {
-        case "OPEN":
+        case "isOpen":
           return {
             ...state,
-            isOpen: true,
+            isOpen: action.payload,
           };
-        case "CLOSE":
+        case "isClose":
           return {
             ...state,
-            isOpen: false,
+            isOpen: action.payload,
           };
 
         default:
@@ -30,11 +36,11 @@ const useModal = () => {
   );
 
   const handleIsOpen = () => {
-    dispatch({ type: "OPEN" });
+    dispatch({ type: "isOpen", payload: true });
   };
 
   const handleIsClose = () => {
-    dispatch({ type: "CLOSE" });
+    dispatch({ type: "isClose", payload: false });
   };
 
   return { state, handleIsOpen, handleIsClose };
