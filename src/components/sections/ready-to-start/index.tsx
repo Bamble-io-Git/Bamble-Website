@@ -33,10 +33,20 @@ const ReadyToGetStarted = forwardRef((props, scrollRef: any) => {
   useOnClickOutside(ref, handleIsClose);
 
   return (
-    <section className="wrapper py-20 sm:py-[110px]">
+    <section className="wrapper py-20 sm:py-24">
       <Modal isOpen={state.isOpen} ref={ref} />
+      <Image
+        src="/assets/blue-adornment.svg"
+        alt=""
+        width={95}
+        height={2}
+        className="mx-auto mb-6"
+      />
+
       <div className="sm:text-start text-center mx-auto">
-        <h2 className="text-black text-center">Ready to Get Started?</h2>
+        <h2 className="text-black text-center relative">
+          Ready to Get Started?
+        </h2>
         <p className="text-[#434B53] text-lg sm:text-[20px] max-w-[420px] text-center mx-auto mt-5">
           Choose a plan that fits your needs and get to know what recruiting for
           you costs!

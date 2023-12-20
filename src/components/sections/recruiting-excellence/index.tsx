@@ -28,7 +28,7 @@ const RecruitingExcellence = () => {
         className="absolute -right-40 2xl:right-0 -top-2 2xl:-top-10 md:block hidden"
       />
       <div className="relative sm:text-start text-center">
-        <h2 className="text-white-primary sm:block hidden">
+        <h2 className="text-white-primary sm:block hidden font-primary">
           Recruiting excellence within reach
         </h2>
         <h2 className="text-white-primary sm:hidden block w-[200px] mx-auto mb-3">
@@ -52,21 +52,21 @@ const RecruitingExcellence = () => {
       </p>
 
       <div className="flex justify-between max-w-6xl mt-12 lg:mt-40">
-        <div className="w-full lg:w-[392px] flex flex-col gap-y-12">
+        <div className="w-full xl:w-[392px] flex flex-col gap-y-12">
           {CARDS.map(({ title, text }) => (
             <>
               <VerticalCards title={title} text={text} />
             </>
           ))}
         </div>
-        <div className="bg-[#ECF1FF] rounded-t-[36px] relative h-[517px] w-[502px] lg:block hidden">
+        <div className="bg-[#ECF1FF] rounded-t-[36px] relative h-[517px] w-[502px] xl:block hidden">
           {" "}
           <Image
             src={IMAGES.designer}
             alt=""
             height={664}
             width={502}
-            className={clsx(styles.image, "mb-20 absolute -top-36")}
+            className={clsx(styles.image, "mb-20 absolute -top-[147px]")}
           />
         </div>
       </div>

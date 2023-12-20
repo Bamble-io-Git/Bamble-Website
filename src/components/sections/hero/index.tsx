@@ -67,7 +67,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
             handleClick={handleScroll}
           />
         </div>
-        <h3 className="font-secondary text-2xl font-semibold">
+        <h3 className="font-primary text-2xl font-semibold">
           We’ll fix your recruiting issues in a blink!
         </h3>
       </div>

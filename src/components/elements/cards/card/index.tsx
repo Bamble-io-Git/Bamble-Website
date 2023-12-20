@@ -21,8 +21,8 @@ const Card = ({
       <p
         className={clsx(
           isActive
-            ? "text-white-primary text-[70px] mb-10"
-            : "text-blue-primary font-semibold text-[70px] mb-10",
+            ? "text-white-primary font-semibold text-[70px] mb-10"
+            : "text-blue-primary text-[70px] mb-10",
         )}
       >
         {metric}
