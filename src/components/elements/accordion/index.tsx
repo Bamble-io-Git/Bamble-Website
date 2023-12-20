@@ -29,7 +29,9 @@ const Accordion = ({
       {isOpen && isSelected && (
         <div className={clsx(styles.content, styles.open)}>
           <div className="flex justify-between">
-            <h3 className="text-[28px] font-primary max-w-[400px]">{title}</h3>
+            <h3 className="text-[28px] font-primary max-w-[520px] mb-3">
+              {title}
+            </h3>
             <Image
               src="/assets/socials/ArrowUp.svg"
               width={24}
