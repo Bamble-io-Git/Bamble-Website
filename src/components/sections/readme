@@ -5,7 +5,7 @@
 - Components that are used only once should be nested in its parents folder
 - Components used more than once should be extracted into the `/elements` folder
 
-# Examples:
+# Example:
 
 - `/two-columns`
 - `/two-columns/cta-button`
