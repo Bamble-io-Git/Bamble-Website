@@ -26,7 +26,7 @@ const Header = () => {
       <div className="sm:block hidden">
         <LinkComponent
           url="https://calendly.com/bamble-melissa/30min"
-          text="Book a call."
+          text="Book a call"
         />
       </div>
     </header>
