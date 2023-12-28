@@ -29,8 +29,8 @@ const Accordion = ({
     setIsOpen((prev) => !prev);
   };
 
-  const prev = Number(selected - 1) === index;
-  const next = Number(selected + 1) === index;
+  const prev = Number(selected!! - 1) === index;
+  const next = Number(selected!! + 1) === index;
 
   // Calculate dynamic spacing based on contentHeight
   const dynamicSpacing = contentHeight ? contentHeight / 2 : 0;
