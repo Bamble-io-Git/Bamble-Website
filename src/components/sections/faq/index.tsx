@@ -31,6 +31,7 @@ const FAQ = () => {
               index={index}
               selectAccordionItem={selectAccordionItem}
               isSelected={isSelected}
+              selected={selected!!}
             />
           );
         })}

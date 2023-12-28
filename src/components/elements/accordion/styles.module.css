@@ -1,11 +1,10 @@
 .content {
-  @apply bg-purple-primary rounded-2xl text-white-primary max-w-full lg:w-[550px] xl:w-[680px] p-7 sm:p-12 transition-all ease-in-out duration-1000 block my-6;
+  @apply bg-purple-primary rounded-2xl text-white-primary max-w-full lg:w-[550px] xl:w-[680px] p-7 sm:p-12 transition-all ease-in-out duration-1000 block my-4;
+
+  opacity: 1;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .open {
-  @apply max-h-fit;
-}
-
-.closed {
   @apply max-h-fit;
 }
