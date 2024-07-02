@@ -9,6 +9,7 @@ import ReadyToGetStarted from '../sections/ready-to-start';
 import RecruitingExcellence from '../sections/recruiting-excellence';
 import GiveTeamLife2 from '../sections/cards';
 import Image from 'next/image';
+import CVStack from '../elements/cv-stack';
 
 const LandingPageTemplate = () => {
   const ref = useRef<null | HTMLElement>(null);
@@ -18,12 +19,8 @@ const LandingPageTemplate = () => {
   return (
     <PageLayout>
       <Hero handleScroll={handleScroll} />
-      {/* <GiveTeamLife handleScroll={handleScroll} /> */}
+      <CVStack />
       <GiveTeamLife2 handleScroll={handleScroll} />
-      {/* <RecruitingExcellence />
-      <DedicatedRecruiters /> */}
-      {/* <ReadyToGetStarted ref={ref} /> */}
-      {/* <FAQ /> */}
 
       <section className="py-20">
         <div className="max-w-[1158px] bg-[#45A6FF] rounded-lg mx-auto  md:flex-row flex-col flex  justify-between overflow-hidden px-16">

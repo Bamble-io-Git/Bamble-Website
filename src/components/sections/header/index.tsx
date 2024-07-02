@@ -9,7 +9,12 @@ const Header = () => {
   const isMobile = useMediaQuery(640);
 
   return (
-    <header className="wrapper py-7 bg-none sm:bg-gray-primary flex justify-between items-center sm:sticky top-0 w-full z-50">
+    <header
+      className="wrapper py-7 bg-none sm:bg-gray-primary flex justify-between items-center sm:sticky top-0 w-full"
+      style={{
+        zIndex: 1000,
+      }}
+    >
       <Link href="/" className="flex gap-x-3 items-center mx-auto sm:mx-0">
         <Image
           alt="Logo"
