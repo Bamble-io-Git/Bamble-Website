@@ -10,7 +10,7 @@ const CVStack = () => {
     <section
       className={clsx(
         styles.stack,
-        'relative flex items-center justify-center  overflow-scroll duration-300 transition-all'
+        'relative flex items-center justify-center overflow-scroll duration-300 transition-all p-0 no-scrollbar'
       )}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover((p) => !p)}

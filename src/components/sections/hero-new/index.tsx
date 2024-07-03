@@ -23,7 +23,6 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
     return () => clearInterval(intervalId);
   }, [handleSelectCard]);
 
-  const isTablet = useMediaQuery(1024);
   return (
     <section className="mt-5">
       <div className="flex justify-center flex-col text-center gap-y-6 pt-5 sm:pt-12 pb-20 max-w-[667px] mx-auto px-1 sm:px-7 md:px-0 z-10">
