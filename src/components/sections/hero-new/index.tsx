@@ -54,8 +54,12 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
             />
           </div>
 
-          <div className="my-auto">
+          <div className="my-auto  sm:block hidden">
             <Image height={30} width={2} src="/assets/divi.svg" alt="" />
+          </div>
+
+          <div className="my-auto mx-auto block sm:hidden">
+            <Image height={2} width={30} src="/assets/div-hor.svg" alt="" />
           </div>
           <div className="block">
             <div className="relative block h-[32px] left-[40%] sm:left-0 sm:w-auto w-[40px] mb-3 sm:mb-auto">

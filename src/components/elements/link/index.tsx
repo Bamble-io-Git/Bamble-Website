@@ -24,21 +24,26 @@ const LinkComponent = ({
         display: 'flex',
         justifyItems: 'center',
         alignContent: 'center',
-        transition: 'all 0.3s ease',
+        transition: '0.5s ease-in',
       }}
       onMouseEnter={() => setShowIcon(true)}
       onMouseLeave={() => setShowIcon(false)}
       className={clsx(
         outline
-          ? 'border  border-blue-primary bg-white-primary text-blue-primary'
+          ? 'border border-blue-primary bg-white-primary text-blue-primary'
           : 'text-white-primary',
         cardLink && 'sm:max-w-[175px] !max-w-[175px] text-center mt-5 -mb-2',
         'px-4 sm:px-[20px] bg-blue-primary rounded-lg font-semibold text-[17px] sm:text-lg sm:w-auto py-[12px]'
       )}
     >
-      <span>{text}</span>
+      <span className="mx-auto">{text}</span>
 
-      <span className="ml-2 my-auto">
+      <span
+        className="ml-2 my-auto"
+        style={{
+          transition: '0.5s ease-in',
+        }}
+      >
         {showIcon && (
           <svg
             width="10"

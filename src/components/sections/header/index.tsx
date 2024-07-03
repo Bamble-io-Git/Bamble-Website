@@ -10,20 +10,20 @@ const Header = () => {
 
   return (
     <header
-      className="wrapper py-7 bg-none sm:bg-gray-primary flex justify-between items-center sm:sticky top-0 w-full"
+      className="wrapper py-5 md:py-7 bg-gray-primary flex justify-between items-center sm:sticky top-0 w-full"
       style={{
         zIndex: 1000,
       }}
     >
-      <Link href="/" className="flex gap-x-3 items-center mx-auto sm:mx-0">
+      <Link href="/" className="flex gap-x-3 items-center">
         <Image
           alt="Logo"
           src="/assets/bamble-logo.svg"
-          width={isMobile ? 102 : 156}
-          height={isMobile ? 15 : 24}
+          width={isMobile ? 113 : 167}
+          height={isMobile ? 17 : 26}
         />
       </Link>
-      <div className="sm:block hidden">
+      <div className="">
         <LinkComponent
           url="https://calendly.com/bamble-melissa/30min"
           text="Reserve your spot"

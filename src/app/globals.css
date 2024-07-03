@@ -63,6 +63,6 @@
 
 @layer utilities {
   .wrapper {
-    @apply px-4 lg:px-[160px]  2xl:px-[260px];
+    @apply px-10 lg:px-[160px]  2xl:px-[260px];
   }
 }
