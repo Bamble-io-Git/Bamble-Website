@@ -10,10 +10,10 @@ const CVStack = () => {
     <section
       className={clsx(
         styles.stack,
-        'relative flex items-center justify-center overflow-scroll duration-300 transition-all p-0 no-scrollbar'
+        'py-20 relative flex items-center justify-center overflow-hidden duration-300 transition-all p-0 no-scrollbar'
       )}
       onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover((p) => !p)}
+      onMouseLeave={() => setIsHover(false)}
     >
       <div className="absolute top-[25%] z-50 left-[14%]">
         <Banner text="AI Powered Tailor-made CV" type="star" />

@@ -97,7 +97,6 @@ const CARDS = [
 ];
 
 const GiveTeamLife2 = ({ handleScroll }: { handleScroll: () => void }) => {
-  const isTablet = useMediaQuery(1240);
   return (
     <section className="wrapper py-8 sm:py-28 bg-[#FCFCFC]">
       <div className="text-center">
