@@ -1,13 +1,13 @@
-"use client";
-import Button from "@/components/elements/button";
-import LinkComponent from "@/components/elements/link";
-import useMediaQuery from "@/hooks/useMediaQuery";
-import clsx from "clsx";
-import Image from "next/image";
+'use client';
+import Button from '@/components/elements/button';
+import LinkComponent from '@/components/elements/link';
+import useMediaQuery from '@/hooks/useMediaQuery';
+import clsx from 'clsx';
+import Image from 'next/image';
 
 const CARDS = [
   {
-    title: "Submit a role",
+    title: 'Submit a role',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@ const CARDS = [
     text: "You'll get access to a notion board where you can create hiring requests following provided guidance",
   },
   {
-    title: "Get a shortlist",
+    title: 'Get a shortlist',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -40,10 +40,10 @@ const CARDS = [
         />
       </svg>
     ),
-    text: "Our average delivery time is 2-3 days. You can prioritize tasks depending on your current needs",
+    text: 'Our average delivery time is 2-3 days. You can prioritize tasks depending on your current needs',
   },
   {
-    title: "Review and hire!",
+    title: 'Review and hire!',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ const CARDS = [
         />
       </svg>
     ),
-    text: "When the role is fulfilled, we jump into a new task, you have time to review. On the shared notion page, you can add real-time comments and instantaneous feedback",
+    text: 'When the role is fulfilled, we jump into a new task, you have time to review. On the shared notion page, you can add real-time comments and instantaneous feedback',
   },
 ];
 
@@ -70,7 +70,7 @@ const GiveTeamLife = ({ handleScroll }: { handleScroll: () => void }) => {
         <h2 className="mb-5">Give life to your team</h2>
 
         <p>
-          Build or grow your team hassle-free!{" "}
+          Build or grow your team hassle-free!{' '}
           <span className="font-semibold block">
             Simple, effective and efficient
           </span>
@@ -100,7 +100,7 @@ const GiveTeamLife = ({ handleScroll }: { handleScroll: () => void }) => {
                   {title}
                 </h4>
                 <div className="block flex-1">
-                  <p className={clsx(text.length > 150 ? "break-words" : "")}>
+                  <p className={clsx(text.length > 150 ? 'break-words' : '')}>
                     {text}
                   </p>
                 </div>
@@ -108,10 +108,10 @@ const GiveTeamLife = ({ handleScroll }: { handleScroll: () => void }) => {
             </div>
           ))}
         </div>
-      </div>{" "}
+      </div>{' '}
       <div className="hidden sm:flex flex-col sm:flex-row items-center justify-normal sm:justify-center gap-5 pt-6 pb-7 sm:mx-0 mx-auto ">
         <LinkComponent
-          url="https://calendly.com/bamble-melissa/30min"
+          url="https://forms.gle/jonCj7M5zsM6Y8vy9"
           text="Book a call"
         />
         <Button

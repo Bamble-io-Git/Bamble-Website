@@ -25,7 +25,7 @@ const Header = () => {
       </Link>
       <div className="">
         <LinkComponent
-          url="https://calendly.com/bamble-melissa/30min"
+          url="https://forms.gle/jonCj7M5zsM6Y8vy9"
           text="Reserve your spot"
         />
       </div>

@@ -48,7 +48,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
         <div className="flex flex-col sm:flex-row justify-center gap-5 pt-6 pb-7 sm:mx-0 mx-auto z-10">
           <div>
             <LinkComponent
-              url="https://calendly.com/bamble-melissa/30min"
+              url="https://forms.gle/jonCj7M5zsM6Y8vy9"
               text="Reserve your spot"
             />
           </div>
