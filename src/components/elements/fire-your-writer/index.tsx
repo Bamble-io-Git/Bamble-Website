@@ -38,12 +38,12 @@ const FireYourWriter = () => {
   }, [startAnimation]);
 
   return (
-    <section className="py-5 sm:py-12 bg-[#FCFCFC] space-y-6">
+    <section className="py-8 sm:py-12 bg-[#FCFCFC] space-y-6">
       <div className="mx-auto max-w-[350px]">
         <Banner text="Our AI CV captures your potential" type="star" />
       </div>
 
-      <div className="text-center py-6 space-y-4 mb-10 w-auto sm:max-w-[630px] mx-auto">
+      <div className="text-center py-5 space-y-4 mb-10 w-auto sm:max-w-[630px] mx-auto">
         <h2 className="gradient-primary font-bold text-3xl">
           Fire your writer! Build a quality <br /> CV stress-free.
         </h2>
@@ -58,7 +58,7 @@ const FireYourWriter = () => {
       <div className="mx-auto max-w-[1051px]">
         <div className="flex md:flex-row flex-col items-center gap-y-10 md:gap-y-0 gap-x-24">
           <div className="bg-[#F1F3F7] border w-full sm:w-[509px] h-[400px] sm:h-[385px] custom-border2 rounded-[16px] flex sm:flex-row flex-col overflow-hidden relative transition-all duration-300 animate-fade text-base">
-            <div className="top-5 left-[14%] md:left-[30%] absolute transition-all duration-300 animate-fade text-base">
+            <div className="top-5  transition-all duration-300 animate-fade text-base left-1/2 absolute transform -translate-x-1/2 ">
               {numbersBig[Number(selectedIndex)]}
             </div>
             <div className="bg-[#D9D9D9] w-full sm:w-[409px] absolute top-[40%] left-1/2 transform -translate-x-1/2 h-[251px] rounded-none md:rounded-[15px] "></div>

@@ -3,22 +3,24 @@ import React, { useState } from 'react';
 import Banner from '../banner';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 const CVStack = () => {
   const [isHover, setIsHover] = useState(false);
+  const isMobile = useMediaQuery(640);
   return (
     <section
       className={clsx(
         styles.stack,
-        'py-20 relative flex items-center justify-center overflow-hidden duration-300 transition-all p-0 no-scrollbar'
+        'py-20 relative flex items-center justify-center overflow-hidden duration-300 transition-all p-0 no-scrollbar sm:mb-0 mb-10'
       )}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
-      <div className="absolute top-[25%] z-50 left-[14%]">
+      <div className="absolute top-[25%] z-50 md:left-[12%] left-[20%]">
         <Banner text="AI Powered Tailor-made CV" type="star" />
       </div>
-      <div className="absolute top-[65.7%] z-50 right-[14%]">
+      <div className="absolute top-[58.7%] z-50 right-[32%] md:right-[12%]">
         <Banner text=" Ready within minutes" type="star" />
       </div>
 
@@ -30,7 +32,10 @@ const CVStack = () => {
       >
         <Image
           src="/assets/rope.svg"
-          className={clsx(isHover ? 'hidden' : 'block')}
+          className={clsx(
+            isHover ? 'hidden' : 'block',
+            isMobile ? 'hidden' : 'block'
+          )}
           alt=""
           width={703}
           height={299}
@@ -70,6 +75,7 @@ const CVStack = () => {
             <Image
               src="/assets/cv-2-stand.svg"
               alt=""
+              className="-mx-3.5"
               width={1000}
               height={694}
               style={{
