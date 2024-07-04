@@ -107,7 +107,7 @@ const GiveTeamLife2 = ({ handleScroll }: { handleScroll: () => void }) => {
           width={58}
           height={30}
         />
-        <h2 className="mb-5">How we help you land that job</h2>
+        <h2 className="mb-5 gradient-primary">How we help you land that job</h2>
 
         <p>No one knows recruiters and ATSs better than us!</p>
 

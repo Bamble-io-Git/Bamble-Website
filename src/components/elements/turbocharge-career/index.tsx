@@ -35,7 +35,10 @@ const TurboChargeCareer = () => {
             </span>
           </p>
           <div className="max-w-[100%] sm:max-w-[70%]">
-            <LinkComponent text="Reserve your spot" url="" />
+            <LinkComponent
+              text="Reserve your spot"
+              url="https://forms.gle/jonCj7M5zsM6Y8vy9"
+            />
           </div>
         </div>
 
