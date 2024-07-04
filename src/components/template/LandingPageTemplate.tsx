@@ -1,23 +1,18 @@
 'use client';
 import { useRef } from 'react';
 import PageLayout from '../layout';
-import DedicatedRecruiters from '../sections/dedicated-recruiters';
-import FAQ from '../sections/faq';
-import GiveTeamLife from '../sections/give-life';
 import Hero from '../sections/hero-new';
-import ReadyToGetStarted from '../sections/ready-to-start';
-import RecruitingExcellence from '../sections/recruiting-excellence';
 import GiveTeamLife2 from '../sections/cards';
 import Image from 'next/image';
 import CVStack from '../elements/cv-stack';
 import TurboChargeCareer from '../elements/turbocharge-career';
 import FireYourWriter from '../elements/fire-your-writer';
-
+import { useRouter } from 'next/navigation';
 const LandingPageTemplate = () => {
   const ref = useRef<null | HTMLElement>(null);
   const handleScroll = () =>
     ref.current && ref?.current?.scrollIntoView({ behavior: 'smooth' });
-
+  const router = useRouter();
   return (
     <PageLayout>
       <Hero handleScroll={handleScroll} />
@@ -27,7 +22,7 @@ const LandingPageTemplate = () => {
 
       <TurboChargeCareer />
 
-      <section className="py-8 sm:py-20">
+      <section className="py-5 sm:pt-1 sm:pb-20 pb-0">
         <div className="max-w-[1158px] bg-[#45A6FF] rounded-lg mx-auto  md:flex-row flex-col flex  justify-between overflow-hidden px-5 md:px-16">
           <div className="sm:justify-self-start justify-self-center rounded-[31px] max-w-[382px] flex-col space-y-8 py-12">
             <div className="border-[#090923] px-4 py-1.5 rounded-[31px] border bg-white-primary max-w-[240px]">
@@ -44,19 +39,28 @@ const LandingPageTemplate = () => {
               Join our waiting list, get ready to land your dream job!
             </p>
 
-            <button className="bg-white-primary text-sm sm:text-base text-[#45A6FF] text-center px-3 rounded-lg font-semibold sm:w-auto py-[12px] w-[200px]  ">
+            <button
+              className="bg-white-primary text-sm sm:text-base text-[#45A6FF] text-center px-3 rounded-lg font-semibold sm:w-auto py-[12px] w-[200px]"
+              onClick={() =>
+                router.push(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSeQvp8MWsNuota_ymCBVRRXa7BelAKIV0PiV5Uk4_wp70i-EA/viewform'
+                )
+              }
+            >
               Reserve your spot
             </button>
           </div>
 
           <div className="relative py-0 sm:justify-self-start justify-self-center">
-            <Image
-              src="/assets/dude.svg"
-              className="z-20 -bottom-16 absolute h-full -left-12"
-              alt=""
-              width={1000}
-              height={800}
-            />
+            <div
+              className="z-20 -bottom-16 absolute h-full -left-[80%]"
+              style={{
+                width: 1000,
+                height: 480,
+              }}
+            >
+              <Image src="/assets/dude.svg" alt="" fill />
+            </div>
 
             <svg
               className="relative"

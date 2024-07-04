@@ -1,4 +1,4 @@
-.stack {
+/* .stack {
   transition: 1s ease-in-out;
 }
 
@@ -12,4 +12,33 @@
 
 .skewLeft {
   transform: skewY(4deg);
+} */
+
+.stack {
+  position: relative;
+  overflow: hidden;
+}
+
+.skewRight {
+  transform: skewY(-5deg);
+  transition: transform 0.6s ease-in-out;
+}
+
+.skewDown {
+  transform: skewY(-5deg);
+  transition: transform 0.6s ease-in-out;
+}
+
+.hiddenElement {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.visibleElement {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.transitionElement {
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }

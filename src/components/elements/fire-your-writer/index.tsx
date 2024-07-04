@@ -1,7 +1,7 @@
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import Banner from '../banner';
 import Image from 'next/image';
-import Script from 'next/script';
 import clsx from 'clsx';
 
 const FireYourWriter = () => {
@@ -27,7 +27,7 @@ const FireYourWriter = () => {
             setStartAnimation(false);
             setTimeout(() => {
               setSelectedIndex(0);
-            }, 3000);
+            }, 1000);
             return 3;
           }
         });
