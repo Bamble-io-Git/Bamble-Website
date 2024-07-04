@@ -20,17 +20,17 @@ const TurboChargeCareer = () => {
         </h2>
       </div>
 
-      <div className="custom-border2 rounded-[20px] flex sm:flex-row flex-col w-auto sm:w-[880px] mx-auto my-3 sm:my-12">
-        <div className="w-auto sm:w-[473px] px-10 py-16 flex-col space-y-10">
+      <div className="custom-border2 rounded-[20px] flex md:flex-row flex-col  md:w-[880px] mx-auto my-3 sm:my-12">
+        <div className="w-auto md:w-[473px] px-3 md:px-10 py-16 flex-col space-y-10 ">
           <div className="max-w-[280px]">
             <Banner text="Free for first 1,000 users!" />
           </div>
           <p className="text-base w-[90%] sm:w-[75%]">
             Landing your dream job costs the same as paying for Netflix!
           </p>
-          <p className="sm:w-full w-[50%]">
+          <p className="sm:w-full w-[80%] md:w-[50%]">
             <span className="text-[60px] font-bold text-gradient">€7.99</span>
-            <span className="text-base text-black font-bold pl-3">
+            <span className="text-base text-black font-bold pl-2 md:pl-3">
               /fixed price
             </span>
           </p>
@@ -43,7 +43,7 @@ const TurboChargeCareer = () => {
         </div>
 
         <div
-          className="w-full sm:w-[520px] custom-border2 pl-8 pr-5 py-16 sm:py-36 flex-col space-y-4 sm:space-y-5 bg-[#F7FAFC]"
+          className="min-w-fit md:w-[520px] custom-border2 pl-8 pr-5 py-16 sm:py-36 flex-col space-y-4 sm:space-y-5 bg-[#F7FAFC]"
           style={{
             borderRadius: isMobile ? '0px 0px 20px 20px' : '0px 20px 20px 0px',
           }}

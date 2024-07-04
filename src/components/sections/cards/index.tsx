@@ -111,14 +111,14 @@ const GiveTeamLife2 = ({ handleScroll }: { handleScroll: () => void }) => {
 
         <p>No one knows recruiters and ATSs better than us!</p>
 
-        <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-10 sm:mt-20 mb-14">
+        <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-10 sm:mt-20 mb-14 group">
           {CARDS.map(({ title, icon, text }) => (
             <div
               key={text}
-              className="w-[363px] h-[415px] flex justify-center flex-col relative rounded-lg border px-5 pt-8 pb-12 hover:border-yellow-primary shadow-lg transition-all duration-300"
+              className="w-[320px] sm:w-[363px] h-[415px] flex justify-center flex-col relative rounded-lg border px-5 pt-8 pb-12 hover:border-yellow-primary hover:border-1.5 shadow-lg transition-all duration-300"
             >
               <div className="rounded-full p-10 w-[88px] h-[88px] flex items-center justify-center bg-[#45A6FF1A] mb-10">
-                <div>{icon}</div>
+                <div className="group-hover:fill-red-500">{icon}</div>
               </div>
 
               <div className="my-6 flex-1">

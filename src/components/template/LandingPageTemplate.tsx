@@ -11,6 +11,7 @@ import GiveTeamLife2 from '../sections/cards';
 import Image from 'next/image';
 import CVStack from '../elements/cv-stack';
 import TurboChargeCareer from '../elements/turbocharge-career';
+import FireYourWriter from '../elements/fire-your-writer';
 
 const LandingPageTemplate = () => {
   const ref = useRef<null | HTMLElement>(null);
@@ -21,12 +22,13 @@ const LandingPageTemplate = () => {
     <PageLayout>
       <Hero handleScroll={handleScroll} />
       <CVStack />
+      <FireYourWriter />
       <GiveTeamLife2 handleScroll={handleScroll} />
 
       <TurboChargeCareer />
 
-      <section className="py-20">
-        <div className="max-w-[1158px] bg-[#45A6FF] rounded-lg mx-auto  md:flex-row flex-col flex  justify-between overflow-hidden px-16">
+      <section className="py-8 sm:py-20">
+        <div className="max-w-[1158px] bg-[#45A6FF] rounded-lg mx-auto  md:flex-row flex-col flex  justify-between overflow-hidden px-5 md:px-16">
           <div className="sm:justify-self-start justify-self-center rounded-[31px] max-w-[382px] flex-col space-y-8 py-12">
             <div className="border-[#090923] px-4 py-1.5 rounded-[31px] border bg-white-primary max-w-[240px]">
               <h3 className="font-bold text-black text-sm">
