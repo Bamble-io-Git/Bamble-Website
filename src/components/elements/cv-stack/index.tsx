@@ -82,7 +82,7 @@ const CVStack = () => {
         <div className={clsx(!isHover ? 'top-[22%]' : 'top-[52%]', 'absolute')}>
           <Image
             src="/assets/cv3.svg"
-            className={!isHover ? styles.skewDown : 'skew-y-2'}
+            className={!isHover ? styles.skewDown : ''}
             alt=""
             width={1000}
             height={694}
