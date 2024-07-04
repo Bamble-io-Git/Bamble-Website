@@ -1,0 +1,15 @@
+.stack {
+  transition: transform 0.6s ease-in-out;
+}
+
+.skewRight {
+  transform: skewY(8deg);
+}
+
+.skewDown {
+  transform: translateY(130px);
+  animation-duration: 0.6ms;
+}
+.skewLeft {
+  transform: skewY(4deg);
+}

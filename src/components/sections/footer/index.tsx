@@ -1,31 +1,32 @@
-import Socials from "@/components/elements/link/socials";
-import Image from "next/image";
+import Socials from '@/components/elements/link/socials';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="bg-purple-primary py-20 mx-auto">
-      <div className="flex justify-center flex-wrap">
+    <footer className="mx-auto px-10 md:px-40 border-t w-screen">
+      <div className="flex lg:flex-row flex-col items-center justify-center lg:justify-between gap-0 lg:gap-5 flex-wrap border-b py-12">
         <Image
-          src="/assets/bamble-white.svg"
-          width={305}
-          height={55}
+          src="/assets/Bamble-Logo.svg"
+          width={134}
+          height={21}
           alt=""
-          className="mb-10 sm:mb-0"
-        />
-        <Image
-          src="/assets/footer-demarcator.svg"
-          width={3}
-          height={2}
-          alt=""
-          className="ml-0 mr-8 hidden sm:block"
+          className="mb-10 md:mb-0"
         />
 
         <Socials />
       </div>
 
-      <p className="text-center text-xl text-white-primary mt-12">
-        © 2024 BambleTech| Recruitment
-      </p>
+      <div className="flex justify-center text-[#090923] gap-x-3 py-6 text-sm  md:text-base font-normal">
+        <p>Copyright © 2024 Bamble</p>
+        <p> All Rights Reserved</p>
+        <p className="underline lg:block hidden">Terms and Conditions</p>
+        <p className="underline lg:block hidden">Privacy Policy</p>
+      </div>
+
+      <div className="lg:hidden  flex justify-center gap-x-5 mb-6">
+        <p className="underline text-[#45A6FF]">Terms and Conditions</p>
+        <p className="underline text-[#45A6FF]">Privacy Policy</p>
+      </div>
     </footer>
   );
 };

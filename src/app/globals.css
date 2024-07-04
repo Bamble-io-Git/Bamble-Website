@@ -30,10 +30,87 @@
   .custom-blur {
     filter: blur(77.4px);
   }
+
+  .gradient-primary {
+    @apply text-transparent bg-clip-text bg-gradient-to-bl from-blue-200 via-blue-500 to-blue-900;
+  }
+
+  .custom-border {
+    position: relative;
+    padding: 1rem;
+    border-radius: 31px;
+    background: white;
+  }
+
+  .custom-border::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(230.71deg, #45a6ff 6.97%, #1353bc 102.56%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+  }
+
+  .text-gradient {
+    background: linear-gradient(222.62deg, #45a6ff 6.07%, #1353bc 204.44%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .custom-border2 {
+    position: relative;
+
+    background: white;
+  }
+
+  .custom-border2::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(230.71deg, #45a6ff 6.97%, #1353bc 102.56%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+  }
+
+  .absoluteBorder {
+    left: calc(40% - 1px);
+    width: 2px;
+    background: linear-gradient(230.71deg, #45a6ff 6.97%, #1353bc 102.56%);
+    min-height: 100%;
+  }
 }
 
 @layer utilities {
   .wrapper {
-    @apply px-4 lg:px-[160px]  2xl:px-[260px];
+    @apply px-10 lg:px-[160px]  2xl:px-[260px];
+  }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
