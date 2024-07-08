@@ -28,9 +28,9 @@ const TurboChargeCareer = () => {
           <p className="text-base w-[90%] sm:w-[75%]">
             Landing your dream job costs the same as paying for Netflix!
           </p>
-          <p className="sm:w-full w-[80%] md:w-[50%]">
+          <p className="sm:w-full w-[90%] md:w-[85%]">
             <span className="text-[60px] font-bold text-gradient">€7.99</span>
-            <span className="text-base text-black font-bold pl-2 md:pl-3">
+            <span className="text-base text-black font-bold pl-1">
               /fixed price
             </span>
           </p>
