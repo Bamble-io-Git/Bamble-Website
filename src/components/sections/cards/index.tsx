@@ -111,25 +111,27 @@ const GiveTeamLife2 = ({ handleScroll }: { handleScroll: () => void }) => {
 
         <p>No one knows recruiters and ATSs better than us!</p>
 
-        <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-10 sm:mt-20 mb-14 group">
+        <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-10 sm:mt-20 mb-14 group duration-300 transition-all animate-fade">
           {CARDS.map(({ title, icon, text }) => (
             <div
               key={text}
-              className="w-[320px] sm:w-[363px] h-[415px] flex justify-center flex-col relative rounded-lg border px-5 pt-8 pb-12 hover:border-yellow-primary hover:border-1.5 shadow-lg transition-all duration-300"
+              className="w-[320px] sm:w-[363px] h-[415px] flex justify-center flex-col relative rounded-lg   border-0.5 px-5 pt-8 pb-12 hover:border-yellow-primary hover:border-2 shadow-lg transition-all duration-300"
             >
               <div className="rounded-full p-10 w-[88px] h-[88px] flex items-center justify-center bg-[#45A6FF1A] mb-10">
-                <div className="group-hover:fill-red-500">{icon}</div>
+                <div className="fill-red-500 group-hover:fill-yellow-500">
+                  {icon}
+                </div>
               </div>
 
               <div className="my-6 flex-1">
                 <h4 className="font-bold text-sm lg:text-base mb-3 text-left">
                   {title}
                 </h4>
-                <div className="text-left text-sm lg:text-base text-black flex flex-col justify-end ">
+                <div className="text-left text-sm text-black flex flex-col justify-end text-[12px]">
                   <p
                     className={clsx(
                       text.length > 150
-                        ? 'break-words mt-auto text-sm lg:text-[14px]'
+                        ? 'break-words mt-auto text-sm text-[12px]'
                         : ''
                     )}
                   >
