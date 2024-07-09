@@ -38,7 +38,7 @@ const FireYourWriter = () => {
   }, [startAnimation]);
 
   return (
-    <section className="py-8 sm:py-12 bg-[#FCFCFC] space-y-6">
+    <section className="py-8 sm:py-20 bg-[#FCFCFC] space-y-6">
       <div className="mx-auto max-w-[350px]">
         <Banner text="Our AI CV captures your potential" type="star" />
       </div>
