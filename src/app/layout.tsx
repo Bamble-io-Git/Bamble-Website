@@ -6,7 +6,7 @@ import GTag from '@/scripts/google-tag';
 import './globals.css';
 import { montserrat, notoSans } from './theme/fonts';
 export const metadata: Metadata = {
-  title: 'Bamble App',
+  title: 'Bamble',
   description: 'Create AI powered high-quality CV in 3 clicks',
   applicationName: 'Bamble CV Creator',
   generator: 'Next.js',
