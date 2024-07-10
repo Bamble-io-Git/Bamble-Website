@@ -11,7 +11,7 @@ export const SOCIAL_LINKS = [
     url: 'https://www.facebook.com/Bamble-582181665744970/',
     logo: icons.facebook,
   },
-  { url: '#', logo: icons.twitter },
+  { url: 'https://x.com/bamble_io', logo: icons.twitter },
   {
     url: 'https://www.tiktok.com/@bamble689?_t=8njwUR51EIb&_r=1',
     logo: icons.tiktok,
