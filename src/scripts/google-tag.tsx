@@ -4,7 +4,7 @@ const GTag = () => {
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=G-TJESG59G90`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-VCRDL8EWYD`}
       />
       <Script strategy="lazyOnload" id="google-analytics">
         {`
