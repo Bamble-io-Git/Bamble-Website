@@ -11,7 +11,7 @@ const GTag = () => {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', G-TJESG59G90,  {
+              gtag('config', G-VCRDL8EWYD,  {
                 page_path: window.location.pathname,
                 });
     `}
