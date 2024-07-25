@@ -8,6 +8,7 @@ import CVStack from '../elements/cv-stack';
 import TurboChargeCareer from '../elements/turbocharge-career';
 import FireYourWriter from '../elements/fire-your-writer';
 import { useRouter } from 'next/navigation';
+import LogoCarousel from '../sections/logos';
 const LandingPageTemplate = () => {
   const ref = useRef<null | HTMLElement>(null);
   const handleScroll = () =>
@@ -21,6 +22,17 @@ const LandingPageTemplate = () => {
       <GiveTeamLife2 handleScroll={handleScroll} />
 
       <TurboChargeCareer />
+
+      <main className="relative min-h-[240px] flex flex-col justify-center bg-[#45A6FF] overflow-hidden mb-10">
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-10">
+          <h3 className="text-center font-primary text-2xl font-semibold">
+            Part of amazing communities
+          </h3>
+          <div className="text-center">
+            <LogoCarousel />
+          </div>
+        </div>
+      </main>
 
       <section className="py-5 sm:pt-1 sm:pb-20 pb-0">
         <div className="max-w-[1158px] bg-[#45A6FF] rounded-lg mx-auto  md:flex-row flex-col flex  justify-between overflow-hidden px-5 md:px-16">
