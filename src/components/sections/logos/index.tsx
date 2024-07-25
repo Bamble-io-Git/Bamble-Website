@@ -7,6 +7,7 @@ export default function LogoCarousel() {
     { src: '/assets/dj.jpg', alt: 'DJ' },
     { src: '/assets/eit.png', alt: 'EIT' },
     { src: '/assets/had.png', alt: 'HAD' },
+    { src: '/assets/sup.png', alt: 'SUP' },
   ];
 
   return (
