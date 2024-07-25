@@ -3,17 +3,32 @@ import React, { useEffect, useState } from 'react';
 import Banner from '../banner';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { useMediaQuery } from 'usehooks-ts';
 
 const FireYourWriter = () => {
   // on mouse hover, start the animation
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [startAnimation, setStartAnimation] = useState(false);
+  const isMobile = useMediaQuery(640);
 
+  // const numbersBig = {
+  //   0: <Image src="/assets/b-1.svg" alt="" width={188} height={188} />,
+  //   1: <Image src="/assets/b-2.svg" alt="" width={188} height={188} />,
+  //   2: <Image src="/assets/b-3.svg" alt="" width={188} height={188} />,
+  //   3: <Image src="/assets/b-4.svg" alt="" width={188} height={188} />,
+  // };
   const numbersBig = {
-    0: <Image src="/assets/b-1.svg" alt="" width={188} height={188} />,
-    1: <Image src="/assets/b-2.svg" alt="" width={188} height={188} />,
-    2: <Image src="/assets/b-3.svg" alt="" width={188} height={188} />,
-    3: <Image src="/assets/b-4.svg" alt="" width={188} height={188} />,
+    0: (
+      <Image
+        src="/assets/carousel-1.png"
+        alt=""
+        width={isMobile ? 900 : 509}
+        height={385}
+      />
+    ),
+    1: <Image src="/assets/carousel-2.png" alt="" width={509} height={385} />,
+    2: <Image src="/assets/carousel-3.png" alt="" width={509} height={385} />,
+    3: <Image src="/assets/carousel-4.png" alt="" width={509} height={385} />,
   };
 
   useEffect(() => {
@@ -57,11 +72,12 @@ const FireYourWriter = () => {
 
       <div className="mx-auto max-w-[1051px]">
         <div className="flex md:flex-row flex-col items-center gap-y-10 md:gap-y-0 gap-x-24">
-          <div className="bg-[#F1F3F7] border w-full sm:w-[509px] h-[400px] sm:h-[385px] custom-border2 rounded-[16px] flex sm:flex-row flex-col overflow-hidden relative transition-all duration-300 animate-fade text-base">
-            <div className="top-5  transition-all duration-300 animate-fade text-base left-1/2 absolute transform -translate-x-1/2 ">
+          <div className=" w-full md:w-[509px] h-[400px] sm:h-[385px] custom-border2 rounded-[16px] flex sm:flex-row md:justify-normal justify-center flex-col overflow-hidden relative transition-all duration-300 animate-fade text-base items-center">
+            {/* <div className="top-5  transition-all duration-300 animate-fade text-base left-1/2 absolute transform -translate-x-1/2 ">
               {numbersBig[Number(selectedIndex)]}
             </div>
-            <div className="bg-[#D9D9D9] w-full sm:w-[409px] absolute top-[40%] left-1/2 transform -translate-x-1/2 h-[251px] rounded-none md:rounded-[15px] "></div>
+            <div className="bg-[#D9D9D9] w-full sm:w-[409px] absolute top-[40%] left-1/2 transform -translate-x-1/2 h-[251px] rounded-none md:rounded-[15px] "></div> */}
+            {numbersBig[Number(selectedIndex)]}
           </div>
           <div className="w-auto sm:w-[482px] my-auto space-y-6">
             <div className="flex gap-x-3 items-center">
