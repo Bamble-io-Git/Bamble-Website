@@ -25,9 +25,7 @@ export default function RootLayout({
         className={`${montserrat.variable} ${notoSans.variable}`}
         id="portal"
       >
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );
