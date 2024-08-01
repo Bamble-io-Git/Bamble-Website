@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { userDataValidation } from './schema/user-data';
+import { useCartStore, useCvStore } from '@/store/cv';
 type TCreateUserSchema = {
   email: string;
   fullName: string;
@@ -14,10 +15,14 @@ const Signup = () => {
     resolver: zodResolver(userDataValidation),
   });
   const { formState, register, handleSubmit } = form;
-  console.log('formState', formState.errors);
+  const cart = useCvStore((state) => state);
+
+  console.log('Cart', cart.addToCV);
   const onSubmit = (values: TCreateUserSchema) => {
     console.log(values);
+    cart.addToCV(values);
   };
+
   return (
     <section className="flex justify-between">
       <div>
