@@ -1,7 +1,23 @@
+'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
+import Image from 'next/image';
+import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
-
+import { useForm } from 'react-hook-form';
+import { userDataValidation } from './schema/user-data';
+type TCreateUserSchema = {
+  email: string;
+  fullName: string;
+};
 const Signup = () => {
+  const form = useForm<TCreateUserSchema>({
+    resolver: zodResolver(userDataValidation),
+  });
+  const { formState, register, handleSubmit } = form;
+  console.log('formState', formState.errors);
+  const onSubmit = (values: TCreateUserSchema) => {
+    console.log(values);
+  };
   return (
     <section className="flex justify-between">
       <div>
@@ -18,7 +34,10 @@ const Signup = () => {
           <p>Ready to get your dream job?</p>
         </div>
 
-        <form className="flex flex-col space-y-5">
+        <form
+          className="flex flex-col space-y-5"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex flex-col space-y-3">
             <label htmlFor="" className="font-bold font-primary">
               Your full name
@@ -27,7 +46,13 @@ const Signup = () => {
               type="text"
               placeholder="Your name here..."
               className="border rounded-lg p-3"
+              {...register('fullName')}
             />
+            {formState.errors.fullName && (
+              <p className="text-[#FC5555] text-sm">
+                Full name must contain at least 3 characters
+              </p>
+            )}
           </div>
 
           <div className="flex flex-col space-y-3">
@@ -35,10 +60,15 @@ const Signup = () => {
               Your best e-mail
             </label>
             <input
-              type="text"
+              type="email"
               placeholder="Your email here..."
               className="border rounded-lg p-3"
+              {...register('email')}
             />
+
+            {formState.errors.email && (
+              <p className="text-[#FC5555] text-sm">Invalid email address.</p>
+            )}
           </div>
 
           <p className="text-[#414143] font-secondary text-sm">
@@ -47,8 +77,32 @@ const Signup = () => {
             Global Privacy Statement.
           </p>
 
-          <button className="ml-auto bg-[#979797] text-[#202020CC] px-20 py-3 w-[100px] rounded-md font-bold">
+          <button className="ml-auto bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 disabled:bg-[#979797] disabled:text-[#202020CC]">
             Next
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 13 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.38281 2.38086L10.6982 6.50007L6.38281 10.6193"
+                stroke="#202020"
+                stroke-opacity="0.8"
+                stroke-width="1.28571"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M10.6988 6.5L2.29883 6.5"
+                stroke="#202020"
+                stroke-opacity="0.8"
+                stroke-width="1.28571"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
           </button>
         </form>
       </div>
