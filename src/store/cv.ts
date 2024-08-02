@@ -2,17 +2,17 @@
 import { create } from 'zustand';
 
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { TProduct } from './useProductsStore';
+import { TCV } from './useProductsStore';
 
 export type TState = {
-  cv: TProduct[];
+  cv: TCV[];
   step: number;
   totalAmount: number;
 };
 
 type TActions = {
-  addToCV: (product: TProduct) => void;
-  removeFromcv: (product: TProduct) => void;
+  addToCV: (product: TCV) => void;
+  removeFromcv: (product: TCV) => void;
   updatecvQuantity: (id: number, quantity: number) => void;
   clearcv: () => void;
 };
@@ -23,41 +23,36 @@ export const useCvStore = create(
       cv: [],
       step: 0,
       totalAmount: 0,
-      addToCV: (product: TProduct) => {
+      addToCV: (cv: TCV) => {
         set((state: any) => {
-          const productIncv = state.cv.findIndex(
-            (elem: TProduct) => elem?._id === product?._id
+          const cvState = state.cv;
+
+          const cvStep = state.step;
+
+          const immutableState = [...cvState];
+
+          let itemToUpdate: any = immutableState.find(
+            (elem) => elem?._id === cv?._id
           );
 
-          product['quantity'] = 1;
-          if (productIncv > -1) {
-            const updatedcv = state.cv.map((elem: TProduct) => {
-              if (elem?._id === product?._id) {
-                return {
-                  ...elem,
-                  quantity: elem?.quantity + 1,
-                };
-              } else {
-                return elem;
-              }
-            });
-
-            return {
-              cv: updatedcv,
-              totalAmount: state.totalAmount + 1,
-              step: state.step + product?.price,
-            };
+          if (itemToUpdate) {
+            itemToUpdate.step = 1;
+            itemToUpdate.fullName = cv.fullName;
+            itemToUpdate.email = cv.email;
+            itemToUpdate = cv.step;
           } else {
-            return {
-              cv: [...state.cv, { ...product, quantity: product?.quantity }],
-              totalAmount: state.totalAmount + 1,
-              step: state.step + product?.price,
-            };
+            cv.step = 1;
+            immutableState.push(cv);
           }
+
+          return {
+            cv: immutableState,
+            cvStep: cvStep,
+          };
         });
       },
 
-      removeFromcv: (product: TProduct) => {
+      removeFromcv: (product: TCV) => {
         set((state: Pick<TState, 'cv' | 'totalAmount' | 'step'>) => ({
           cv: state.cv.filter((elem) => elem?._id !== product?._id),
           totalAmount: 0,

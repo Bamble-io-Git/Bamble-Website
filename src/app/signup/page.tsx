@@ -1,11 +1,10 @@
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
-import Image from 'next/image';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { userDataValidation } from './schema/user-data';
-import { useCartStore, useCvStore } from '@/store/cv';
+import { useCvStore } from '@/store/cv';
 type TCreateUserSchema = {
   email: string;
   fullName: string;
@@ -17,11 +16,22 @@ const Signup = () => {
   const { formState, register, handleSubmit } = form;
   const cart = useCvStore((state) => state);
 
-  console.log('Cart', cart.addToCV);
   const onSubmit = (values: TCreateUserSchema) => {
     console.log(values);
-    cart.addToCV(values);
+    if (values) cart.addToCV(values);
   };
+
+  console.log('cart', cart);
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    if (formState.isValid) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  }, [formState.isValid]);
 
   return (
     <section className="flex justify-between">
@@ -49,7 +59,9 @@ const Signup = () => {
             </label>
             <input
               type="text"
-              placeholder="Your name here..."
+              placeholder={
+                cart.cv.length ? cart.cv[0].fullName : 'Your email here...'
+              }
               className="border rounded-lg p-3"
               {...register('fullName')}
             />
@@ -66,7 +78,9 @@ const Signup = () => {
             </label>
             <input
               type="email"
-              placeholder="Your email here..."
+              placeholder={
+                cart.cv.length ? cart.cv[0].email : 'Your email here...'
+              }
               className="border rounded-lg p-3"
               {...register('email')}
             />
@@ -81,8 +95,15 @@ const Signup = () => {
             Service and confirming that you have reviewed and accepted the
             Global Privacy Statement.
           </p>
+          {/* {JSON.stringify(cart.cv)} */}
 
-          <button className="ml-auto bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 disabled:bg-[#979797] disabled:text-[#202020CC]">
+          <button
+            className={
+              isButtonDisabled
+                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed'
+                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer'
+            }
+          >
             Next
             <svg
               width="13"
