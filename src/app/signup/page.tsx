@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { userDataValidation } from './schema/user-data';
 import { useCvStore } from '@/store/cv';
+import { useRouter } from 'next/navigation';
 type TCreateUserSchema = {
   email: string;
   fullName: string;
@@ -13,15 +14,17 @@ const Signup = () => {
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(userDataValidation),
   });
+  const router = useRouter();
   const { formState, register, handleSubmit } = form;
-  const cart = useCvStore((state) => state);
-
+  const state = useCvStore((state) => state);
+  console.log('state', state);
   const onSubmit = (values: TCreateUserSchema) => {
-    console.log(values);
-    if (values) cart.addToCV(values);
+    if (values) {
+      state.addToCV(values);
+      state.incrementSteps();
+      router.push('/intent');
+    }
   };
-
-  console.log('cart', cart);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -60,7 +63,7 @@ const Signup = () => {
             <input
               type="text"
               placeholder={
-                cart.cv.length ? cart.cv[0].fullName : 'Your email here...'
+                state.cv.length ? state.cv[0].fullName : 'Your email here...'
               }
               className="border rounded-lg p-3"
               {...register('fullName')}
@@ -79,7 +82,7 @@ const Signup = () => {
             <input
               type="email"
               placeholder={
-                cart.cv.length ? cart.cv[0].email : 'Your email here...'
+                state.cv.length ? state.cv[0].email : 'Your email here...'
               }
               className="border rounded-lg p-3"
               {...register('email')}

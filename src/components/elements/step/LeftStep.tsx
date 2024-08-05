@@ -1,10 +1,15 @@
 import Image from 'next/image';
 import React from 'react';
 
-const LeftStep = () => {
+const LeftStep = ({ image }: { image: string }) => {
   return (
     <div>
-      <Image src="/assets/signup.png" alt="Signup" width={580} height={1400} />
+      <Image
+        src={image ? image : '/assets/signup.png'}
+        alt="Signup"
+        width={580}
+        height={1400}
+      />
     </div>
   );
 };

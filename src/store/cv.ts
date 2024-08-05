@@ -52,6 +52,22 @@ export const useCvStore = create(
         });
       },
 
+      incrementSteps: () => {
+        set((state: any) => {
+          return {
+            step: Number(state.step) + 1,
+          };
+        });
+      },
+
+      decrementSteps: () => {
+        set((state: any) => {
+          return {
+            step: Number(state.step) - 1,
+          };
+        });
+      },
+
       removeFromcv: (product: TCV) => {
         set((state: Pick<TState, 'cv' | 'totalAmount' | 'step'>) => ({
           cv: state.cv.filter((elem) => elem?._id !== product?._id),
