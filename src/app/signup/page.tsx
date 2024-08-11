@@ -21,7 +21,6 @@ const Signup = () => {
   const onSubmit = (values: TCreateUserSchema) => {
     if (values) {
       state.addToCV(values);
-      // state.incrementSteps();
       router.push('/intent');
     }
   };

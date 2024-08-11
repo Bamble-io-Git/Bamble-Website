@@ -70,7 +70,7 @@ const Intent = () => {
       <div className="max-w-[520px] mx-auto pt-10 lg:pt-20 text-black flex flex-col space-y-5 relative">
         <button
           className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
-          onClick={() => router.push('/work-experiences')}
+          onClick={() => router.push('/intent')}
         >
           <svg
             width="24"
