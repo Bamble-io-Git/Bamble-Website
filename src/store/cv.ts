@@ -8,6 +8,7 @@ export type TState = {
   cv: TCV[];
   step: number;
   totalAmount: number;
+  share: string;
 };
 
 type TActions = {
@@ -15,6 +16,7 @@ type TActions = {
   removeFromcv: (product: TCV) => void;
   updatecvQuantity: (id: number, quantity: number) => void;
   clearcv: () => void;
+  addToShare: (values: string) => void;
 };
 
 export const useCvStore = create(
@@ -48,6 +50,15 @@ export const useCvStore = create(
           return {
             cv: immutableState,
             cvStep: cvStep,
+          };
+        });
+      },
+
+      addToShare: (value: string) => {
+        set((state) => {
+          state.share = value;
+          return {
+            share: value,
           };
         });
       },
