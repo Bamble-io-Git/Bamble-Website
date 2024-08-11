@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header
-      className="wrapper py-5 md:py-7 bg-gray-primary flex justify-between items-center sm:sticky top-0 w-full"
+      className="wrapper py-5 md:py-7 bg-gray-primary flex justify-between items-center sm:sticky top-0 w-full px-5"
       style={{
         zIndex: 1000,
       }}

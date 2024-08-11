@@ -6,7 +6,7 @@ type TLayoutProps = { children: ReactNode };
 
 const PageLayout = ({ children }: TLayoutProps) => {
   return (
-    <div className="w-full  px-5">
+    <div className="w-full">
       <Header />
       {children}
       <Footer />
