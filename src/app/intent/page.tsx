@@ -7,18 +7,23 @@ import { useForm } from 'react-hook-form';
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
 import { userDataValidation } from '../signup/schema/user-data';
+import clsx from 'clsx';
+import Image from 'next/image';
+import ProgressBar from '@/components/elements/ProgressBar';
+
 type TCreateUserSchema = {
   email: string;
   fullName: string;
 };
+
 const Intent = () => {
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(userDataValidation),
   });
   const router = useRouter();
-  const { formState, register, handleSubmit } = form;
   const state = useCvStore((state) => state);
   console.log('state', state);
+  const { formState, register, handleSubmit } = form;
   const onSubmit = (values: TCreateUserSchema) => {
     if (values) {
       state.addToCV(values);
@@ -29,21 +34,53 @@ const Intent = () => {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  useEffect(() => {
-    if (formState.isValid) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
-  }, [formState.isValid]);
-
   const data = [
-    { id: 1, text: 'Land my first job' },
-    { id: 2, text: 'Career switch' },
-    { id: 3, text: 'Find a C-Level role' },
-    { id: 4, text: 'Explore market opportunities' },
-    { id: 5, text: 'New challenge in a higher position' },
+    { id: 1, text: 'Land my first job', icon: '/assets/space-rocket.svg' },
+    { id: 2, text: 'Career switch', icon: '/assets/switch.svg' },
+    { id: 3, text: 'Find a C-Level role', icon: '/assets/new-level.svg' },
+    {
+      id: 4,
+      text: 'Explore market opportunities',
+      icon: '/assets/suitcase.svg',
+    },
+    {
+      id: 5,
+      text: 'New challenge in a higher position',
+      icon: '/assets/medal.svg',
+    },
   ];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!state?.cv[0]?.fullName) {
+        router.push('/signup');
+      }
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [router, state.cv]);
+
+  const [intentValues, setIntentValues] = useState<string[]>([]);
+
+  const toggleToAddIntentValues = (value: string) => {
+    const valueAdded = intentValues.includes(value);
+
+    if (!valueAdded) {
+      setIntentValues((prev) => [...prev, value]);
+    } else {
+      setIntentValues((prev) => prev.filter((v) => v !== value));
+    }
+  };
+
+  useEffect(() => {
+    if (intentValues.length === 0) {
+      setIsButtonDisabled(true);
+    } else {
+      setIsButtonDisabled(false);
+    }
+  }, [intentValues.length]);
 
   return (
     <section className="flex justify-between">
@@ -52,7 +89,34 @@ const Intent = () => {
       </div>
 
       <div className="max-w-[520px] mx-auto pt-20 text-black flex flex-col space-y-5">
-        <button>Back</button>
+        <button onClick={() => router.push('/signup')}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.57 5.92993L3.5 11.9999L9.57 18.0699"
+              stroke="#292D32"
+              stroke-width="1.5"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M20.4999 12H3.66992"
+              stroke="#292D32"
+              stroke-width="1.5"
+              stroke-miterlimit="10"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+        <ProgressBar value={25} />
 
         <div className="mb-10 space-y-6">
           <p>
@@ -68,16 +132,21 @@ const Intent = () => {
         </div>
 
         <div className="flex flex-wrap gap-5">
-          {data.map((d) => {
-            return (
-              <button
-                key={d.id}
-                className="border p-4 rounded-lg cursor-pointer hover:bg-yellow-primary"
-              >
-                {d.text}
-              </button>
-            );
-          })}
+          {data.map((d) => (
+            <button
+              key={d.id}
+              className={clsx(
+                intentValues.includes(d.text)
+                  ? 'bg-yellow-primary font-semibold'
+                  : '',
+                'border p-4 rounded-lg cursor-pointer hover:bg-yellow-primary flex gap-3 items-center border-[#0A0A0C]'
+              )}
+              onClick={() => toggleToAddIntentValues(d.text)}
+            >
+              <Image src={d.icon} alt="" width={24} height={24} />
+              {d.text}
+            </button>
+          ))}
         </div>
 
         <div className="mx-auto">
