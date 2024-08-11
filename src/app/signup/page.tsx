@@ -17,11 +17,11 @@ const Signup = () => {
   const router = useRouter();
   const { formState, register, handleSubmit } = form;
   const state = useCvStore((state) => state);
-  console.log('state', state);
+
   const onSubmit = (values: TCreateUserSchema) => {
     if (values) {
       state.addToCV(values);
-      state.incrementSteps();
+      // state.incrementSteps();
       router.push('/intent');
     }
   };
@@ -98,7 +98,6 @@ const Signup = () => {
             Service and confirming that you have reviewed and accepted the
             Global Privacy Statement.
           </p>
-          {/* {JSON.stringify(cart.cv)} */}
 
           <button
             className={
