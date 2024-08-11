@@ -1,12 +1,11 @@
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
-import { zodResolver } from '@hookform/resolvers/zod';
+
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
-import { userDataValidation } from '../signup/schema/user-data';
+
 import clsx from 'clsx';
 import Image from 'next/image';
 import ProgressBar from '@/components/elements/ProgressBar';
@@ -112,8 +111,8 @@ const Intent = () => {
 
         <div className="mb-10 space-y-6 relative">
           <p>
-            Excellent! You've completed the first step. Let's move on to
-            building your profile.
+            Excellent! You&lsquo;ve completed the first step. Let&lsquo;s move
+            on to building your profile.
           </p>
 
           <p>Thanks, {state.cv.length ? state.cv[0].fullName : ''}!</p>

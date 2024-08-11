@@ -101,7 +101,7 @@ const Intent = () => {
 
         <div className="mb-10 space-y-6">
           <p>
-            You're halfway there! Keep up the momentum – your dream job is
+            You&lsquo;re halfway there! Keep up the momentum – your dream job is
             getting closer
           </p>
 

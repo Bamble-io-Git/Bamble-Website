@@ -39,7 +39,7 @@ const Signup = () => {
   return (
     <section className="flex justify-between">
       <div>
-        <LeftStep />
+        <LeftStep image="" />
       </div>
 
       <div className="max-w-[520px] mx-auto pt-20 text-black flex flex-col space-y-5">
