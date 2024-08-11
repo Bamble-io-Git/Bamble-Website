@@ -9,6 +9,7 @@ export type TState = {
   step: number;
   totalAmount: number;
   share: string;
+  personal: string | Blob;
 };
 
 type TActions = {
@@ -17,6 +18,7 @@ type TActions = {
   updatecvQuantity: (id: number, quantity: number) => void;
   clearcv: () => void;
   addToShare: (values: string) => void;
+  addToPersonalDetails: (values: string) => void;
 };
 
 export const useCvStore = create(
@@ -59,6 +61,15 @@ export const useCvStore = create(
           state.share = value;
           return {
             share: value,
+          };
+        });
+      },
+
+      addToPersonalDetails: (value: string) => {
+        set((state) => {
+          state.personal = value;
+          return {
+            personal: value,
           };
         });
       },

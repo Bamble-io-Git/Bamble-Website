@@ -3,7 +3,7 @@ import React from 'react';
 
 const LeftStep = ({ image }: { image: string }) => {
   return (
-    <div>
+    <div className="hidden lg:block">
       <Image
         src={image ? image : '/assets/signup.png'}
         alt="Signup"

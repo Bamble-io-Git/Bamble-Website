@@ -10,28 +10,31 @@ import { userDataValidation } from '../signup/schema/user-data';
 import clsx from 'clsx';
 import Image from 'next/image';
 import ProgressBar from '@/components/elements/ProgressBar';
+import Tips from '@/components/elements/tips';
+import Microphone from '@/components/elements/microphone';
+import Keyboard from '@/components/elements/keyboard';
+
+type TCreateUserSchema = {
+  email: string;
+  fullName: string;
+};
 
 const Intent = () => {
+  const form = useForm<TCreateUserSchema>({
+    resolver: zodResolver(userDataValidation),
+  });
   const router = useRouter();
   const state = useCvStore((state) => state);
+  console.log('state', state);
+
+  const onSubmit = (values: TCreateUserSchema) => {
+    if (values) {
+      router.push('/intent');
+    }
+  };
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  const data = [
-    { id: 1, text: 'Land my first job', icon: '/assets/space-rocket.svg' },
-    { id: 2, text: 'Career switch', icon: '/assets/switch.svg' },
-    { id: 3, text: 'Find a C-Level role', icon: '/assets/new-level.svg' },
-    {
-      id: 4,
-      text: 'Explore market opportunities',
-      icon: '/assets/suitcase.svg',
-    },
-    {
-      id: 5,
-      text: 'New challenge in a higher position',
-      icon: '/assets/medal.svg',
-    },
-  ];
+  const [recording, setRecording] = useState<Blob | undefined>(undefined);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,43 +48,28 @@ const Intent = () => {
     };
   }, [router, state.cv]);
 
-  const [intentValues, setIntentValues] = useState<string>('');
-
-  const toggleToAddIntentValues = (value: string) => {
-    const valueAdded = intentValues.includes(value);
-
-    if (!valueAdded) {
-      setIntentValues(value);
-    } else {
-      setIntentValues('');
-    }
-  };
+  const [text, setText] = useState<string>('');
 
   useEffect(() => {
-    if (intentValues.length === 0) {
+    if (!recording && !text) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
     }
-  }, [intentValues.length]);
+  }, [recording, text]);
 
-  const onSubmit = () => {
-    if (intentValues) {
-      state.addToShare(intentValues);
-      router.push('/personal-details');
-    }
-  };
+  const [showKeyboard, setShowKeyboard] = useState(false);
 
   return (
     <section className="flex justify-between px-6 lg:px-0">
       <div>
-        <LeftStep image="/assets/intent.png" />
+        <LeftStep image="/assets/personal-details.png" />
       </div>
 
       <div className="max-w-[520px] mx-auto pt-10 lg:pt-20 text-black flex flex-col space-y-5 relative">
         <button
-          className="absolute top-[4%] lg:top-[9.6%] left-3 lg:-left-20"
-          onClick={() => router.push('/signup')}
+          className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
+          onClick={() => router.push('/personal-details')}
         >
           <svg
             width="24"
@@ -108,42 +96,40 @@ const Intent = () => {
             />
           </svg>
         </button>
-        <ProgressBar value={25} />
 
-        <div className="mb-10 space-y-6 relative">
+        <ProgressBar value={75} />
+
+        <div className="mb-10 space-y-6">
           <p>
-            Excellent! You've completed the first step. Let's move on to
-            building your profile.
+            You're halfway there! Keep up the momentum – your dream job is
+            getting closer
           </p>
 
           <p>Thanks, {state.cv.length ? state.cv[0].fullName : ''}!</p>
 
           <p className="font-bold text-2xl">
-            Share with us what you want to achieve with this CV?
+            To create a CV that is a reflection of your potential, share some
+            details about yourself.
           </p>
-        </div>
 
-        <div className="flex flex-wrap gap-5">
-          {data.map((d) => (
-            <button
-              key={d.id}
-              className={clsx(
-                intentValues.includes(d.text)
-                  ? 'bg-yellow-primary font-semibold'
-                  : '',
-                'border p-4 rounded-lg cursor-pointer hover:bg-yellow-primary flex gap-3 items-center border-[#0A0A0C]'
-              )}
-              onClick={() => toggleToAddIntentValues(d.text)}
-            >
-              <Image src={d.icon} alt="" width={24} height={24} />
-              {d.text}
-            </button>
-          ))}
+          <Tips />
+
+          {!showKeyboard ? (
+            <Microphone
+              setShowKeyboard={setShowKeyboard}
+              setRecording={setRecording}
+            />
+          ) : (
+            <Keyboard
+              setShowKeyboard={setShowKeyboard}
+              setText={setText}
+              text={text}
+            />
+          )}
         </div>
 
         <div className="mx-auto">
           <button
-            onClick={onSubmit}
             className={
               isButtonDisabled
                 ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed'

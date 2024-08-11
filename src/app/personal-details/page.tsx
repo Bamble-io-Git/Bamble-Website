@@ -11,6 +11,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import ProgressBar from '@/components/elements/ProgressBar';
 import Tips from '@/components/elements/tips';
+import Microphone from '@/components/elements/microphone';
+import Keyboard from '@/components/elements/keyboard';
 
 type TCreateUserSchema = {
   email: string;
@@ -23,31 +25,9 @@ const Intent = () => {
   });
   const router = useRouter();
   const state = useCvStore((state) => state);
-  console.log('state', state);
-  const { formState, register, handleSubmit } = form;
-  const onSubmit = (values: TCreateUserSchema) => {
-    if (values) {
-      router.push('/intent');
-    }
-  };
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  const data = [
-    { id: 1, text: 'Land my first job', icon: '/assets/space-rocket.svg' },
-    { id: 2, text: 'Career switch', icon: '/assets/switch.svg' },
-    { id: 3, text: 'Find a C-Level role', icon: '/assets/new-level.svg' },
-    {
-      id: 4,
-      text: 'Explore market opportunities',
-      icon: '/assets/suitcase.svg',
-    },
-    {
-      id: 5,
-      text: 'New challenge in a higher position',
-      icon: '/assets/medal.svg',
-    },
-  ];
+  const [recording, setRecording] = useState<Blob | undefined>(undefined);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -61,24 +41,37 @@ const Intent = () => {
     };
   }, [router, state.cv]);
 
-  const [intentValues, setIntentValues] = useState<string[]>([]);
+  const [text, setText] = useState<string>('');
 
   useEffect(() => {
-    if (intentValues.length === 0) {
+    if (!recording && !text) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
     }
-  }, [intentValues.length]);
+  }, [recording, text]);
+
+  const [showKeyboard, setShowKeyboard] = useState(false);
+
+  const onSubmit = () => {
+    if (recording || text) {
+      //@ts-ignore
+      state.addToPersonalDetails(recording ? recording : text);
+      router.push('/work-experiences');
+    }
+  };
 
   return (
-    <section className="flex justify-between">
+    <section className="flex justify-between px-6 lg:px-0">
       <div>
         <LeftStep image="/assets/personal-details.png" />
       </div>
 
-      <div className="max-w-[520px] mx-auto pt-20 text-black flex flex-col space-y-5">
-        <button onClick={() => router.push('/intent')}>
+      <div className="max-w-[520px] mx-auto pt-10 lg:pt-20 text-black flex flex-col space-y-5 relative">
+        <button
+          className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
+          onClick={() => router.push('/work-experiences')}
+        >
           <svg
             width="24"
             height="24"
@@ -121,10 +114,24 @@ const Intent = () => {
           </p>
 
           <Tips />
+
+          {!showKeyboard ? (
+            <Microphone
+              setShowKeyboard={setShowKeyboard}
+              setRecording={setRecording}
+            />
+          ) : (
+            <Keyboard
+              setShowKeyboard={setShowKeyboard}
+              setText={setText}
+              text={text}
+            />
+          )}
         </div>
 
         <div className="mx-auto">
           <button
+            onClick={onSubmit}
             className={
               isButtonDisabled
                 ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed'
