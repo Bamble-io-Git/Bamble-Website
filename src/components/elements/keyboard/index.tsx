@@ -26,16 +26,7 @@ const Keyboard = ({
           onChange={(e) => setText(e.target.value)}
           className="border border-black rounded-lg w-[300px] lg:w-[465px] min-h-[250px] p-3"
           value={text}
-          placeholder="   Lorem ipsum dolor sit amet consectetur. A porta eget tincidunt mollis
-          scelerisque tincidunt in. Felis aenean quis duis eu. Ullamcorper eget
-          massa egestas a quis rhoncus. Pellentesque duis eu consequat in
-          pellentesque mus mattis amet. Auctor dui malesuada id feugiat
-          vulputate enim est posuere accumsan. Facilisis amet vitae egestas
-          risus interdum egestas accumsan. Metus massa viverra id dictum
-          tincidunt fermentum habitasse quis. Volutpat vitae turpis tellus
-          iaculis sit non dolor a dictum. Tristique vulputate in mattis at amet.
-          Pellentesque lobortis natoque gravida eget viverra euismod porttitor
-          nunc. Nulla urna quis tortor magna et."
+          placeholder=""
         ></textarea>
       </div>
     </div>
