@@ -62,12 +62,12 @@ const Intent = () => {
   };
 
   return (
-    <section className="flex justify-between px-6 lg:px-0">
+    <section className="flex justify-between px-1.5 lg:px-0">
       <div>
         <LeftStep image="/assets/personal-details.png" />
       </div>
 
-      <div className="max-w-[520px] mx-auto pt-16 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
+      <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
         <button
           className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
           onClick={() => router.push('/intent')}
@@ -100,7 +100,7 @@ const Intent = () => {
 
         <ProgressBar value={50} />
 
-        <div className="mb-10 space-y-6">
+        <div className="mb-10 md:space-y-6 space-y-2">
           <p>
             You&lsquo;re halfway there! Keep up the momentum – your dream job is
             getting closer

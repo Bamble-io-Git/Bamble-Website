@@ -11,7 +11,7 @@ const Tips = () => {
 
   return (
     <section>
-      <div className="bg-[#CBCBCB33] p-6 rounded-lg items-center flex gap-3">
+      <div className="bg-[#CBCBCB33] p-6 rounded-lg items-center flex md:gap-3 gap-1">
         <Modal isOpen={state.isOpen} ref={ref} />
         <button onClick={handleIsOpen}>
           <svg
