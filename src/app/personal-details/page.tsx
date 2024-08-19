@@ -67,7 +67,7 @@ const Intent = () => {
         <LeftStep image="/assets/personal-details.png" />
       </div>
 
-      <div className="max-w-[520px] mx-auto pt-10 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
+      <div className="max-w-[520px] mx-auto pt-16 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
         <button
           className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
           onClick={() => router.push('/intent')}
@@ -108,7 +108,7 @@ const Intent = () => {
 
           <p>Thanks, {state.cv.length ? state.cv[0].fullName : ''}!</p>
 
-          <p className="font-bold text-2xl">
+          <p className="font-bold md:text-2xl text-lg">
             To create a CV that is a reflection of your potential, share some
             details about yourself.
           </p>
