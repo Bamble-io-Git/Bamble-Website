@@ -41,7 +41,7 @@ const Signup = () => {
         <LeftStep image="" />
       </div>
 
-      <div className="max-w-[520px] mx-auto pt-20 text-black flex flex-col space-y-5">
+      <div className="max-w-[520px] mx-auto pt-20 text-black flex flex-col space-y-5 sm:px-0 px-5">
         <div className="mb-10">
           <h2 className="font-bold text-[32px] font-secondary">
             {' '}
