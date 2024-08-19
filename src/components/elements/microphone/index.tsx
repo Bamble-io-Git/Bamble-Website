@@ -53,7 +53,7 @@ const Microphone = ({
         </div>
         <div>
           <button onClick={startRecording}>
-            <Image alt="" src="assets/speaking.svg" height={168} width={168} />
+            <Image alt="" src="assets/speaking.svg" height={156} width={156} />
           </button>
         </div>
         <div>
