@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useAudioRecorder } from 'react-audio-voice-recorder';
 
@@ -43,6 +44,8 @@ const Microphone = ({
 
   console.log('recordingBlob', recordingBlob);
 
+  const path = usePathname();
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -73,13 +76,16 @@ const Microphone = ({
           </button> */}
         </div>
       </div>
-      <div className="flex items-center">
-        <Image width={16} height={16} alt="" src="/assets/info.svg" />
-        <p className="text-[#217DD1] ml-3 sm:text-[18px] text-sm">
-          <strong> You have 20 seconds left! </strong>
-          prepare to finish your presentation.
-        </p>
-      </div>
+      {path.includes('experiences') ? null : (
+        <div className="flex items-center">
+          <Image width={16} height={16} alt="" src="/assets/info.svg" />
+
+          <p className="text-[#217DD1] ml-3 sm:text-[18px] text-sm">
+            <strong> You have 20 seconds left! </strong>
+            prepare to finish your presentation.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

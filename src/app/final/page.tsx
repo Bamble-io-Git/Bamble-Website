@@ -19,7 +19,7 @@ type TCreateUserSchema = {
   fullName: string;
 };
 
-const Intent = () => {
+const Final = () => {
   const router = useRouter();
   const state = useCvStore((state) => state);
   console.log('state', state);
@@ -30,9 +30,9 @@ const Intent = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!state?.cv[0]?.fullName) {
-        router.push('/signup');
+        router.push('/congrats');
       }
-    }, 2000);
+    }, 1000);
 
     return () => {
       clearTimeout(timer);
@@ -55,14 +55,14 @@ const Intent = () => {
     if (recording || text) {
       //@ts-ignore
       state.addToWorkExperiences(recording ? recording : text);
-      router.push('/final');
+      router.push('/congrats');
     }
   };
 
   return (
     <section className="flex justify-between px-1.5 lg:px-0">
       <div>
-        <LeftStep image="/assets/exp.png" />
+        <LeftStep image="/assets/final.png" />
       </div>
 
       <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
@@ -96,38 +96,18 @@ const Intent = () => {
           </svg>
         </button>
 
-        <ProgressBar value={75} />
+        <ProgressBar value={100} />
 
         <div className="mb-10 md:space-y-6 space-y-2">
           <p className="text-sm">
-            Amazing! You&lsquo;re almost at the finish line. Just a little more
-            to go!
+            Almost there! Get ready to unlock amazing opportunities.
           </p>
 
-          <p>
-            {state.cv.length ? state.cv[0].fullName : ''}, this is our last
-            question!
-          </p>
+          <p>Perfect, {state.cv.length ? state.cv[0].fullName : ''}</p>
 
           <p className="font-bold md:text-2xl text-lg">
-            Now is time to shine. Share with us about your 2 most relevant work
-            experiences
+            Now submit the final details
           </p>
-
-          <Tips />
-
-          {!showKeyboard ? (
-            <Microphone
-              setShowKeyboard={setShowKeyboard}
-              setRecording={setRecording}
-            />
-          ) : (
-            <Keyboard
-              setShowKeyboard={setShowKeyboard}
-              setText={setText}
-              text={text}
-            />
-          )}
         </div>
 
         <div className="mx-auto">
@@ -171,4 +151,4 @@ const Intent = () => {
   );
 };
 
-export default Intent;
+export default Final;

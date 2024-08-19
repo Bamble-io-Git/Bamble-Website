@@ -20,9 +20,6 @@ type TCreateUserSchema = {
 };
 
 const Intent = () => {
-  const form = useForm<TCreateUserSchema>({
-    resolver: zodResolver(userDataValidation),
-  });
   const router = useRouter();
   const state = useCvStore((state) => state);
 
