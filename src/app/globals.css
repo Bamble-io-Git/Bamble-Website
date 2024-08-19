@@ -16,7 +16,7 @@
   }
 
   p {
-    @apply font-primary text-lg text-gray-text font-normal;
+    @apply font-primary text-sm md:text-lg text-gray-text font-normal;
   }
 
   .custom-background {

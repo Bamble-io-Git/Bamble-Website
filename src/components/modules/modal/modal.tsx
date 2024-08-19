@@ -40,7 +40,7 @@ const Modal = ({
         className="top-0 fixed z-50 bottom-0 right-0 left-0 bg-[#00000057]"
       />
       <div className="fixed top-[15%] left-[7%] md:left-[50%] z-50">
-        <div className="relative rounded-md p-6 max-w-[95%] md:max-w-[85%] bg-white-primary">
+        <div className="relative rounded-md sm:p-6 p-2 max-w-[95%] md:max-w-[85%] bg-white-primary">
           <div className="flex gap-4 items-start">
             <div>
               <p className="font-semibold mb-6"> Tips on what to say!</p>
