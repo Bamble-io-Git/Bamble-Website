@@ -33,11 +33,10 @@ const GTag = () => {
       <Script strategy="lazyOnload" id="google-analytics">
         {`
               window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-VCRDL8EWYD',  {
-                page_path: window.location.pathname,
-              });
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VCRDL8EWYD');
         `}
       </Script>
     </>
