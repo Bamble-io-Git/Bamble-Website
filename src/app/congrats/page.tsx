@@ -59,7 +59,7 @@ const Congrats = () => {
         <div className="mb-10 md:space-y-6 space-y-2">
           <p className="text-sm"> Take a look at your resume.</p>
 
-          <p>It's ready! {state.cv.length ? state.cv[0].fullName : ''}</p>
+          <p>It&lsquo;s ready! {state.cv.length ? state.cv[0].fullName : ''}</p>
 
           <p className="font-bold md:text-2xl text-lg">
             Check your email for your cv

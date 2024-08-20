@@ -14,11 +14,6 @@ import Tips from '@/components/elements/tips';
 import Microphone from '@/components/elements/microphone';
 import Keyboard from '@/components/elements/keyboard';
 
-type TCreateUserSchema = {
-  email: string;
-  fullName: string;
-};
-
 const Final = () => {
   const router = useRouter();
   const state = useCvStore((state) => state);
