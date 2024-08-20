@@ -63,7 +63,7 @@ const Final = () => {
       <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
         <button
           className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
-          onClick={() => router.push('/personal-details')}
+          onClick={() => router.push('/work-experiences')}
         >
           <svg
             width="24"
