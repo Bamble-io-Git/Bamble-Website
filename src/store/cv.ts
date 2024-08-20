@@ -7,7 +7,6 @@ import { TCV } from './useProductsStore';
 export type TState = {
   cv: TCV[];
   step: number;
-  totalAmount: number;
   share: string;
   personal: string | Blob;
   experience: string | Blob;
@@ -28,7 +27,6 @@ export const useCvStore = create(
     (set, get) => ({
       cv: [],
       step: 0,
-      totalAmount: 0,
       addToCV: (cv: TCV) => {
         set((state: any) => {
           const cvState = state.cv;
@@ -97,43 +95,6 @@ export const useCvStore = create(
           return {
             step: Number(state.step) - 1,
           };
-        });
-      },
-
-      removeFromcv: (product: TCV) => {
-        set((state: Pick<TState, 'cv' | 'totalAmount' | 'step'>) => ({
-          cv: state.cv.filter((elem) => elem?._id !== product?._id),
-          totalAmount: 0,
-          step: 0,
-        }));
-      },
-
-      updatecvQuantity: (id: number, quantity: number) => {
-        const cvState = get().cv;
-
-        const immutableState = [...cvState];
-
-        if (cvState.length > 0) {
-          let itemToUpdate: any = immutableState.find(
-            (elem) => elem?._id === id
-          );
-
-          if (itemToUpdate) {
-            itemToUpdate.quantity = quantity;
-
-            set({
-              cv: immutableState,
-              totalAmount: cvState?.totalAmount + 1,
-              step: cvState?.step * quantity,
-            });
-          }
-        }
-      },
-      clearcv: () => {
-        set({
-          cv: [],
-          step: 0,
-          totalAmount: 0,
         });
       },
     }),

@@ -6,51 +6,72 @@ import { useForm } from 'react-hook-form';
 
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
-import { userDataValidation } from '../signup/schema/user-data';
-import clsx from 'clsx';
-import Image from 'next/image';
+import { finalDataValidation } from '../signup/schema/final-data';
+
 import ProgressBar from '@/components/elements/ProgressBar';
-import Tips from '@/components/elements/tips';
-import Microphone from '@/components/elements/microphone';
-import Keyboard from '@/components/elements/keyboard';
+import axios from 'axios';
+
+type TCreateUserSchema = {
+  linkedin_link: string;
+  job_description_link: string;
+};
 
 const Final = () => {
   const router = useRouter();
   const state = useCvStore((state) => state);
-  console.log('state', state);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [recording, setRecording] = useState<Blob | undefined>(undefined);
+
+  const form = useForm<TCreateUserSchema>({
+    resolver: zodResolver(finalDataValidation),
+  });
+
+  const { formState, register, handleSubmit, watch } = form;
+
+  const linkedinUrl = watch('linkedin_link');
+  const jobDescriptionUrl = watch('job_description_link');
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!state?.cv[0]?.fullName) {
+    if (formState.isValid) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
+    }
+  }, [formState.isValid]);
+
+  const generateCV = async () => {
+    try {
+      const response = await axios.post(
+        `https://cv.backend.bamble.io/users/generate_cv`,
+
+        {
+          what_to_achieve: state.share,
+          linkedin_link: linkedinUrl,
+          job_description_link: jobDescriptionUrl,
+          about_self_text: state.personal,
+          about_self_audio: state.personal,
+          cv_file: '',
+          work_experience_text: state.experience,
+          work_experience_audio: state.experience,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      console.log(response);
+      if (response.status === 201) {
         router.push('/congrats');
       }
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [router, state.cv]);
-
-  const [text, setText] = useState<string>('');
-
-  useEffect(() => {
-    if (!recording && !text) {
-      setIsButtonDisabled(true);
-    } else {
-      setIsButtonDisabled(false);
+      return response;
+    } catch (error) {
+      console.error(error);
     }
-  }, [recording, text]);
-
-  const [showKeyboard, setShowKeyboard] = useState(false);
-
-  const onSubmit = () => {
-    if (recording || text) {
-      //@ts-ignore
-      state.addToWorkExperiences(recording ? recording : text);
-      router.push('/congrats');
+  };
+  const onSubmit = async () => {
+    if (linkedinUrl) {
+      await generateCV();
     }
   };
 
@@ -98,20 +119,66 @@ const Final = () => {
             Almost there! Get ready to unlock amazing opportunities.
           </p>
 
-          <p>Perfect, {state.cv.length ? state.cv[0].fullName : ''}</p>
+          <p>Perfect, {state.cv.length ? state.cv[0].fullName + '!' : ''}</p>
 
           <p className="font-bold md:text-2xl text-lg">
             Now submit the final details
           </p>
         </div>
 
-        <div className="mx-auto">
+        <form
+          className="flex flex-col space-y-5"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="flex flex-col space-y-3">
+            <label htmlFor="" className="font-bold font-primary">
+              Linkedin Link
+            </label>
+            <input
+              type="text"
+              placeholder={linkedinUrl ? linkedinUrl : 'Your link here...'}
+              className="border rounded-lg p-3"
+              {...register('linkedin_link')}
+            />
+            {formState.errors.linkedin_link && (
+              <p className="text-[#FC5555] text-sm">
+                Linkedin link must be valid eg.
+                https://www.linkedin.com/in/john-doe
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col space-y-3">
+            <label htmlFor="" className="font-bold font-primary">
+              Your job description link
+            </label>
+            <input
+              type="url"
+              placeholder={
+                jobDescriptionUrl ? jobDescriptionUrl : 'Your link here...'
+              }
+              className="border rounded-lg p-3"
+              {...register('job_description_link')}
+            />
+
+            {formState.errors.job_description_link && (
+              <p className="text-[#FC5555] text-sm">
+                Invalid Job description url.
+              </p>
+            )}
+          </div>
+
+          <p className="text-[#414143] font-secondary text-sm">
+            By registering for an account, you are consenting to our Terms of
+            Service and confirming that you have reviewed and accepted the
+            Global Privacy Statement.
+          </p>
+
           <button
-            onClick={onSubmit}
             className={
               isButtonDisabled
-                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed'
-                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer'
+                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-not-allowed'
+                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer'
             }
           >
             Next
@@ -140,7 +207,7 @@ const Final = () => {
               />
             </svg>
           </button>
-        </div>
+        </form>
       </div>
     </section>
   );
