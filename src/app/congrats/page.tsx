@@ -1,20 +1,16 @@
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
-import { zodResolver } from '@hookform/resolvers/zod';
+
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
 
-import Tips from '@/components/elements/tips';
-import Microphone from '@/components/elements/microphone';
-import Keyboard from '@/components/elements/keyboard';
 import Confetti from 'react-confetti';
 import Link from 'next/link';
 
 const Conf = () => {
-  return <Confetti width={600} height={900} colors={['#45A6FF', '#F2E205']} />;
+  return <Confetti width={500} height={900} colors={['#45A6FF', '#F2E205']} />;
 };
 
 const Congrats = () => {
@@ -50,7 +46,7 @@ const Congrats = () => {
   return (
     <section className="flex justify-between px-1.5 lg:px-0">
       <div>
-        <LeftStep image="/assets/exp.png" />
+        <LeftStep image="/assets/congrats.png" />
       </div>
 
       <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
@@ -59,7 +55,10 @@ const Congrats = () => {
         <div className="mb-10 md:space-y-6 space-y-2">
           <p className="text-sm"> Take a look at your resume.</p>
 
-          <p>It&lsquo;s ready! {state.cv.length ? state.cv[0].fullName : ''}</p>
+          <p>
+            It&lsquo;s ready!
+            <strong> {state.cv.length ? state.cv[0].fullName : ''} </strong>
+          </p>
 
           <p className="font-bold md:text-2xl text-lg">
             Check your email for your cv
