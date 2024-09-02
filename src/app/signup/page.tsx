@@ -22,12 +22,16 @@ const Signup = () => {
 
   const router = useRouter();
 
+  const localStorage =
+    typeof window !== 'undefined' ? window.localStorage : null;
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage?.getItem('token');
+
     if (token) {
       router.push('/intent');
     }
-  }, [router]);
+  }, [localStorage, router]);
 
   const login = async ({
     fullName,
