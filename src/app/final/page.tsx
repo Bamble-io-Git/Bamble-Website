@@ -104,8 +104,6 @@ const Final = () => {
           requestData.work_experience_audio = state.experience;
         }
 
-        console.log('requestData', requestData);
-
         const response = await axios.post(
           `https://cv.backend.bamble.io/users/generate_cv`,
           requestData,
