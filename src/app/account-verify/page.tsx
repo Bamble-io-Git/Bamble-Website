@@ -12,16 +12,12 @@ const AuthVerify = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const email = searchParams.get('email');
-  // useEffect(() => {
-  //   if (token) {
-  //     localStorage.setItem('token', token);
-  //   }
-  // }, [token]);
-  console.log(token);
+
   const router = useRouter();
   const state = useCvStore((state) => state);
 
-  console.log('state?.cv[0]?.', state?.cv[0]?.email);
+  const localStorage =
+    typeof window !== 'undefined' ? window.localStorage : null;
 
   useEffect(() => {
     const verifyUser = async () => {
@@ -40,7 +36,7 @@ const AuthVerify = () => {
           }
         );
         console.log('response.data.accessToken', response.data.access_token);
-        localStorage.setItem('token', response.data.access_token);
+        localStorage?.setItem('token', response.data.access_token);
         setIsLoading(false);
         if (response.status === 200) {
           toast.success('User verified successfully');
