@@ -86,7 +86,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
             </div>
 
             <div>
-              <span className="text-[#45A6FF] font-bold"> 3, 117 people</span>
+              <span className="text-[#45A6FF] font-bold"> 3, 118 people</span>
               <span className="text-[#45A6FF]">
                 {' '}
                 have guaranteed their spot{' '}
