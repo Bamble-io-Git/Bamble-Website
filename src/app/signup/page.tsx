@@ -1,4 +1,5 @@
 'use client';
+
 import LeftStep from '@/components/elements/step/LeftStep';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useEffect, useState } from 'react';
@@ -6,6 +7,10 @@ import { useForm } from 'react-hook-form';
 import { userDataValidation } from './schema/user-data';
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import axios, { AxiosError } from 'axios';
+import { metadata } from '../layout';
+
 type TCreateUserSchema = {
   email: string;
   fullName: string;
@@ -14,14 +19,68 @@ const Signup = () => {
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(userDataValidation),
   });
+
   const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      router.push('/intent');
+    }
+  }, [router]);
+
+  const login = async ({
+    fullName,
+    email,
+  }: {
+    fullName: string;
+    email: string;
+  }) => {
+    const firstName = fullName.split(' ')[0];
+    const lastName = fullName.split(' ')[1] ?? '';
+    try {
+      toast.loading('Authenticating....');
+      const response = await axios.post(
+        'https://cv.backend.bamble.io/users',
+        {
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          password: 'stringcehw88938f28998efjkndj90rej9vdoijnsd',
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json',
+          },
+        }
+      );
+      console.log('ran');
+      console.log(response);
+      if (response.status == 422) {
+        toast.info(response?.data?.details);
+      }
+      if (response.status === 201) {
+        toast.dismiss();
+        toast.success('Please check your email for login credentials');
+        router.push('/account-verify');
+      }
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.dismiss();
+        toast.error(error?.response?.data.detail);
+      }
+    }
+  };
+
   const { formState, register, handleSubmit } = form;
   const state = useCvStore((state) => state);
 
-  const onSubmit = (values: TCreateUserSchema) => {
+  const onSubmit = async (values: TCreateUserSchema) => {
     if (values) {
       state.addToCV(values);
-      router.push('/intent');
+      // router.push('/intent');
+      await login(values);
     }
   };
 
@@ -62,7 +121,9 @@ const Signup = () => {
             <input
               type="text"
               placeholder={
-                state.cv.length ? state.cv[0].fullName : 'Your email here...'
+                state.cv.length
+                  ? state.cv[0].fullName
+                  : 'Your full name here...'
               }
               className="border rounded-lg p-3"
               {...register('fullName')}

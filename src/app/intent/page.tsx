@@ -32,9 +32,11 @@ const Intent = () => {
     },
   ];
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (!state?.cv[0]?.fullName) {
+      if (!token) {
         router.push('/signup');
       }
     }, 2000);
@@ -42,7 +44,7 @@ const Intent = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [router, state.cv]);
+  }, [router, state.cv, token]);
 
   const [intentValues, setIntentValues] = useState<string>('');
 
@@ -118,7 +120,7 @@ const Intent = () => {
           <p>Thanks, {state.cv.length ? state.cv[0].fullName : ''}!</p>
 
           <p className="font-bold md:text-2xl text-lg">
-            Share with us what you want to achieve with this CV?
+            What’s your objective with this CV?
           </p>
         </div>
 

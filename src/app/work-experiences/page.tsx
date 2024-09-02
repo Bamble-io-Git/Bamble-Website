@@ -1,14 +1,11 @@
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
-import { zodResolver } from '@hookform/resolvers/zod';
+
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
-import { userDataValidation } from '../signup/schema/user-data';
-import clsx from 'clsx';
-import Image from 'next/image';
+
 import ProgressBar from '@/components/elements/ProgressBar';
 import Tips from '@/components/elements/tips';
 import Microphone from '@/components/elements/microphone';
@@ -22,7 +19,6 @@ type TCreateUserSchema = {
 const Intent = () => {
   const router = useRouter();
   const state = useCvStore((state) => state);
-  console.log('state', state);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [recording, setRecording] = useState<Blob | undefined>(undefined);

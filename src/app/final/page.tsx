@@ -10,6 +10,8 @@ import { finalDataValidation } from '../signup/schema/final-data';
 
 import ProgressBar from '@/components/elements/ProgressBar';
 import axios from 'axios';
+import PdfUpload from '@/components/elements/pdf-uploader';
+import { toast } from 'react-toastify';
 
 type TCreateUserSchema = {
   linkedin_link: string;
@@ -39,32 +41,90 @@ const Final = () => {
     }
   }, [formState.isValid]);
 
+  const [file, setFile] = useState(null);
+
+  const token = localStorage.getItem('token');
+
   const generateCV = async () => {
     try {
-      const response = await axios.post(
-        `https://cv.backend.bamble.io/users/generate_cv`,
+      const requestData = {
+        what_to_achieve: state.share ?? '',
+        linkedin_link: linkedinUrl,
+        job_description_link: jobDescriptionUrl,
+        cv_file: file,
+      };
 
-        {
-          what_to_achieve: state.share,
-          linkedin_link: linkedinUrl,
-          job_description_link: jobDescriptionUrl,
-          about_self_text: state.personal,
-          about_self_audio: state.personal,
-          cv_file: '',
-          work_experience_text: state.experience,
-          work_experience_audio: state.experience,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+      // Create FormData
+      // const formData = new FormData();
+
+      // // If state.personal is a Blob, append it to the FormData as a file
+      // if (state.personal instanceof Blob) {
+      //   formData.append(
+      //     'about_self_audio',
+      //     state.personal,
+      //     'about_self_audio.webm'
+      //   );
+      // } else {
+      //   formData.append('about_self_text', state.personal);
+      // }
+
+      // // If state.experience is a Blob, append it to the FormData as a file
+      // if (state.experience instanceof Blob) {
+      //   formData.append(
+      //     'work_experience_audio',
+      //     state.experience,
+      //     'work_experience_audio.webm'
+      //   );
+      // } else {
+      //   formData.append('work_experience_text', state.experience);
+      // }
+
+      // // Add other form data fields
+      // formData.append('what_to_achieve', state.share ?? '');
+      // formData.append('linkedin_link', linkedinUrl);
+      // formData.append('job_description_link', jobDescriptionUrl);
+
+      // Include either text or audio, but not both
+      if (state.personal) {
+        if (typeof state.personal === 'string') {
+          //@ts-ignore
+          requestData.about_self_text = state.personal;
+        } else {
+          //@ts-ignore
+          requestData.about_self_audio = state.personal;
         }
-      );
-      console.log(response);
-      if (response.status === 201) {
-        router.push('/congrats');
       }
-      return response;
+
+      if (state.experience) {
+        if (typeof state.experience === 'string') {
+          //@ts-ignore
+          requestData.work_experience_text = state.experience;
+        } else {
+          //@ts-ignore
+          requestData.work_experience_audio = state.experience;
+        }
+
+        console.log('requestData', requestData);
+
+        const response = await axios.post(
+          `https://cv.backend.bamble.io/users/generate_cv`,
+          requestData,
+          // formData,
+          {
+            headers: {
+              accept: 'application/json',
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        );
+        console.log('RESPONSEEE', response);
+        if (response.status === 201) {
+          toast.success(response.data.message);
+          router.push('/congrats');
+        }
+        return response;
+      }
     } catch (error) {
       console.error(error);
     }
@@ -126,11 +186,15 @@ const Final = () => {
           </p>
         </div>
 
+        <div className="my-12">
+          <PdfUpload file={file} setFile={setFile} />
+        </div>
+
         <form
           className="flex flex-col space-y-5"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-3 mt-10">
             <label htmlFor="" className="font-bold font-primary">
               Linkedin Link
             </label>

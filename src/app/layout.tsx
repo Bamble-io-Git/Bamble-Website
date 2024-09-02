@@ -5,6 +5,9 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import GTag from '@/scripts/google-tag';
 import './globals.css';
 import { montserrat, notoSans } from './theme/fonts';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const metadata: Metadata = {
   title: 'Bamble',
   description: 'Create AI powered high-quality CV in 3 clicks',
@@ -26,6 +29,7 @@ export default function RootLayout({
         className={`${montserrat.variable} ${notoSans.variable}`}
         id="portal"
       >
+        <ToastContainer position="top-right" />
         {children}
       </body>
       <GoogleAnalytics gaId="G-VCRDL8EWYD" />
