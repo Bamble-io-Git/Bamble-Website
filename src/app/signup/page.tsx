@@ -70,6 +70,7 @@ const Signup = () => {
         router.push('/account-verify');
       }
     } catch (error) {
+      toast.error('CORS error, contact admin');
       if (error instanceof AxiosError) {
         toast.dismiss();
         toast.error(error?.response?.data.detail);
