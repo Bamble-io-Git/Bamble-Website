@@ -43,7 +43,10 @@ const Final = () => {
 
   const [file, setFile] = useState(null);
 
-  const token = localStorage.getItem('token');
+  const localStorage =
+    typeof window !== 'undefined' ? window.localStorage : null;
+
+  const token = localStorage?.getItem('token');
 
   const generateCV = async () => {
     try {

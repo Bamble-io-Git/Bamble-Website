@@ -1,5 +1,4 @@
 'use client';
-
 import LeftStep from '@/components/elements/step/LeftStep';
 import { useCvStore } from '@/store/cv';
 import axios from 'axios';
