@@ -100,7 +100,7 @@ export const useCvStore = create(
     }),
     {
       name: 'cv-state',
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );
