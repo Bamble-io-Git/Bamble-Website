@@ -32,7 +32,7 @@ const Tips = () => {
           data-tooltip-content="Click to expand"
         >
           <svg
-            className="h-6 w-7 text-black"
+            className="h-6 w-7 text-white-primary"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -46,7 +46,9 @@ const Tips = () => {
           </svg>
         </button>
 
-        <p>Check here some tips of what you could say to us!</p>
+        <p className="text-white-primary">
+          Check here some tips of what you could say to us!
+        </p>
       </div>
     </section>
   );

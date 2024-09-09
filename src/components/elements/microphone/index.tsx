@@ -20,6 +20,8 @@ const Microphone = ({
     recordingTime,
   } = useAudioRecorder();
 
+  console.log('recordingTime', recordingTime);
+
   const [recordingBlob, setRecordingBlob] = useState<Blob | undefined>(
     undefined
   );
@@ -66,8 +68,20 @@ const Microphone = ({
 
   const path = usePathname();
 
+  const convertRecordingTimeToMMSS = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  };
+
   return (
     <div>
+      <p className="text-[#217DD1] text-center">
+        {remainingTime >= 20 &&
+          isRecording &&
+          convertRecordingTimeToMMSS(recordingTime)}
+      </p>
       <div className="flex justify-between items-center">
         <div>
           <button
@@ -174,29 +188,8 @@ const Microphone = ({
           <Tooltip id="my-tooltip">
             <p>Click to play your recording</p>
           </Tooltip>
-
-          {/* <button
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="Please record your voice first"
-            disabled={recordingBlob === undefined}
-            onClick={handlePlay}
-            className="bg-green-accent p-3 rounded-lg shadow-md disabled:bg-gray-200 disabled:cursor-not-allowed cursor-pointer"
-          >
-            Play
-          </button> */}
         </div>
       </div>
-      {/* {path.includes('experiences') ? null : (
-        <div className="flex items-center">
-          <Image width={16} height={16} alt="" src="/assets/info.svg" />
-
-          <p className="text-[#217DD1] ml-3 sm:text-[18px] text-sm">
-            <strong> You have {remainingTime} seconds left! </strong>
-            prepare to finish your presentation.
-          </p>
-        </div>
-      )} */}
-
       {remainingTime <= 20 && (
         <div className="flex items-center">
           <Image width={16} height={16} alt="" src="/assets/info.svg" />

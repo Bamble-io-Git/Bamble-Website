@@ -215,7 +215,7 @@ const Final = () => {
 
           <div className="flex flex-col space-y-3">
             <label htmlFor="" className="font-bold font-primary">
-              Your job description link
+              Insert a link to an open job (JD) you would like to apply to
             </label>
             <input
               type="url"
@@ -233,11 +233,11 @@ const Final = () => {
             )}
           </div>
 
-          <p className="text-[#414143] font-secondary text-sm">
+          {/* <p className="text-[#414143] font-secondary text-sm">
             By registering for an account, you are consenting to our Terms of
             Service and confirming that you have reviewed and accepted the
             Global Privacy Statement.
-          </p>
+          </p> */}
 
           <button
             className={
