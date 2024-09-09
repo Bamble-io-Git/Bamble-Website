@@ -15,7 +15,7 @@ const Conf = () => {
 const Congrats = () => {
   const state = useCvStore((state) => state);
 
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const localStorage = typeof window !== 'undefined' && window.localStorage;
 

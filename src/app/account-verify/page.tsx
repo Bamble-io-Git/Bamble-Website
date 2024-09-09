@@ -18,6 +18,7 @@ const AuthVerify = () => {
   const localStorage =
     typeof window !== 'undefined' ? window.localStorage : null;
 
+  // TODO: extract to a Hook
   useEffect(() => {
     const verifyUser = async () => {
       setIsLoading(true);

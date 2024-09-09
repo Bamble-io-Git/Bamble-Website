@@ -24,7 +24,7 @@ const Microphone = ({
     undefined
   );
 
-  const [remainingTime, setRemainingTime] = useState(20);
+  const [remainingTime, setRemainingTime] = useState(120);
 
   useEffect(() => {
     if (isRecording) {
@@ -197,14 +197,16 @@ const Microphone = ({
         </div>
       )} */}
 
-      <div className="flex items-center">
-        <Image width={16} height={16} alt="" src="/assets/info.svg" />
+      {remainingTime <= 20 && (
+        <div className="flex items-center">
+          <Image width={16} height={16} alt="" src="/assets/info.svg" />
 
-        <p className="text-[#217DD1] ml-3 sm:text-[18px] text-sm">
-          <strong> You have {remainingTime} seconds left! </strong>
-          prepare to finish your presentation.
-        </p>
-      </div>
+          <p className="text-[#217DD1] ml-3 sm:text-[18px] text-sm">
+            <strong> You have {remainingTime} seconds left! </strong>
+            prepare to finish your presentation.
+          </p>
+        </div>
+      )}
     </div>
   );
 };
