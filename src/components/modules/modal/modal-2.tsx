@@ -1,7 +1,7 @@
 import useMediaQuery from '@/hooks/useMediaQuery';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
-const Modal = ({
+const Modal2 = ({
   isOpen,
   handleClose,
   ref,
@@ -13,20 +13,20 @@ const Modal = ({
   const data = [
     {
       id: 1,
-      title: 'The present:',
-      text: 'What are you doing now? Why are you qualified for this job? Years of experience in the role and current responsibilities?',
+      title: 'Mention the name of the company and your role',
+      text: '',
       icon: '/assets/bulb.svg',
     },
     {
       id: 2,
-      title: 'The past:',
-      text: 'What’s your inspiration? What have you done? Your main achievements so far?',
+      title: 'Think of 3 or 4 achievements for each experience.',
+      text: '🧠 Remember, only your 2 most recent roles!',
       icon: '/assets/bulb.svg',
     },
     {
       id: 3,
-      title: 'The future:',
-      text: 'What are your goals and expectations for your next job?',
+      title: 'Think of your achievements in this format:',
+      text: '🚀I achieved X, by doing Y, measured by Y',
       icon: '/assets/bulb.svg',
     },
   ];
@@ -45,11 +45,8 @@ const Modal = ({
             <div>
               <p className="font-semibold mb-6">
                 {' '}
-                We will build a powerful intro in your resume for you!
-              </p>
-
-              <p className="mb-4">
-                PRO Tip💡: Think about the job you are applying to.
+                Now, think of your 2 most relevant experiences, they should be
+                the latest ones.
               </p>
 
               <div className="space-y-6">
@@ -70,11 +67,16 @@ const Modal = ({
                     </div>
                     <div>
                       <p className="text-[18px] font-bold"> {item.title}</p>
-                      <p className="text-base">{item.text}</p>
+                      {item.text && <p className="text-base">{item.text}</p>}
                     </div>
                   </div>
                 ))}
               </div>
+
+              <p className="mt-6">
+                💡PRO Tip💡: If you can show your impact with numbers. it’s way
+                better!
+              </p>
             </div>
           </div>
         </div>
@@ -85,4 +87,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default Modal2;

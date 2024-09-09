@@ -26,17 +26,17 @@ const Intent = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [recording, setRecording] = useState<Blob | undefined>(undefined);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!state?.cv[0]?.fullName) {
-        router.push('/signup');
-      }
-    }, 2000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     if (!state?.cv[0]?.fullName) {
+  //       router.push('/signup');
+  //     }
+  //   }, 2000);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [router, state.cv]);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [router, state.cv]);
 
   const [text, setText] = useState<string>('');
 

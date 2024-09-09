@@ -1,6 +1,8 @@
 import Modal from '@/components/modules/modal/modal';
+import Modal2 from '@/components/modules/modal/modal-2';
 import { useOnClickOutside } from '@/hooks/use-click-outside';
 import useModal from '@/hooks/use-modal';
+import { usePathname } from 'next/navigation';
 import React, { useRef } from 'react';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
@@ -8,6 +10,8 @@ import 'react-tooltip/dist/react-tooltip.css';
 const Tips = () => {
   const ref = useRef(null);
   const { state, handleIsOpen, handleIsClose } = useModal();
+
+  const PATHNAME = usePathname();
 
   useOnClickOutside(ref, handleIsClose);
 
@@ -17,7 +21,11 @@ const Tips = () => {
         <Tooltip id="my-tooltip">
           <p>...</p>
         </Tooltip>
-        <Modal isOpen={state.isOpen} ref={ref} />
+        {PATHNAME.includes('work-experiences') ? (
+          <Modal2 isOpen={state.isOpen} ref={ref} />
+        ) : (
+          <Modal isOpen={state.isOpen} ref={ref} />
+        )}
         <button
           onClick={handleIsOpen}
           data-tooltip-id="my-tooltip"
