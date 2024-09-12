@@ -29,7 +29,7 @@ const Intent = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!state?.cv[0]?.fullName) {
-        router.push('/signup');
+        router.push('/signin');
       }
     }, 2000);
 

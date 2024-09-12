@@ -17,7 +17,7 @@ const SignIn = () => {
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(userSigninDataValidation),
   });
-
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const searchParams = useSearchParams();
@@ -48,8 +48,9 @@ const SignIn = () => {
             },
           }
         );
-        console.log('response.data.accessToken', response.data.access_token);
+
         localStorage?.setItem('token', response.data.access_token);
+
         setIsLoading(false);
         if (response.status === 200) {
           toast.success('User verified successfully');
@@ -72,42 +73,55 @@ const SignIn = () => {
   useEffect(() => {
     const token = localStorage?.getItem('token');
 
-    // if (token) {
-    //   router.push('/intent');
-    // }
+    if (token) {
+      router.push('/intent');
+    }
   }, [localStorage, router]);
 
   const login = async ({ email }: { email: string }) => {
     try {
-      toast.loading('Authenticating....');
+      // toast.loading('Authenticating....');
       const response = await axios.post(
         'https://cv.backend.bamble.io/auth/token',
         {
           username: email,
           password: 'stringcehw88938f28998efjkndj90rej9vdoijnsd',
-          // token,
         },
         {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
             accept: 'application/json',
           },
         }
       );
+
+      const user = await axios.get(`https://cv.backend.bamble.io/users/me`, {
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${response.data.access_token}`,
+        },
+      });
+
+      state.addToCV({
+        fullName: user.data.first_name + user.data.last_name,
+        email: user.data.email,
+      });
+
       console.log('ran');
       console.log(response);
       if (response.status == 422) {
         toast.info(response?.data?.details);
       }
-      if (response.status === 201) {
-        toast.dismiss();
-        toast.success('Please check your email for login credentials');
-        // router.push('/intent');
+      if (response.status === 200) {
+        // toast.dismiss();
+        toast.success('Login successful');
+        localStorage?.setItem('token', response.data.access_token);
+        router.push('/intent');
       }
     } catch (error) {
       toast.error('CORS error, contact admin');
       if (error instanceof AxiosError) {
-        toast.dismiss();
+        // toast.dismiss();
         toast.error(error?.response?.data.detail);
       }
     }
@@ -116,7 +130,7 @@ const SignIn = () => {
   const onSubmit = async (values: TCreateUserSchema) => {
     console.log('VALUES', values);
     if (values) {
-      state.addToCV(values);
+      // state.addToCV({ ...values });
       // router.push('/intent');
       await login(values);
     }

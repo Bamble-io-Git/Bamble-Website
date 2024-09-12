@@ -131,18 +131,18 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
           </p>
 
           <p className="text-[12px] text-gray-500">
-            JPG, PNG or PDF, file size no more than 10MB
+            PDF file size no more than 10MB
           </p>
         </div>
 
-        <div>
+        {/* <div>
           <button
             disabled={!file}
             className={`border-[#0F91D2B2] text-[10px] w-[115px] border px-4 py-2 text-[#0F91D2B2] rounded`}
           >
             SELECT FILE
           </button>
-        </div>
+        </div> */}
       </div>
 
       {fileSize && (

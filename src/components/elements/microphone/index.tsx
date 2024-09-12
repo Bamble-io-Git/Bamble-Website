@@ -20,6 +20,11 @@ const Microphone = ({
     recordingTime,
   } = useAudioRecorder();
 
+  // clear recording
+  // add toast to show One recording session\
+  // X should clear recording
+  //Remove select file button
+
   console.log('recordingTime', recordingTime);
 
   const [recordingBlob, setRecordingBlob] = useState<Blob | undefined>(

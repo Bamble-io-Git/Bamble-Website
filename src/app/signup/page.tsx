@@ -9,7 +9,6 @@ import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
-import { metadata } from '../layout';
 
 type TCreateUserSchema = {
   email: string;
@@ -74,6 +73,7 @@ const Signup = () => {
       if (error instanceof AxiosError) {
         toast.dismiss();
         toast.error(error?.response?.data.detail);
+        router.push('/signin');
       }
     }
   };

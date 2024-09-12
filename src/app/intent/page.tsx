@@ -40,7 +40,7 @@ const Intent = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!token) {
-        router.push('/signup');
+        router.push('/signin');
       }
     }, 2000);
 
