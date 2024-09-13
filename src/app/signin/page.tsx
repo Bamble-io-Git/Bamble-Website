@@ -103,7 +103,7 @@ const SignIn = () => {
       });
 
       state.addToCV({
-        fullName: user.data.first_name + user.data.last_name,
+        fullName: user.data.first_name + ' ' + user.data.last_name,
         email: user.data.email,
       });
 
