@@ -6,9 +6,11 @@ const LeftStep = ({ image }: { image: string }) => {
     <div className="hidden lg:block">
       <Image
         src={image ? image : '/assets/signup.png'}
-        alt="Signup"
+        alt="Image"
         width={580}
         height={1400}
+        priority
+        quality={80}
       />
     </div>
   );
