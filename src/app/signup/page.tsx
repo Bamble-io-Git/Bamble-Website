@@ -9,6 +9,7 @@ import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 type TCreateUserSchema = {
   email: string;
@@ -84,7 +85,10 @@ const Signup = () => {
   const onSubmit = async (values: TCreateUserSchema) => {
     if (values) {
       state.addToCV(values);
-      // router.push('/intent');
+      sendGTMEvent({
+        event: 'signUp',
+        value: values.email,
+      });
       await login(values);
     }
   };

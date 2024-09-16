@@ -1,7 +1,7 @@
 // import Footer from '@/components/sections/footer';
 // import Header from '@/components/sections/header';
 import type { Metadata } from 'next';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import GTag from '@/scripts/google-tag';
 import './globals.css';
 import { montserrat, notoSans } from './theme/fonts';
@@ -33,6 +33,7 @@ export default function RootLayout({
         {children}
       </body>
       <GoogleAnalytics gaId="G-VCRDL8EWYD" />
+      <GoogleTagManager gtmId="GTM-KRPQNFLH" />
     </html>
   );
 }
