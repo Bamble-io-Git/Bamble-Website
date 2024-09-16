@@ -196,7 +196,7 @@ const Microphone = ({
           <button
             onClick={handleClearRecording}
             data-tooltip-id="my-tooltip"
-            data-tooltip-content="Click to clear recording"
+            data-tooltip-content="Click to delete recording"
           >
             <Image width={40} height={40} alt="" src="/assets/cancel.svg" />
             {/* {isRecording && '......'} for {recordingTime}ms */}
@@ -207,7 +207,7 @@ const Microphone = ({
           </Tooltip>
         </div>
       </div>
-      {remainingTime <= 20 && (
+      {remainingTime < 20 && (
         <div className="flex items-center">
           <Image width={16} height={16} alt="" src="/assets/info.svg" />
 

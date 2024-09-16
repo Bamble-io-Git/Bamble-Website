@@ -32,7 +32,7 @@ const Tips = () => {
           data-tooltip-content="Click to expand"
         >
           <svg
-            className="h-6 w-7 text-white-primary"
+            className="h-6 w-7 text-white-primary animate-pulse"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
