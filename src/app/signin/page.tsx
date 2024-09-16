@@ -195,7 +195,7 @@ const SignIn = () => {
             <Link href="/privacy-policy" className="text-blue-primary">
               {' '}
               Privacy Statement
-            </Link>{' '}
+            </Link>
             .
           </p>
 
