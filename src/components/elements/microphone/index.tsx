@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useAudioRecorder } from 'react-audio-voice-recorder';
 import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip';
+import { toast } from 'react-toastify';
 
 const Microphone = ({
   setShowKeyboard,
@@ -45,6 +46,8 @@ const Microphone = ({
       const intervalId = setInterval(() => {
         setRemainingTime((prevTime) => Math.max(0, prevTime - 1));
       }, 1000);
+
+      toast.info('You have 2 minutes to record your cv, check tips ︖');
 
       return () => clearInterval(intervalId); // Clean up interval on unmount
     }
@@ -108,7 +111,9 @@ const Microphone = ({
           <button
             onClick={isRecording ? stopRecording : startRecording}
             data-tooltip-id="my-tooltip"
-            data-tooltip-content="Click to record"
+            data-tooltip-content={
+              isRecording ? 'Click to finish' : 'Click to record'
+            }
           >
             {isRecording ? (
               <Image
