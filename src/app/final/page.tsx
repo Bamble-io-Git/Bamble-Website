@@ -143,7 +143,7 @@ const Final = () => {
         <LeftStep image="/assets/final.png" />
       </div>
 
-      <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
+      <div className="w-[85%] md:w-[550px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
         <button
           className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
           onClick={() => router.push('/work-experiences')}

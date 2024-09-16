@@ -135,7 +135,7 @@ const Intent = () => {
                 intentValues.includes(d.text)
                   ? 'bg-yellow-primary font-semibold'
                   : '',
-                'border p-4 rounded-lg cursor-pointer hover:bg-yellow-primary flex gap-3 items-center border-[#0A0A0C]'
+                'border p-4 rounded-lg cursor-pointer hover:bg-yellow-primary flex gap-3 items-center border-[#0A0A0C] w-full sm:w-auto'
               )}
               onClick={() => toggleToAddIntentValues(d.text)}
             >
