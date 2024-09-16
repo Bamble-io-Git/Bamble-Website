@@ -12,6 +12,7 @@ import ProgressBar from '@/components/elements/ProgressBar';
 import axios from 'axios';
 import PdfUpload from '@/components/elements/pdf-uploader';
 import { toast } from 'react-toastify';
+import { PHProvider } from '../providers';
 
 type TCreateUserSchema = {
   linkedin_link: string;

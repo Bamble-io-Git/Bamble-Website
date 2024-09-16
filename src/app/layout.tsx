@@ -7,6 +7,7 @@ import './globals.css';
 import { montserrat, notoSans } from './theme/fonts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PHProvider } from './providers';
 
 export const metadata: Metadata = {
   title: 'Bamble',
@@ -24,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GTag />
-
+      {/* <PHProvider> */}
       <body
         className={`${montserrat.variable} ${notoSans.variable}`}
         id="portal"
@@ -32,6 +33,8 @@ export default function RootLayout({
         <ToastContainer position="top-right" />
         {children}
       </body>
+      {/* </PHProvider> */}
+
       <GoogleAnalytics gaId="G-VCRDL8EWYD" />
       <GoogleTagManager gtmId="GTM-KRPQNFLH" />
     </html>

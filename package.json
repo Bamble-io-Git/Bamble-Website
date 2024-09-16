@@ -19,6 +19,7 @@
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.427.0",
     "next": "^14.2.5",
+    "posthog-js": "^1.161.5",
     "react": "^18",
     "react-audio-voice-recorder": "^2.2.0",
     "react-confetti": "^6.1.0",
