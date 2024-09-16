@@ -7,6 +7,7 @@ import { useCvStore } from '@/store/cv';
 
 import Confetti from 'react-confetti';
 import { PHProvider } from '../providers';
+import Link from 'next/link';
 // import Link from 'next/link';
 
 const Conf = () => {
@@ -37,6 +38,7 @@ const Congrats = () => {
         <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
           <Conf />
 
+          {/* <Link href="/">🏚️</Link> */}
           <div className="mb-10 md:space-y-6 space-y-2">
             <p className="text-sm"> Take a look at your resume.</p>
 
