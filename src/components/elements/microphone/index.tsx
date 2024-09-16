@@ -33,6 +33,13 @@ const Microphone = ({
 
   const [remainingTime, setRemainingTime] = useState(120);
 
+  const handleClearRecording = () => {
+    setRecordingBlob(undefined);
+    setRecording(undefined);
+    setRemainingTime(120); // Reset timer if needed
+    stopRecording();
+  };
+
   useEffect(() => {
     if (isRecording) {
       const intervalId = setInterval(() => {
@@ -182,9 +189,9 @@ const Microphone = ({
         </div>
         <div>
           <button
-            onClick={stopRecording}
+            onClick={handleClearRecording}
             data-tooltip-id="my-tooltip"
-            data-tooltip-content="Click to stop recording"
+            data-tooltip-content="Click to clear recording"
           >
             <Image width={40} height={40} alt="" src="/assets/cancel.svg" />
             {/* {isRecording && '......'} for {recordingTime}ms */}
