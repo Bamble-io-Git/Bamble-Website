@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
 import { sendGTMEvent } from '@next/third-parties/google';
+import Link from 'next/link';
 
 type TCreateUserSchema = {
   email: string;
@@ -163,9 +164,17 @@ const Signup = () => {
           </div>
 
           <p className="text-[#414143] font-secondary text-sm">
-            By registering for an account, you are consenting to our Terms of
-            Service and confirming that you have reviewed and accepted the
-            Global Privacy Statement.
+            By registering for an account, you are consenting to our
+            <Link href="/terms" className="text-blue-primary">
+              {' '}
+              Terms of Service{' '}
+            </Link>
+            and confirming that you have reviewed and accepted the Global
+            <Link href="/privacy-policy" className="text-blue-primary">
+              {' '}
+              Privacy Statement
+            </Link>{' '}
+            .
           </p>
 
           <button
