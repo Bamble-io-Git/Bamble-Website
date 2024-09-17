@@ -129,7 +129,7 @@ const Intent = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-5">
+        <div className="flex flex-wrap gap-5 text-sm sm:text-base">
           {data.map((d) => (
             <button
               key={d.id}
