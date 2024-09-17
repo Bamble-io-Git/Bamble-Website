@@ -39,6 +39,8 @@ const Microphone = ({
     setRecording(undefined);
     setRemainingTime(120); // Reset timer if needed
     stopRecording();
+
+    toast.error('Recording deleted successfully');
   };
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const Microphone = ({
         setRemainingTime((prevTime) => Math.max(0, prevTime - 1));
       }, 1000);
 
-      toast.info('You have 2 minutes to record your cv, check tips ︖');
+      toast.info('You have 2 minutes to record your cv, check tips for help');
 
       return () => clearInterval(intervalId); // Clean up interval on unmount
     }
