@@ -83,9 +83,11 @@ const Intent = () => {
       </div>
 
       <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
-        <button
+        {/* <button
           className="absolute top-[4%] lg:top-[9.6%] left-3 lg:-left-20"
-          onClick={() => router.push('/signup')}
+          onClick={() =>
+            router.push(localStorage?.getItem('token') ? '/signin' : '/signup')
+          }
         >
           <svg
             width="24"
@@ -111,7 +113,7 @@ const Intent = () => {
               stroke-linejoin="round"
             />
           </svg>
-        </button>
+        </button> */}
         <ProgressBar value={25} />
 
         <div className="mb-10 md:space-y-6 space-y-2 relative">
