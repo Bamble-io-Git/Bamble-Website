@@ -67,6 +67,10 @@ const AuthVerify = () => {
           {isLoading && (
             <div className="rounded-md h-12 w-20 border-4 border-t-4 border-blue-500 animate-spin absolute"></div>
           )}
+
+          <h2 className="font-semibold text-2xl">
+            Check your email to verify your account and get started!
+          </h2>
         </div>
       </div>
     </section>
