@@ -26,13 +26,13 @@ const Signup = () => {
   const localStorage =
     typeof window !== 'undefined' ? window.localStorage : null;
 
-  useEffect(() => {
-    const token = localStorage?.getItem('token');
+  // useEffect(() => {
+  //   const token = localStorage?.getItem('token');
 
-    if (token) {
-      router.push('/intent');
-    }
-  }, [localStorage, router]);
+  //   if (token) {
+  //     router.push('/intent');
+  //   }
+  // }, [localStorage, router]);
 
   const login = async ({
     fullName,
