@@ -27,12 +27,16 @@ const Signup = () => {
     typeof window !== 'undefined' ? window.localStorage : null;
 
   useEffect(() => {
-    const token = localStorage?.getItem('token');
-
-    if (token) {
-      router.push('/intent');
-    }
+    localStorage?.removeItem('token');
   }, [localStorage, router]);
+
+  // useEffect(() => {
+  //   const token = localStorage?.getItem('token');
+
+  //   if (token) {
+  //     router.push('/intent');
+  //   }
+  // }, [localStorage, router]);
 
   const login = async ({
     fullName,
@@ -71,6 +75,7 @@ const Signup = () => {
         router.push('/account-verify');
       }
     } catch (error) {
+      console.log(error);
       toast.error('CORS error, contact admin');
       if (error instanceof AxiosError) {
         toast.dismiss();
