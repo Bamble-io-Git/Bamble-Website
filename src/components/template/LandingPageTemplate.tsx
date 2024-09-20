@@ -53,13 +53,9 @@ const LandingPageTemplate = () => {
 
             <button
               className="bg-white-primary text-sm sm:text-base text-[#45A6FF] text-center px-3 rounded-lg font-semibold sm:w-auto py-[12px] w-[200px]"
-              onClick={() =>
-                router.push(
-                  'https://docs.google.com/forms/d/e/1FAIpQLSeQvp8MWsNuota_ymCBVRRXa7BelAKIV0PiV5Uk4_wp70i-EA/viewform'
-                )
-              }
+              onClick={() => router.push('/signup')}
             >
-              Reserve your spot
+              Start now
             </button>
           </div>
 
