@@ -61,7 +61,7 @@ const Intent = () => {
   return (
     <section className="flex justify-between px-1.5 lg:px-0">
       <div>
-        <LeftStep image="/assets/personal-details.png" />
+        <LeftStep image="/assets/personal-details.webp" />
       </div>
 
       <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
