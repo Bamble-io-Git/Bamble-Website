@@ -1,4 +1,5 @@
 import useMediaQuery from '@/hooks/useMediaQuery';
+import clsx from 'clsx';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
 const Modal2 = ({
@@ -50,7 +51,7 @@ const Modal2 = ({
               </p>
 
               <div className="space-y-6">
-                {data.map((item) => (
+                {data.map((item, i) => (
                   <div
                     key={item.id}
                     className="flex gap-4 space-y-6 items-center shadow-[0px_10px_30px_0px_rgba(0,0,0,0.1)]
@@ -65,7 +66,7 @@ const Modal2 = ({
                         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                       />
                     </div>
-                    <div>
+                    <div className={clsx(i === 0 && 'min-h-[50px]')}>
                       <p className="text-[18px] font-bold"> {item.title}</p>
                       {item.text && <p className="text-base">{item.text}</p>}
                     </div>
@@ -74,7 +75,7 @@ const Modal2 = ({
               </div>
 
               <p className="mt-6">
-                💡PRO Tip💡: If you can show your impact with numbers. it’s way
+                💡PRO Tip: If you can show your impact with numbers. it’s way
                 better!
               </p>
             </div>

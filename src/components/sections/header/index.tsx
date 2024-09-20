@@ -24,10 +24,7 @@ const Header = () => {
         />
       </Link>
       <div className="">
-        <LinkComponent
-          url="https://forms.gle/jonCj7M5zsM6Y8vy9"
-          text="Reserve your spot"
-        />
+        <LinkComponent url="/signup" text="Start now" />
       </div>
     </header>
   );

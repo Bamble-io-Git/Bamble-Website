@@ -18,7 +18,7 @@ const LinkComponent = ({
 
   return (
     <Link
-      target="_blank"
+      // target="_blank"
       href={url}
       style={{
         display: 'flex',
