@@ -10,7 +10,7 @@ const LeftStep = ({ image }: { image: string }) => {
         width={580}
         height={1400}
         priority
-        quality={80}
+        quality={70}
       />
     </div>
   );
