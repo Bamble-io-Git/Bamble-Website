@@ -78,7 +78,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
     <div className="w-[592px]">
       <div
         {...getRootProps()}
-        className="border-dashed border-2 p-8 min-w-full flex justify-between max-h-[100px]"
+        className="border-dashed border-2 p-8 min-w-full flex  max-h-[100px]"
       >
         <input {...getInputProps()} />
 
@@ -123,7 +123,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
           />
         </svg>
 
-        <div>
+        <div className="ml-5">
           <p className="text-[13px] font-semibold">
             {isDragActive
               ? 'You have selected a file'
