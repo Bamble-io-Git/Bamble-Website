@@ -35,7 +35,7 @@ const TurboChargeCareer = () => {
             </span>
           </p>
           <div className="max-w-[100%] sm:max-w-[70%]">
-            <LinkComponent text="Start now" url="/signup" />
+            <LinkComponent text="Try for free!" url="/signup" />
           </div>
         </div>
 

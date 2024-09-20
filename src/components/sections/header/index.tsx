@@ -24,7 +24,7 @@ const Header = () => {
         />
       </Link>
       <div className="">
-        <LinkComponent url="/signup" text="Start now" />
+        <LinkComponent url="/signup" text="Try for free!" />
       </div>
     </header>
   );

@@ -47,7 +47,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
 
         <div className="flex flex-col sm:flex-row justify-center gap-5 pt-6 pb-7 sm:mx-0 mx-auto z-10">
           <div>
-            <LinkComponent url="/signup" text="Start now" />
+            <LinkComponent url="/signup" text="Try for free!" />
           </div>
 
           <div className="my-auto  sm:block hidden">
