@@ -12,7 +12,7 @@ import ProgressBar from '@/components/elements/ProgressBar';
 import axios from 'axios';
 import PdfUpload from '@/components/elements/pdf-uploader';
 import { toast } from 'react-toastify';
-import { PHProvider } from '../providers';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 type TCreateUserSchema = {
   linkedin_link: string;
@@ -57,36 +57,6 @@ const Final = () => {
         job_description_link: jobDescriptionUrl,
         cv_file: file,
       };
-
-      // Create FormData
-      // const formData = new FormData();
-
-      // // If state.personal is a Blob, append it to the FormData as a file
-      // if (state.personal instanceof Blob) {
-      //   formData.append(
-      //     'about_self_audio',
-      //     state.personal,
-      //     'about_self_audio.webm'
-      //   );
-      // } else {
-      //   formData.append('about_self_text', state.personal);
-      // }
-
-      // // If state.experience is a Blob, append it to the FormData as a file
-      // if (state.experience instanceof Blob) {
-      //   formData.append(
-      //     'work_experience_audio',
-      //     state.experience,
-      //     'work_experience_audio.webm'
-      //   );
-      // } else {
-      //   formData.append('work_experience_text', state.experience);
-      // }
-
-      // // Add other form data fields
-      // formData.append('what_to_achieve', state.share ?? '');
-      // formData.append('linkedin_link', linkedinUrl);
-      // formData.append('job_description_link', jobDescriptionUrl);
 
       // Include either text or audio, but not both
       if (state.personal) {
@@ -134,6 +104,11 @@ const Final = () => {
   const onSubmit = async () => {
     if (linkedinUrl) {
       await generateCV();
+      sendGTMEvent({
+        event: 'Event - Step5 Submit',
+        clickText: 'Submit',
+        values: 'Successfully generated CV',
+      });
     }
   };
 
@@ -247,7 +222,7 @@ const Final = () => {
                 : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer'
             }
           >
-            Next
+            Submit
             <svg
               width="13"
               height="13"

@@ -4,6 +4,7 @@ import React, { useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -18,6 +19,10 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
       console.log('Selected file:', selectedFile);
       setFileSize(selectedFile?.size);
       handleUpload(selectedFile);
+      sendGTMEvent({
+        event: 'Event - Step4 Upload Docs',
+        values: 'Upload Success',
+      });
     } else {
       toast.error('Please upload a valid PDF file.');
     }

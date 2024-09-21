@@ -10,6 +10,7 @@ import ProgressBar from '@/components/elements/ProgressBar';
 import Tips from '@/components/elements/tips';
 import Microphone from '@/components/elements/microphone';
 import Keyboard from '@/components/elements/keyboard';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 type TCreateUserSchema = {
   email: string;
@@ -52,6 +53,13 @@ const Intent = () => {
       //@ts-ignore
       state.addToWorkExperiences(recording ? recording : text);
       router.push('/final');
+      sendGTMEvent({
+        event: 'Event - Step3 Question 2',
+        clickText: 'Next',
+        values: {
+          step: 1,
+        },
+      });
     }
   };
 

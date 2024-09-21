@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import Image from 'next/image';
 import ProgressBar from '@/components/elements/ProgressBar';
+import { sendGTMEvent } from '@next/third-parties/google';
 
 const Intent = () => {
   const router = useRouter();
@@ -73,6 +74,13 @@ const Intent = () => {
     if (intentValues) {
       state.addToShare(intentValues);
       router.push('/personal-details');
+      sendGTMEvent({
+        event: 'Event - Step1 Goal',
+        clickText: 'Next',
+        values: {
+          intent: intentValues,
+        },
+      });
     }
   };
 

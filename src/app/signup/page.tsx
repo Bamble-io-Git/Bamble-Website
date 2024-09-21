@@ -90,7 +90,7 @@ const Signup = () => {
     if (values) {
       state.addToCV(values);
       sendGTMEvent({
-        event: 'signUp',
+        event: 'Event - Signup',
         value: values.email,
       });
       await login(values);
