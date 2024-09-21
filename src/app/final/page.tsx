@@ -95,6 +95,9 @@ const Final = () => {
           toast.success(response.data.message);
           router.push('/congrats');
         }
+        if (response.status === 400) {
+          toast.error(response.data.message);
+        }
         return response;
       }
     } catch (error) {
