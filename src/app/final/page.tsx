@@ -90,7 +90,7 @@ const Final = () => {
             },
           }
         );
-        console.log('RESPONSEEE', response);
+
         if (response.status === 201) {
           toast.success(response.data.message);
           router.push('/congrats');
@@ -102,6 +102,7 @@ const Final = () => {
       }
     } catch (error) {
       console.error(error);
+      toast.error('CV generation failed.');
     }
   };
   const onSubmit = async () => {
