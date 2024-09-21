@@ -81,7 +81,6 @@ const Final = () => {
         const response = await axios.post(
           `https://cv.backend.bamble.io/users/generate_cv`,
           requestData,
-          // formData,
           {
             headers: {
               accept: 'application/json',
@@ -90,13 +89,15 @@ const Final = () => {
             },
           }
         );
+        console.log(response);
 
         if (response.status === 201) {
           toast.success(response.data.message);
           router.push('/congrats');
         }
-        if (response.status === 400) {
-          toast.error(response.data.message);
+
+        if (response.status == 400) {
+          toast.error(response.data.message?.detail);
         }
         return response;
       }
@@ -212,12 +213,6 @@ const Final = () => {
               </p>
             )}
           </div>
-
-          {/* <p className="text-[#414143] font-secondary text-sm">
-            By registering for an account, you are consenting to our Terms of
-            Service and confirming that you have reviewed and accepted the
-            Global Privacy Statement.
-          </p> */}
 
           <button
             className={
