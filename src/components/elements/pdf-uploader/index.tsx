@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
 import { sendGTMEvent } from '@next/third-parties/google';
+import clsx from 'clsx';
 
 function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -83,10 +84,12 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
     <div className="w-[592px]">
       <div
         {...getRootProps()}
-        className="border-dashed border-2 p-8 min-w-full flex  max-h-[100px]"
+        className={clsx(
+          file && 'border-dashed border-green-600 border bg-green-100',
+          'border-dashed border-2 p-8 min-w-full flex  max-h-[100px]'
+        )}
       >
         <input {...getInputProps()} />
-
         <svg
           width="48"
           height="48"
@@ -127,11 +130,10 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
             stroke-linejoin="round"
           />
         </svg>
-
         <div className="ml-5">
           <p className="text-[13px] font-semibold">
-            {isDragActive
-              ? 'You have selected a file'
+            {file
+              ? 'File upload successful'
               : 'Select a file or drag and drop here'}
           </p>
 
@@ -139,7 +141,6 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
             PDF file size no more than 10MB
           </p>
         </div>
-
         {/* <div>
           <button
             disabled={!file}
