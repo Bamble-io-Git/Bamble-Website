@@ -86,7 +86,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
         {...getRootProps()}
         className={clsx(
           file && 'border-dashed border-green-600 border bg-green-100',
-          'border-dashed border-2 p-8 min-w-full flex  max-h-[100px]'
+          'border-dashed border-2 p-3 sm:p-8 min-w-full flex  max-h-[100px]'
         )}
       >
         <input {...getInputProps()} />
@@ -96,6 +96,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="sm:block hidden"
         >
           <path
             d="M32 32L24 24L16 32"
