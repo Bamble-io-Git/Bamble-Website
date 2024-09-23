@@ -34,6 +34,30 @@ const Final = () => {
   const linkedinUrl = watch('linkedin_link');
   const jobDescriptionUrl = watch('job_description_link');
 
+  // useEffect(() => {
+  //   console.log(token);
+  //   const generateStripeLink = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         `https://cv.backend.bamble.io/payments/pay`,
+  //         {
+  //           headers: {
+  //             accept: 'application/json',
+  //             'Content-Type': 'multipart/form-data',
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+  //       console.log(response);
+  //       return response;
+  //     } catch (error) {
+  //       console.error(error);
+  //       toast.error('Failed to generate stripe link.');
+  //     }
+  //   };
+  //   generateStripeLink();
+  // }, []);
+
   useEffect(() => {
     if (formState.isValid) {
       setIsButtonDisabled(false);
@@ -196,14 +220,16 @@ const Final = () => {
 
           <div className="flex flex-col space-y-3">
             <label htmlFor="" className="font-bold font-primary">
-              Insert a link to an open job (JD) you would like to apply to
+              Paste the job description (JD) of your desired job
             </label>
-            <input
-              type="url"
+            <textarea
+              // type="url"
               placeholder={
-                jobDescriptionUrl ? jobDescriptionUrl : 'Your link here...'
+                jobDescriptionUrl
+                  ? jobDescriptionUrl
+                  : 'Job description here...'
               }
-              className="border rounded-lg p-3"
+              className="border rounded-lg p-3 min-h-[200px]"
               {...register('job_description_link')}
             />
 
