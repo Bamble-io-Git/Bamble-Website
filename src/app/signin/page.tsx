@@ -120,10 +120,10 @@ const SignIn = () => {
         router.push('/intent');
       }
     } catch (error) {
-      toast.error('CORS error, contact admin');
       if (error instanceof AxiosError) {
         // toast.dismiss();
-        toast.error(error?.response?.data.detail);
+        console.log(error);
+        toast.error(`${error?.message} contact admin`);
       }
     }
   };
