@@ -5,7 +5,7 @@ export const finalDataValidation = z.object({
     .string()
     .url()
     .refine((url) => url.includes('linkedin')),
-  job_description_link: z.string().url().nullable(),
+  job_description_link: z.string().nullable(),
 });
 
 export type TJobFilterSchema = z.infer<typeof finalDataValidation>;
