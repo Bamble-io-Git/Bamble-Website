@@ -19,13 +19,21 @@ const Footer = () => {
       <div className="flex justify-center text-[#090923] gap-x-3 py-6 text-sm  md:text-base font-normal">
         <p>Copyright © 2024 Bamble</p>
         <p> All Rights Reserved</p>
-        <p className="underline lg:block hidden">Terms and Conditions</p>
-        <p className="underline lg:block hidden">Privacy Policy</p>
+        <a href="/terms" className="underline lg:block hidden">
+          Terms and Conditions
+        </a>
+        <a href="/privacy-policy" className="underline lg:block hidden">
+          Privacy Policy
+        </a>
       </div>
 
       <div className="lg:hidden  flex justify-center gap-x-5 mb-6">
-        <p className="underline text-[#45A6FF]">Terms and Conditions</p>
-        <p className="underline text-[#45A6FF]">Privacy Policy</p>
+        <a href="/terms" className="underline text-[#45A6FF]">
+          Terms and Conditions
+        </a>
+        <a href="/privacy-policy" className="underline text-[#45A6FF]">
+          Privacy Policy
+        </a>
       </div>
     </footer>
   );
