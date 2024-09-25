@@ -24,7 +24,7 @@ const LinkComponent = ({
         display: 'flex',
         justifyItems: 'center',
         alignContent: 'center',
-        transition: '0.5s ease-in',
+        transition: '0.2s ease-in',
       }}
       onMouseEnter={() => setShowIcon(true)}
       onMouseLeave={() => setShowIcon(false)}
@@ -33,7 +33,7 @@ const LinkComponent = ({
           ? 'border border-blue-primary bg-white-primary text-blue-primary'
           : 'text-white-primary',
         cardLink && 'sm:max-w-[175px] !max-w-[175px] text-center mt-5 -mb-2',
-        'px-4 sm:px-[20px] bg-blue-primary rounded-lg font-semibold text-[17px] sm:text-lg sm:w-auto py-[12px]'
+        'px-4 sm:px-[20px] bg-blue-primary rounded-lg hover:font-semibold text-[17px] sm:text-lg sm:w-auto py-[12px]'
       )}
     >
       <span className="mx-auto">{text}</span>
@@ -41,7 +41,7 @@ const LinkComponent = ({
       <span
         className="ml-2 my-auto"
         style={{
-          transition: '0.5s ease-in',
+          transition: '0.2s ease-in',
         }}
       >
         {showIcon && (
