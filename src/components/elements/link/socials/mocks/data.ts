@@ -13,7 +13,7 @@ export const SOCIAL_LINKS = [
   },
   { url: 'https://x.com/bamble_io', logo: icons.twitter },
   {
-    url: 'https://www.tiktok.com/@bamble689?_t=8njwUR51EIb&_r=1',
+    url: 'https://www.tiktok.com/@bamble.io',
     logo: icons.tiktok,
   },
   {
