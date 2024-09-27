@@ -10,6 +10,9 @@ export type TState = {
   share: string;
   personal: string | Blob;
   experience: string | Blob;
+  pdf: any;
+  linkedinUrl: string;
+  jobDescription: string;
 };
 
 type TActions = {
@@ -20,6 +23,9 @@ type TActions = {
   addToShare: (values: string) => void;
   addToPersonalDetails: (values: string) => void;
   addToWorkExperiences: (values: string) => void;
+  addToPdf: (values) => void;
+  addToLinkedinUrl: (values) => void;
+  addToJD: (values) => void;
 };
 
 export const useCvStore = create(
@@ -78,6 +84,31 @@ export const useCvStore = create(
           state.experience = value;
           return {
             experience: value,
+          };
+        });
+      },
+
+      addToPdf: (value) => {
+        set((state) => {
+          state.pdf = value;
+          return {
+            pdf: value,
+          };
+        });
+      },
+      addToLinkedinUrl: (value) => {
+        set((state) => {
+          state.linkedinUrl = value;
+          return {
+            linkedinUrl: value,
+          };
+        });
+      },
+      addToJD: (value) => {
+        set((state) => {
+          state.jobDescription = value;
+          return {
+            jobDescription: value,
           };
         });
       },

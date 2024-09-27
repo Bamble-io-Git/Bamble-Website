@@ -17,7 +17,7 @@ type TCreateUserSchema = {
   fullName: string;
 };
 
-const Intent = () => {
+const WorkExperiences = () => {
   const router = useRouter();
   const state = useCvStore((state) => state);
 
@@ -47,6 +47,31 @@ const Intent = () => {
   }, [recording, text]);
 
   const [showKeyboard, setShowKeyboard] = useState(false);
+
+  // const onSubmit = () => {
+  //   if (recording || text) {
+  //     //@ts-ignore
+  //     state.addToWorkExperiences(recording ? recording : text);
+  //     router.push('/final');
+  //     sendGTMEvent({
+  //       event: 'Event - Step3 Question 2',
+  //       clickText: 'Next',
+  //       values: {
+  //         step: 1,
+  //       },
+  //     });
+  //   }
+  // };
+
+  useEffect(() => {
+    if (state.experience) {
+      if (typeof state.experience === 'string') {
+        setText(state.experience || '');
+      } else {
+        setRecording(state.experience || undefined);
+      }
+    }
+  }, [state.experience]);
 
   const onSubmit = () => {
     if (recording || text) {
@@ -175,4 +200,4 @@ const Intent = () => {
   );
 };
 
-export default Intent;
+export default WorkExperiences;

@@ -32,6 +32,7 @@ const Final = () => {
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(finalDataValidation),
   });
+  // const [linkedinUrl, setLinkedinUrl] = useState('');
 
   const { formState, register, handleSubmit, watch } = form;
 
@@ -96,6 +97,8 @@ const Final = () => {
         job_description_link: jobDescriptionUrl,
         cv_file: file,
       };
+
+      console.log('requestData', requestData);
 
       // Include either text or audio, but not both
       if (state.personal) {
@@ -170,8 +173,6 @@ const Final = () => {
     getUserDetails();
   }, [token]);
 
-  console.log(isLoading);
-
   const onSubmit = async () => {
     if (linkedinUrl) {
       await generateCV();
@@ -182,6 +183,29 @@ const Final = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (state?.pdf) {
+      //@ts-ignore
+      setFile(state.pdf || null);
+    }
+
+    // if (jobDescriptionUrl?.length) {
+    //   state.addToJD(jobDescriptionUrl);
+    // }
+  }, [state.pdf]);
+
+  useEffect(() => {
+    if (linkedinUrl?.length) {
+      state.addToLinkedinUrl(linkedinUrl ?? '');
+    }
+  }, [linkedinUrl]);
+
+  useEffect(() => {
+    if (jobDescriptionUrl?.length) {
+      state.addToJD(jobDescriptionUrl ?? '');
+    }
+  }, [jobDescriptionUrl]);
 
   return (
     <section className="flex justify-between px-1.5 lg:px-0">
@@ -248,16 +272,20 @@ const Final = () => {
             </label>
             <input
               type="text"
-              placeholder={linkedinUrl ? linkedinUrl : 'Your link here...'}
+              placeholder={
+                state.linkedinUrl ? state.linkedinUrl : 'Your link here...'
+              }
+              // onChange={(e) => setLinkedinUrl(e.target.value)}
               className="border rounded-lg p-3"
               {...register('linkedin_link')}
+              value={state.linkedinUrl}
             />
-            {formState.errors.linkedin_link && (
+            {/* {formState.errors.linkedin_link && (
               <p className="text-[#FC5555] text-sm">
                 Linkedin link must be valid eg.
                 https://www.linkedin.com/in/john-doe
               </p>
-            )}
+            )} */}
           </div>
 
           <div className="flex flex-col space-y-3">
@@ -265,14 +293,15 @@ const Final = () => {
               Paste the job description (JD) of your desired job
             </label>
             <textarea
-              // type="url"
               placeholder={
-                jobDescriptionUrl
-                  ? jobDescriptionUrl
+                state.jobDescription
+                  ? state.jobDescription
                   : 'Job description here...'
               }
+              // value={state.jobDescription}
               className="border rounded-lg p-3 min-h-[200px]"
               {...register('job_description_link')}
+              value={state.jobDescription}
             />
 
             {formState.errors.job_description_link && (

@@ -6,13 +6,14 @@ import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
 import { sendGTMEvent } from '@next/third-parties/google';
 import clsx from 'clsx';
+import { useCvStore } from '@/store/cv';
 
 function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
   const [fileSize, setFileSize] = useState<number | null>(null);
   //  const [file, setFile] = useState<File | null>(null);
-
+  const state = useCvStore((state) => state.addToPdf);
   const onDrop = useCallback((acceptedFiles) => {
     const selectedFile = acceptedFiles[0];
     if (selectedFile && selectedFile.type === 'application/pdf') {
@@ -20,6 +21,15 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
       console.log('Selected file:', selectedFile);
       setFileSize(selectedFile?.size);
       handleUpload(selectedFile);
+      // if (typeof window !== 'undefined')
+      //   window.localStorage.setItem(
+      //     'finalStorage',
+      //     JSON.stringify({
+      //       file,
+      //     })
+      //   );
+      state(selectedFile);
+
       sendGTMEvent({
         event: 'Event - Step4 Upload Docs',
         values: 'Upload Success',

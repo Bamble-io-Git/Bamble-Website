@@ -20,7 +20,7 @@ type TCreateUserSchema = {
   fullName: string;
 };
 
-const Intent = () => {
+const PersonalDetails = () => {
   const router = useRouter();
   const state = useCvStore((state) => state);
 
@@ -50,6 +50,41 @@ const Intent = () => {
   }, [recording, text]);
 
   const [showKeyboard, setShowKeyboard] = useState(false);
+
+  // const onSubmit = () => {
+  //   if (recording || text) {
+  //     //@ts-ignore
+  //     state.addToPersonalDetails(recording ? recording : text);
+  //     router.push('/work-experiences');
+  //     sendGTMEvent({
+  //       event: 'Event - Step2 Question 1',
+  //       clickText: 'Next',
+  //       values: {
+  //         step: 1,
+  //         goal: text ? text : '',
+  //       },
+  //     });
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (state.cv[0]?.personalDetails) {
+  //     const { text: savedText, recording: savedRecording } =
+  //       state.cv[0]?.personalDetails;
+  //     setText(savedText || '');
+  //     setRecording(savedRecording || undefined);
+  //   }
+  // }, [state.cv]);
+
+  useEffect(() => {
+    if (state.personal) {
+      if (typeof state.personal === 'string') {
+        setText(state.personal || '');
+      } else {
+        setRecording(state.personal || undefined);
+      }
+    }
+  }, [state.personal]);
 
   const onSubmit = () => {
     if (recording || text) {
@@ -176,4 +211,4 @@ const Intent = () => {
   );
 };
 
-export default Intent;
+export default PersonalDetails;

@@ -52,15 +52,29 @@ const Intent = () => {
 
   const [intentValues, setIntentValues] = useState<string>('');
 
-  const toggleToAddIntentValues = (value: string) => {
-    const valueAdded = intentValues.includes(value);
+  // const toggleToAddIntentValues = (value: string) => {
+  //   const valueAdded = intentValues.includes(value);
 
-    if (!valueAdded) {
-      setIntentValues(value);
+  //   if (!valueAdded) {
+  //     setIntentValues(value);
+  //   } else {
+  //     setIntentValues('');
+  //   }
+  // };
+
+  const toggleToAddIntentValues = (value: string) => {
+    if (intentValues === value) {
+      setIntentValues(''); // Unselect
     } else {
-      setIntentValues('');
+      setIntentValues(value); // Select new value
     }
   };
+
+  useEffect(() => {
+    if (state.share) {
+      setIntentValues(state.share);
+    }
+  }, [state.share]);
 
   useEffect(() => {
     if (intentValues.length === 0) {
@@ -91,37 +105,6 @@ const Intent = () => {
       </div>
 
       <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
-        {/* <button
-          className="absolute top-[4%] lg:top-[9.6%] left-3 lg:-left-20"
-          onClick={() =>
-            router.push(localStorage?.getItem('token') ? '/signin' : '/signup')
-          }
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9.57 5.92993L3.5 11.9999L9.57 18.0699"
-              stroke="#292D32"
-              stroke-width="1.5"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M20.4999 12H3.66992"
-              stroke="#292D32"
-              stroke-width="1.5"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button> */}
         <ProgressBar value={25} />
 
         <div className="mb-10 md:space-y-6 space-y-2 relative">
