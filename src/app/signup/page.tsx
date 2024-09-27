@@ -158,6 +158,14 @@ const Signup = () => {
             )}
           </div>
 
+          <p className="text-[#414143] font-secondary text-sm text-center">
+            Already have an account?
+            <Link href="/signin" className="text-blue-primary">
+              {' '}
+              Signin
+            </Link>
+          </p>
+
           <p className="text-[#414143] font-secondary text-sm">
             By registering for an account, you are consenting to our
             <Link href="/terms" className="text-blue-primary">
