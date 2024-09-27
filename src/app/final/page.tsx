@@ -25,7 +25,6 @@ const Final = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [paymentLink, setPaymentLink] = useState('');
   const [hasPaid, setHasPaid] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
   const [isPaynowLoading, setIsPaynowLoading] = useState(true);
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(finalDataValidation),
@@ -38,8 +37,6 @@ const Final = () => {
 
   useEffect(() => {
     const token = window?.localStorage?.getItem('token');
-
-    const currentTime = Date.now();
 
     if (!token) {
       router.push('/signin');
