@@ -12,13 +12,6 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
   const [fileSize, setFileSize] = useState<number | null>(null);
-  //  const [file, setFile] = useState<File | null>(null);
-
-  // useEffect(() => {
-  //   if (!fileSize) {
-  //     toast.info('Please upload cv');
-  //   }
-  // }, []);
 
   const state = useCvStore((state) => state.addToPdf);
   const onDrop = useCallback((acceptedFiles) => {

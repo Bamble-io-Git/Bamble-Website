@@ -26,6 +26,7 @@ const Final = () => {
   const [paymentLink, setPaymentLink] = useState('');
   const [hasPaid, setHasPaid] = useState('');
   const [isPaynowLoading, setIsPaynowLoading] = useState(true);
+  const [file, setFile] = useState(() => state.pdf);
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(finalDataValidation),
   });
@@ -37,7 +38,6 @@ const Final = () => {
 
   useEffect(() => {
     const token = window?.localStorage?.getItem('token');
-
     if (!token) {
       router.push('/signin');
     }
@@ -57,7 +57,6 @@ const Final = () => {
             },
           }
         );
-
         setPaymentLink(response.data.payment_link);
         setIsPaynowLoading(false);
         return response;
@@ -77,8 +76,6 @@ const Final = () => {
       setIsButtonDisabled(true);
     }
   }, [formState.isValid]);
-
-  const [file, setFile] = useState(null);
 
   const localStorage =
     typeof window !== 'undefined' ? window.localStorage : null;
@@ -127,13 +124,11 @@ const Final = () => {
         );
 
         if (response.status === 201) {
-          // setIsLoading(false);
           toast.success(response.data.message);
           router.push('/congrats');
         }
 
         if (response.status == 400) {
-          // setIsLoading(false);
           toast.error(response.data.message?.detail);
         }
         return response;
