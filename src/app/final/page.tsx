@@ -43,27 +43,27 @@ const Final = () => {
   useEffect(() => {
     const token = window?.localStorage?.getItem('token');
 
-    const decoded = jwtDecode(String(token));
-    console.log(decoded);
-    console.log(String(token));
+    // const decoded = jwtDecode(String(token) ?? '');
+    // console.log(decoded);
+    // console.log(String(token));
 
     // Convert the exp time to milliseconds
-    const expirationTime = Number(decoded) * 1000;
+    // const expirationTime = Number(decoded) * 1000;
 
     // Get the current time in milliseconds
     const currentTime = Date.now();
 
     // Compare if the current time has passed the expiration time
-    if (currentTime > expirationTime) {
-      router.push('/signin');
-    } else {
-      const timeRemaining = Number(expirationTime - currentTime);
-      console.log(
-        'Not expired yet. Time remaining:',
-        timeRemaining / 1000,
-        'seconds'
-      );
-    }
+    // if (currentTime > expirationTime) {
+    //   router.push('/signin');
+    // } else {
+    //   const timeRemaining = Number(expirationTime - currentTime);
+    //   console.log(
+    //     'Not expired yet. Time remaining:',
+    //     timeRemaining / 1000,
+    //     'seconds'
+    //   );
+    // }
 
     if (!token) {
       router.push('/signin');
@@ -172,8 +172,15 @@ const Final = () => {
     } catch (error) {
       console.error(error);
       //@ts-ignore
-      toast.error(String(error?.response?.data?.detail).replace('_', ' '));
+      if (Array.isArray(error.response.data.detail)) {
+        //@ts-ignore
+        toast.error(String(error.response.data.detail[0]).replace('_', ' '));
+      } else {
+        //@ts-ignore
+        toast.error(String(error?.response?.data?.detail).replace('_', ' '));
+      }
 
+      console.log(error);
       // toast.error(response.detail);
       // setIsLoading(false);
     }
