@@ -1,15 +1,16 @@
 'use client';
-import Button from '@/components/elements/button';
-import Card from '@/components/elements/cards/card';
+
 import LinkComponent from '@/components/elements/link';
-import useMediaQuery from '@/hooks/useMediaQuery';
+
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { performanceIndex } from './data';
 import Banner from '@/components/elements/banner';
+import axios from 'axios';
 
 const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
   const [selectedCard, setSelectedCard] = useState(0);
+  const [count, setCount] = useState<number | undefined>(undefined);
 
   const handleSelectCard = useCallback(() => {
     setSelectedCard((previousState) =>
@@ -22,6 +23,21 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
 
     return () => clearInterval(intervalId);
   }, [handleSelectCard]);
+
+  useEffect(() => {
+    const getCount = async () => {
+      try {
+        const { data } = await axios.get(
+          'https://cv.backend.bamble.io/counter/'
+        );
+
+        setCount(data.counter);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCount();
+  }, [count]);
 
   return (
     <section className="mt-5">
@@ -83,7 +99,10 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
             </div>
 
             <div>
-              <span className="text-[#45A6FF] font-bold"> 3, 117 people</span>
+              <span className="text-[#45A6FF] font-bold">
+                {' '}
+                {count?.toLocaleString('en-US')} people
+              </span>
               <span className="text-[#45A6FF]">
                 {' '}
                 have guaranteed their spot{' '}
