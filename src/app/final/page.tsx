@@ -14,6 +14,7 @@ import PdfUpload from '@/components/elements/pdf-uploader';
 import { toast } from 'react-toastify';
 import { sendGTMEvent } from '@next/third-parties/google';
 import Link from 'next/link';
+import { jwtDecode } from 'jwt-decode';
 
 type TCreateUserSchema = {
   linkedin_link: string;
@@ -40,11 +41,34 @@ const Final = () => {
   const jobDescriptionUrl = watch('job_description_link');
 
   useEffect(() => {
-    const token = localStorage?.getItem('token');
+    const token = window?.localStorage?.getItem('token');
+
+    const decoded = jwtDecode(String(token));
+    console.log(decoded);
+    console.log(String(token));
+
+    // Convert the exp time to milliseconds
+    const expirationTime = Number(decoded) * 1000;
+
+    // Get the current time in milliseconds
+    const currentTime = Date.now();
+
+    // Compare if the current time has passed the expiration time
+    if (currentTime > expirationTime) {
+      router.push('/signin');
+    } else {
+      const timeRemaining = Number(expirationTime - currentTime);
+      console.log(
+        'Not expired yet. Time remaining:',
+        timeRemaining / 1000,
+        'seconds'
+      );
+    }
+
     if (!token) {
       router.push('/signin');
     }
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     const generateStripeLink = async () => {
@@ -131,7 +155,7 @@ const Final = () => {
             },
           }
         );
-        console.log(response);
+        console.log('RESPONSE', response);
 
         if (response.status === 201) {
           // setIsLoading(false);
@@ -147,7 +171,10 @@ const Final = () => {
       }
     } catch (error) {
       console.error(error);
-      toast.error('CV generation failed.');
+      //@ts-ignore
+      toast.error(String(error?.response?.data?.detail).replace('_', ' '));
+
+      // toast.error(response.detail);
       // setIsLoading(false);
     }
   };
