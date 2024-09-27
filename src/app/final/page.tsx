@@ -711,7 +711,7 @@ const Final = () => {
             )}
           </div>
 
-          {!hasPaid && (
+          {hasPaid && (
             <button
               className={
                 isButtonDisabled
