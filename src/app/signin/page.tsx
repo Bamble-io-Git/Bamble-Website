@@ -1,5 +1,4 @@
 'use client';
-
 import LeftStep from '@/components/elements/step/LeftStep';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useEffect, useState } from 'react';
@@ -18,8 +17,6 @@ const SignIn = () => {
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(userSigninDataValidation),
   });
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
@@ -35,7 +32,6 @@ const SignIn = () => {
 
   useEffect(() => {
     const verifyUser = async () => {
-      setIsLoading(true);
       try {
         const response = await axios.post(
           `https://cv.backend.bamble.io/users/verify`,
@@ -52,20 +48,16 @@ const SignIn = () => {
 
         localStorage?.setItem('token', response.data.access_token);
 
-        setIsLoading(false);
         if (response.status === 200) {
           toast.success('User verified successfully');
 
           router.push('/intent');
-          setIsLoading(false);
         } else {
           toast.error('User verification failed');
-          setIsLoading(false);
         }
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false);
       }
     };
     verifyUser();
@@ -108,21 +100,16 @@ const SignIn = () => {
         email: user.data.email,
       });
 
-      console.log('ran');
-      console.log(response);
       if (response.status == 422) {
         toast.info(response?.data?.details);
       }
       if (response.status === 200) {
-        // toast.dismiss();
         toast.success('Login successful');
         localStorage?.setItem('token', response.data.access_token);
         router.push('/intent');
       }
     } catch (error) {
       if (error instanceof AxiosError) {
-        // toast.dismiss();
-        console.log(error);
         toast.error(`${error?.message} contact admin`);
       }
     }
@@ -131,8 +118,6 @@ const SignIn = () => {
   const onSubmit = async (values: TCreateUserSchema) => {
     console.log('VALUES', values);
     if (values) {
-      // state.addToCV({ ...values });
-      // router.push('/intent');
       await login(values);
     }
   };

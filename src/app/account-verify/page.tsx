@@ -35,12 +35,11 @@ const AuthVerify = () => {
             },
           }
         );
-        console.log('response.data.accessToken', response.data.access_token);
+
         localStorage?.setItem('token', response.data.access_token);
         setIsLoading(false);
         if (response.status === 200) {
           toast.success('User verified successfully');
-
           router.push('/intent');
           setIsLoading(false);
         } else {

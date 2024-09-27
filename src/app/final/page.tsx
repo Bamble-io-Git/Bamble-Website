@@ -3,18 +3,15 @@ import LeftStep from '@/components/elements/step/LeftStep';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
 import { finalDataValidation } from '../signup/schema/final-data';
-
 import ProgressBar from '@/components/elements/ProgressBar';
 import axios from 'axios';
 import PdfUpload from '@/components/elements/pdf-uploader';
 import { toast } from 'react-toastify';
 import { sendGTMEvent } from '@next/third-parties/google';
 import Link from 'next/link';
-import { jwtDecode } from 'jwt-decode';
 
 type TCreateUserSchema = {
   linkedin_link: string;
@@ -42,27 +39,7 @@ const Final = () => {
   useEffect(() => {
     const token = window?.localStorage?.getItem('token');
 
-    // const decoded = jwtDecode(String(token) ?? '');
-    // console.log(decoded);
-    // console.log(String(token));
-
-    // Convert the exp time to milliseconds
-    // const expirationTime = Number(decoded) * 1000;
-
-    // Get the current time in milliseconds
     const currentTime = Date.now();
-
-    // Compare if the current time has passed the expiration time
-    // if (currentTime > expirationTime) {
-    //   router.push('/signin');
-    // } else {
-    //   const timeRemaining = Number(expirationTime - currentTime);
-    //   console.log(
-    //     'Not expired yet. Time remaining:',
-    //     timeRemaining / 1000,
-    //     'seconds'
-    //   );
-    // }
 
     if (!token) {
       router.push('/signin');
@@ -83,7 +60,7 @@ const Final = () => {
             },
           }
         );
-        console.log(response);
+
         setPaymentLink(response.data.payment_link);
         setIsPaynowLoading(false);
         return response;
@@ -112,7 +89,6 @@ const Final = () => {
   const token = localStorage?.getItem('token');
 
   const generateCV = async () => {
-    // setIsLoading(true);
     try {
       const requestData = {
         what_to_achieve: state.share ?? '',
@@ -120,9 +96,6 @@ const Final = () => {
         job_description_link: jobDescriptionUrl,
         cv_file: file,
       };
-
-      console.log('requestData', requestData);
-      console.log('FILE', file);
 
       // Include either text or audio, but not both
       if (state.personal) {
@@ -155,7 +128,6 @@ const Final = () => {
             },
           }
         );
-        console.log('RESPONSE', response);
 
         if (response.status === 201) {
           // setIsLoading(false);
@@ -170,7 +142,6 @@ const Final = () => {
         return response;
       }
     } catch (error) {
-      console.error(error);
       //@ts-ignore
       if (Array.isArray(error.response.data.detail)) {
         //@ts-ignore
@@ -179,10 +150,6 @@ const Final = () => {
         //@ts-ignore
         toast.error(String(error?.response?.data?.detail).replace('_', ' '));
       }
-
-      console.log(error);
-      // toast.error(response.detail);
-      // setIsLoading(false);
     }
   };
 
@@ -197,10 +164,8 @@ const Final = () => {
           },
         });
         setIsPaynowLoading(false);
-        console.log('USER', user);
         setHasPaid(user.data.is_paid);
       } catch (error) {
-        console.log(error);
         setIsPaynowLoading(false);
       }
     };
@@ -219,16 +184,12 @@ const Final = () => {
   };
 
   useEffect(() => {
-    // const data = localStorage?.getItem('pdf');
-    // // console.log(data);
-    // const storedPdf = JSON.parse(JSON.parse(data || ''));
-    // console.log('', storedPdf);
     if (state?.pdf) {
       //@ts-ignore
       setFile(state.pdf);
     }
   }, [state.pdf, file]);
-  console.log(localStorage?.getItem('pdfBinary'));
+
   useEffect(() => {
     if (linkedinUrl?.length) {
       state.addToLinkedinUrl(linkedinUrl ?? '');
@@ -309,17 +270,16 @@ const Final = () => {
               placeholder={
                 state.linkedinUrl ? state.linkedinUrl : 'Your link here...'
               }
-              // onChange={(e) => setLinkedinUrl(e.target.value)}
               className="border rounded-lg p-3"
               {...register('linkedin_link')}
               value={state.linkedinUrl}
             />
-            {/* {formState.errors.linkedin_link && (
+            {formState.errors.linkedin_link && (
               <p className="text-[#FC5555] text-sm">
                 Linkedin link must be valid eg.
                 https://www.linkedin.com/in/john-doe
               </p>
-            )} */}
+            )}
           </div>
 
           <div className="flex flex-col space-y-3">
@@ -332,7 +292,6 @@ const Final = () => {
                   ? state.jobDescription
                   : 'Job description here...'
               }
-              // value={state.jobDescription}
               className="border rounded-lg p-3 min-h-[200px]"
               {...register('job_description_link')}
               value={state.jobDescription}
@@ -351,33 +310,6 @@ const Final = () => {
                   : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer'
               }
             >
-              {/* {isLoading && (
-                <svg
-                  className="text-gray-300 animate-spin"
-                  viewBox="0 0 64 64"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                >
-                  <path
-                    d="M32 3C35.8083 3 39.5794 3.75011 43.0978 5.20749C46.6163 6.66488 49.8132 8.80101 52.5061 11.4939C55.199 14.1868 57.3351 17.3837 58.7925 20.9022C60.2499 24.4206 61 28.1917 61 32C61 35.8083 60.2499 39.5794 58.7925 43.0978C57.3351 46.6163 55.199 49.8132 52.5061 52.5061C49.8132 55.199 46.6163 57.3351 43.0978 58.7925C39.5794 60.2499 35.8083 61 32 61C28.1917 61 24.4206 60.2499 20.9022 58.7925C17.3837 57.3351 14.1868 55.199 11.4939 52.5061C8.801 49.8132 6.66487 46.6163 5.20749 43.0978C3.7501 39.5794 3 35.8083 3 32C3 28.1917 3.75011 24.4206 5.2075 20.9022C6.66489 17.3837 8.80101 14.1868 11.4939 11.4939C14.1868 8.80099 17.3838 6.66487 20.9022 5.20749C24.4206 3.7501 28.1917 3 32 3L32 3Z"
-                    stroke="currentColor"
-                    stroke-width="5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path>
-                  <path
-                    d="M32 3C36.5778 3 41.0906 4.08374 45.1692 6.16256C49.2477 8.24138 52.7762 11.2562 55.466 14.9605C58.1558 18.6647 59.9304 22.9531 60.6448 27.4748C61.3591 31.9965 60.9928 36.6232 59.5759 40.9762"
-                    stroke="currentColor"
-                    stroke-width="5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    className="text-gray-900"
-                  ></path>
-                </svg>
-              )} */}
-              {/* {!isLoading && 'Submit'} */}
               Submit
               {
                 <svg

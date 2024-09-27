@@ -1,24 +1,13 @@
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
-import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
-import { userDataValidation } from '../signup/schema/user-data';
-import clsx from 'clsx';
-import Image from 'next/image';
 import ProgressBar from '@/components/elements/ProgressBar';
 import Tips from '@/components/elements/tips';
 import Microphone from '@/components/elements/microphone';
 import Keyboard from '@/components/elements/keyboard';
 import { sendGTMEvent } from '@next/third-parties/google';
-
-type TCreateUserSchema = {
-  email: string;
-  fullName: string;
-};
 
 const PersonalDetails = () => {
   const router = useRouter();
@@ -50,31 +39,6 @@ const PersonalDetails = () => {
   }, [recording, text]);
 
   const [showKeyboard, setShowKeyboard] = useState(false);
-
-  // const onSubmit = () => {
-  //   if (recording || text) {
-  //     //@ts-ignore
-  //     state.addToPersonalDetails(recording ? recording : text);
-  //     router.push('/work-experiences');
-  //     sendGTMEvent({
-  //       event: 'Event - Step2 Question 1',
-  //       clickText: 'Next',
-  //       values: {
-  //         step: 1,
-  //         goal: text ? text : '',
-  //       },
-  //     });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (state.cv[0]?.personalDetails) {
-  //     const { text: savedText, recording: savedRecording } =
-  //       state.cv[0]?.personalDetails;
-  //     setText(savedText || '');
-  //     setRecording(savedRecording || undefined);
-  //   }
-  // }, [state.cv]);
 
   useEffect(() => {
     if (state.personal) {

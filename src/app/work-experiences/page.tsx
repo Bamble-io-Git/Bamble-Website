@@ -1,21 +1,13 @@
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
-
 import React, { useEffect, useState } from 'react';
-
 import { useCvStore } from '@/store/cv';
 import { useRouter } from 'next/navigation';
-
 import ProgressBar from '@/components/elements/ProgressBar';
 import Tips from '@/components/elements/tips';
 import Microphone from '@/components/elements/microphone';
 import Keyboard from '@/components/elements/keyboard';
 import { sendGTMEvent } from '@next/third-parties/google';
-
-type TCreateUserSchema = {
-  email: string;
-  fullName: string;
-};
 
 const WorkExperiences = () => {
   const router = useRouter();
@@ -47,21 +39,6 @@ const WorkExperiences = () => {
   }, [recording, text]);
 
   const [showKeyboard, setShowKeyboard] = useState(false);
-
-  // const onSubmit = () => {
-  //   if (recording || text) {
-  //     //@ts-ignore
-  //     state.addToWorkExperiences(recording ? recording : text);
-  //     router.push('/final');
-  //     sendGTMEvent({
-  //       event: 'Event - Step3 Question 2',
-  //       clickText: 'Next',
-  //       values: {
-  //         step: 1,
-  //       },
-  //     });
-  //   }
-  // };
 
   useEffect(() => {
     if (state.experience) {

@@ -52,21 +52,11 @@ const Intent = () => {
 
   const [intentValues, setIntentValues] = useState<string>('');
 
-  // const toggleToAddIntentValues = (value: string) => {
-  //   const valueAdded = intentValues.includes(value);
-
-  //   if (!valueAdded) {
-  //     setIntentValues(value);
-  //   } else {
-  //     setIntentValues('');
-  //   }
-  // };
-
   const toggleToAddIntentValues = (value: string) => {
     if (intentValues === value) {
-      setIntentValues(''); // Unselect
+      setIntentValues('');
     } else {
-      setIntentValues(value); // Select new value
+      setIntentValues(value);
     }
   };
 

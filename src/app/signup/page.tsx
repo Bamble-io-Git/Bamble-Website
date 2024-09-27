@@ -30,14 +30,6 @@ const Signup = () => {
     localStorage?.removeItem('token');
   }, [localStorage, router]);
 
-  // useEffect(() => {
-  //   const token = localStorage?.getItem('token');
-
-  //   if (token) {
-  //     router.push('/intent');
-  //   }
-  // }, [localStorage, router]);
-
   const login = async ({
     fullName,
     email,
