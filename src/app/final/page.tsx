@@ -33,7 +33,6 @@ const Final = () => {
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(finalDataValidation),
   });
-  // const [linkedinUrl, setLinkedinUrl] = useState('');
 
   const { formState, register, handleSubmit, watch } = form;
 
@@ -123,6 +122,7 @@ const Final = () => {
       };
 
       console.log('requestData', requestData);
+      console.log('FILE', file);
 
       // Include either text or audio, but not both
       if (state.personal) {
@@ -174,7 +174,7 @@ const Final = () => {
       //@ts-ignore
       if (Array.isArray(error.response.data.detail)) {
         //@ts-ignore
-        toast.error(String(error.response.data.detail[0]).replace('_', ' '));
+        toast.error(`${String(error.response.data.detail[0].loc[1])} required`);
       } else {
         //@ts-ignore
         toast.error(String(error?.response?.data?.detail).replace('_', ' '));
@@ -219,16 +219,16 @@ const Final = () => {
   };
 
   useEffect(() => {
+    // const data = localStorage?.getItem('pdf');
+    // // console.log(data);
+    // const storedPdf = JSON.parse(JSON.parse(data || ''));
+    // console.log('', storedPdf);
     if (state?.pdf) {
       //@ts-ignore
-      setFile(state.pdf || null);
+      setFile(state.pdf);
     }
-
-    // if (jobDescriptionUrl?.length) {
-    //   state.addToJD(jobDescriptionUrl);
-    // }
-  }, [state.pdf]);
-
+  }, [state.pdf, file]);
+  console.log(localStorage?.getItem('pdfBinary'));
   useEffect(() => {
     if (linkedinUrl?.length) {
       state.addToLinkedinUrl(linkedinUrl ?? '');

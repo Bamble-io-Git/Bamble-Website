@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
@@ -13,22 +13,34 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
   const [uploading, setUploading] = useState(false);
   const [fileSize, setFileSize] = useState<number | null>(null);
   //  const [file, setFile] = useState<File | null>(null);
+
+  // useEffect(() => {
+  //   if (!fileSize) {
+  //     toast.info('Please upload cv');
+  //   }
+  // }, []);
+
   const state = useCvStore((state) => state.addToPdf);
   const onDrop = useCallback((acceptedFiles) => {
     const selectedFile = acceptedFiles[0];
     if (selectedFile && selectedFile.type === 'application/pdf') {
       setFile(selectedFile);
-      console.log('Selected file:', selectedFile);
+      state(selectedFile);
       setFileSize(selectedFile?.size);
       handleUpload(selectedFile);
-      // if (typeof window !== 'undefined')
-      //   window.localStorage.setItem(
-      //     'finalStorage',
-      //     JSON.stringify({
-      //       file,
-      //     })
-      //   );
-      state(selectedFile);
+
+      window.localStorage.setItem(
+        'pdf',
+        JSON.stringify({
+          ...selectedFile,
+          lastModified: selectedFile?.lastModified,
+          lastModifiedDate: selectedFile?.lastModifiedDate,
+          name: selectedFile?.name,
+          size: selectedFile?.size,
+          type: 'application/pdf',
+          webkitRelativePath: '',
+        })
+      );
 
       sendGTMEvent({
         event: 'Event - Step4 Upload Docs',
@@ -67,7 +79,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
 
         // After successful upload, handle the uploaded binary data here
         console.log('Uploaded PDF binary:', binary);
-
+        localStorage.setItem('pdfBin', binary);
         toast.success('PDF uploaded successfully!');
       } catch (error) {
         console.error('Upload failed:', error);
@@ -152,14 +164,6 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
             PDF file size no more than 10MB
           </p>
         </div>
-        {/* <div>
-          <button
-            disabled={!file}
-            className={`border-[#0F91D2B2] text-[10px] w-[115px] border px-4 py-2 text-[#0F91D2B2] rounded`}
-          >
-            SELECT FILE
-          </button>
-        </div> */}
       </div>
 
       {fileSize && (
@@ -207,8 +211,6 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
 const PdfUpload = ({ setFile, file }) => {
   return (
     <div className="max-w-md bg-white rounded-lg min-w-full max-h-[100px] flex">
-      {/* <Image src="/assets/cloud.svg" alt="upload" width={48} height={48} /> */}
-
       <MyDropzone setFile={setFile} file={file} />
     </div>
   );
