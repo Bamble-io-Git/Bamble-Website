@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
   const [selectedCard, setSelectedCard] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [count, setCount] = useState<number | undefined>(undefined);
 
   const handleSelectCard = useCallback(() => {
@@ -26,13 +27,16 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
 
   useEffect(() => {
     const getCount = async () => {
+      setLoading(true);
       try {
         const { data } = await axios.get(
           'https://cv.backend.bamble.io/counter/'
         );
 
         setCount(data.counter);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     };
@@ -101,7 +105,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
             <div>
               <span className="text-[#45A6FF] font-bold">
                 {' '}
-                {count?.toLocaleString('en-US')} people
+                {loading ? '.....' : count?.toLocaleString('en-US')} people
               </span>
               <span className="text-[#45A6FF]">
                 {' '}
