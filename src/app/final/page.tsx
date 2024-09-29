@@ -466,20 +466,16 @@ const Final = () => {
   useEffect(() => {
     const isValidForm =
       linkedinUrl?.length > 0 &&
-      jobDescriptionUrl?.length > 0 &&
       file &&
-      finalDataValidation
-        .parse({
-          linkedin_link: linkedinUrl,
-          job_description_link: jobDescriptionUrl,
-        })
-        .linkedin_link.includes('https://linkedin.com');
+      jobDescriptionUrl?.length > 0 &&
+      !formState.errors.linkedin_link;
+
     if (isValidForm) {
       setIsButtonDisabled(false);
     } else {
       setIsButtonDisabled(true);
     }
-  }, [linkedinUrl, jobDescriptionUrl, file]);
+  }, [linkedinUrl, jobDescriptionUrl, file, formState.errors.linkedin_link]);
 
   const token = localStorage?.getItem('token');
 
