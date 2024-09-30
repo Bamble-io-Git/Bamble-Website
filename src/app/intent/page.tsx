@@ -94,7 +94,7 @@ const Intent = () => {
         <LeftStep image="/assets/intent.webp" />
       </div>
 
-      <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
+      <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 md:space-y-12 relative sm:px-0 px-5">
         <ProgressBar value={25} />
 
         <div className="mb-10 md:space-y-6 space-y-2 relative">
