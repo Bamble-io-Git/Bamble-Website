@@ -89,7 +89,7 @@ const Intent = () => {
   };
 
   return (
-    <section className="flex justify-between px-1.5 lg:px-0">
+    <section className="flex justify-between px-1.5 lg:px-0 font-tertiary">
       <div>
         <LeftStep image="/assets/intent.webp" />
       </div>
@@ -98,16 +98,16 @@ const Intent = () => {
         <ProgressBar value={25} />
 
         <div className="mb-10 md:space-y-6 space-y-2 relative">
-          <p>
+          <p className="font-tertiary">
             Excellent! You&lsquo;ve completed the first step. Let&lsquo;s move
             on to building your profile.
           </p>
 
           <p>Thanks, {state.cv.length ? state.cv[0].fullName : ''}!</p>
 
-          <p className="font-bold md:text-2xl text-lg">
+          <h2 className="font-bold md:text-2xl text-lg font-tertiary">
             What’s your objective with this CV?
-          </p>
+          </h2>
         </div>
 
         <div className="flex flex-wrap gap-5 text-sm sm:text-base">

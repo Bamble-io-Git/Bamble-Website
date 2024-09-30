@@ -15,6 +15,8 @@ const PersonalDetails = () => {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [recording, setRecording] = useState<Blob | undefined>(undefined);
+  const [text, setText] = useState<string>('');
+  console.log(recording);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -27,8 +29,6 @@ const PersonalDetails = () => {
       clearTimeout(timer);
     };
   }, [router, state.cv]);
-
-  const [text, setText] = useState<string>('');
 
   useEffect(() => {
     if (!recording && !text) {
@@ -67,12 +67,12 @@ const PersonalDetails = () => {
   };
 
   return (
-    <section className="flex justify-between px-1.5 lg:px-0">
+    <section className="flex justify-between px-1.5 lg:px-0 font-tertiary">
       <div>
         <LeftStep image="/assets/personal-details.webp" />
       </div>
 
-      <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
+      <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5 font-tertiary">
         <button
           className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
           onClick={() => router.push('/intent')}
@@ -106,14 +106,14 @@ const PersonalDetails = () => {
         <ProgressBar value={50} />
 
         <div className="mb-10 md:space-y-6 space-y-2">
-          <p>
+          <p className="font-tertiary">
             You&lsquo;re halfway there! Keep up the momentum – your dream job is
             getting closer
           </p>
 
           <p>Thanks, {state.cv.length ? state.cv[0].fullName : ''}!</p>
 
-          <p className="font-bold md:text-2xl text-lg">
+          <p className="font-bold md:text-2xl text-lg font-tertiary">
             To create a CV that is a reflection of your potential, share some
             details about yourself.
           </p>
@@ -124,12 +124,14 @@ const PersonalDetails = () => {
             <Microphone
               setShowKeyboard={setShowKeyboard}
               setRecording={setRecording}
+              text={text}
             />
           ) : (
             <Keyboard
               setShowKeyboard={setShowKeyboard}
               setText={setText}
               text={text}
+              recording={recording}
             />
           )}
         </div>
@@ -139,8 +141,8 @@ const PersonalDetails = () => {
             onClick={onSubmit}
             className={
               isButtonDisabled
-                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed'
-                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer'
+                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed font-tertiary'
+                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer font-tertiary'
             }
           >
             Next

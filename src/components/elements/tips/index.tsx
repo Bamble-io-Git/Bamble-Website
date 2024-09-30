@@ -16,7 +16,7 @@ const Tips = () => {
   useOnClickOutside(ref, handleIsClose);
 
   return (
-    <section>
+    <section className="font-tertiary">
       <div className="bg-[#217DD1] p-6 rounded-lg items-center flex md:gap-3 gap-1">
         <Tooltip id="my-tooltip">
           <p>...</p>
@@ -46,7 +46,7 @@ const Tips = () => {
           </svg>
         </button>
 
-        <p className="text-white-primary">
+        <p className="text-white-primary font-tertiary">
           Check here some tips of what you could say to us!
         </p>
       </div>

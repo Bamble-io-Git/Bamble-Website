@@ -116,7 +116,6 @@ const SignIn = () => {
   };
 
   const onSubmit = async (values: TCreateUserSchema) => {
-    console.log('VALUES', values);
     if (values) {
       await login(values);
     }
@@ -133,19 +132,19 @@ const SignIn = () => {
   }, [formState.isValid]);
 
   return (
-    <section className="flex justify-between">
+    <section className="flex justify-between font-tertiary">
       <div>
         <LeftStep image="" />
       </div>
 
       <div className="max-w-[520px] mx-auto pt-20 text-black flex flex-col space-y-5 sm:px-0 px-5">
         <div className="mb-10">
-          <h2 className="font-bold text-[32px] font-secondary">
+          <h2 className="font-bold text-[32px] font-tertiary">
             {' '}
             Welcome to Bamble!
           </h2>
 
-          <p>Ready to get your dream job?</p>
+          <p className="font-tertiary">Ready to get your dream job?</p>
         </div>
 
         <form
@@ -153,7 +152,7 @@ const SignIn = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col space-y-3">
-            <label htmlFor="" className="font-bold font-primary">
+            <label htmlFor="" className="font-bold font-tertiary">
               Your e-mail
             </label>
             <input
@@ -170,14 +169,17 @@ const SignIn = () => {
             )}
           </div>
 
-          <p className="text-[#414143] font-secondary text-sm">
-            By registering for an account, you are consenting to our{' '}
-            <Link href="/terms" className="text-blue-primary">
+          <p className="text-[#414143] text-sm font-tertiary">
+            Welcome back, you are consenting to our{' '}
+            <Link href="/terms" className="text-blue-primary font-tertiary">
               {' '}
               Terms of Service{' '}
             </Link>{' '}
             and confirming that you have reviewed and accepted the Global
-            <Link href="/privacy-policy" className="text-blue-primary">
+            <Link
+              href="/privacy-policy"
+              className="text-blue-primary font-tertiary"
+            >
               {' '}
               Privacy Statement
             </Link>
@@ -187,8 +189,8 @@ const SignIn = () => {
           <button
             className={
               isButtonDisabled
-                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed'
-                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer'
+                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed font-tertiary'
+                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer font-tertiary'
             }
           >
             Next

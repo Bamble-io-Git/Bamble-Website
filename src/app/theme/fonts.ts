@@ -1,51 +1,68 @@
-import localFont from "next/font/local";
+import localFont from 'next/font/local';
 // Font files can be colocated inside of `app`
 export const montserrat = localFont({
-  variable: "--font-montserrat",
-  display: "swap",
+  variable: '--font-montserrat',
+  display: 'swap',
   src: [
     {
-      path: "./../../../public/fonts/Montserrat/static/Montserrat-Regular.ttf",
-      weight: "400",
-      style: "normal",
+      path: './../../../public/fonts/Montserrat/static/Montserrat-Regular.ttf',
+      weight: '400',
+      style: 'normal',
     },
     {
-      path: "./../../../public/fonts/Montserrat/static/Montserrat-Italic.ttf",
-      weight: "400",
-      style: "italic",
+      path: './../../../public/fonts/Montserrat/static/Montserrat-Italic.ttf',
+      weight: '400',
+      style: 'italic',
     },
     {
-      path: "./../../../public/fonts/Montserrat/static/Montserrat-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
+      path: './../../../public/fonts/Montserrat/static/Montserrat-SemiBold.ttf',
+      weight: '600',
+      style: 'normal',
     },
 
     {
-      path: "./../../../public/fonts/Montserrat/static/Montserrat-ExtraBold.ttf",
-      weight: "700",
-      style: "normal",
+      path: './../../../public/fonts/Montserrat/static/Montserrat-ExtraBold.ttf',
+      weight: '700',
+      style: 'normal',
     },
     {
-      path: "./../../../public/fonts/Montserrat/static/Montserrat-BlackItalic.ttf",
-      weight: "700",
-      style: "italic",
+      path: './../../../public/fonts/Montserrat/static/Montserrat-BlackItalic.ttf',
+      weight: '700',
+      style: 'italic',
     },
   ],
 });
 
 export const notoSans = localFont({
-  variable: "--font-noto-sans",
-  display: "swap",
+  variable: '--font-noto-sans',
+  display: 'swap',
   src: [
     {
-      path: "./../../../public/fonts/NotoSans/NotoSans-Regular.ttf",
-      weight: "400",
-      style: "normal",
+      path: './../../../public/fonts/NotoSans/NotoSans-Regular.ttf',
+      weight: '400',
+      style: 'normal',
     },
     {
-      path: "./../../../public/fonts/NotoSans/NotoSans-SemiBold.ttf",
-      weight: "600",
-      style: "semibold",
+      path: './../../../public/fonts/NotoSans/NotoSans-SemiBold.ttf',
+      weight: '600',
+      style: 'semibold',
+    },
+  ],
+});
+
+export const ubuntu = localFont({
+  variable: '--ubuntu',
+  display: 'swap',
+  src: [
+    {
+      path: './../../../public/fonts/Ubuntu/Ubuntu-R.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './../../../public/fonts/Ubuntu/Ubuntu-B.ttf',
+      weight: '600',
+      style: 'semibold',
     },
   ],
 });

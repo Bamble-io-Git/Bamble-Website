@@ -1,13 +1,10 @@
-// import Footer from '@/components/sections/footer';
-// import Header from '@/components/sections/header';
 import type { Metadata } from 'next';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import GTag from '@/scripts/google-tag';
 import './globals.css';
-import { montserrat, notoSans } from './theme/fonts';
+import { montserrat, notoSans, ubuntu } from './theme/fonts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { PHProvider } from './providers';
 
 export const metadata: Metadata = {
   title: 'Bamble',
@@ -25,15 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GTag />
-      {/* <PHProvider> */}
+
       <body
-        className={`${montserrat.variable} ${notoSans.variable}`}
+        className={`${montserrat.variable} ${notoSans.variable} ${ubuntu.variable}`}
         id="portal"
       >
         <ToastContainer position="top-right" />
         {children}
       </body>
-      {/* </PHProvider> */}
 
       <GoogleAnalytics gaId="G-VCRDL8EWYD" />
       <GoogleTagManager gtmId="GTM-KRPQNFLH" />

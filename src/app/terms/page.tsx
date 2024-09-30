@@ -3,7 +3,7 @@ import React from 'react';
 
 const Terms = () => {
   return (
-    <body className="bg-gray-100 max-w-4xl mx-auto text-gray-900 font-sans leading-relaxed">
+    <body className="bg-gray-100 max-w-4xl mx-auto text-gray-900 leading-relaxed font-tertiary">
       <header className="bg-white shadow py-6">
         <div className="container mx-auto px-4">
           <h1 className="text-2xl font-bold text-center">
@@ -15,7 +15,7 @@ const Terms = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="font-tertiary container mx-auto px-4 py-8">
         <section className="mb-8">
           <p>
             Welcome to Bamble.io ("we," "our," "us"). These Terms of Service
@@ -27,8 +27,10 @@ const Terms = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">1. Acceptance of Terms</h2>
-          <p>
+          <h2 className="text-xl font-semibold mb-4 font-tertiary">
+            1. Acceptance of Terms
+          </h2>
+          <p className="font-tertiary">
             By accessing or using our Services, you confirm that you have read,
             understood, and agree to be bound by these Terms, our Privacy
             Policy, and any other policies or guidelines we establish. If you do

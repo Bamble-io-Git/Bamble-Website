@@ -39,6 +39,7 @@ const config: Config = {
       fontFamily: {
         primary: ['var(--font-noto-sans)'],
         secondary: ['var(--font-montserrat)'],
+        tertiary: ['var(--ubuntu)'],
       },
       borderColor: {
         primary: '#323130',

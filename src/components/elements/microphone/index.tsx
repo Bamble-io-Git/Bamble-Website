@@ -5,13 +5,16 @@ import { useAudioRecorder } from 'react-audio-voice-recorder';
 import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip';
 import { toast } from 'react-toastify';
+import clsx from 'clsx';
 
 const Microphone = ({
   setShowKeyboard,
   setRecording,
+  text,
 }: {
   setShowKeyboard: Dispatch<SetStateAction<boolean>>;
   setRecording: Dispatch<SetStateAction<Blob | undefined>>;
+  text?: string;
 }) => {
   const {
     startRecording,
@@ -21,16 +24,11 @@ const Microphone = ({
     recordingTime,
   } = useAudioRecorder();
 
-  // clear recording
-  // add toast to show One recording session\
-  // X should clear recording
-  //Remove select file button
-
-  console.log('recordingTime', recordingTime);
-
   const [recordingBlob, setRecordingBlob] = useState<Blob | undefined>(
     undefined
   );
+
+  console.log('text', text);
 
   const [remainingTime, setRemainingTime] = useState(120);
 
@@ -114,8 +112,14 @@ const Microphone = ({
             onClick={isRecording ? stopRecording : startRecording}
             data-tooltip-id="my-tooltip"
             data-tooltip-content={
-              isRecording ? 'Click to finish' : 'Click to record'
+              isRecording
+                ? 'Click to finish'
+                : text?.length! > 2
+                ? 'You have already written your experience'
+                : 'Click to record'
             }
+            className={clsx(text?.length! > 2 ? 'cursor-not-allowed' : '')}
+            disabled={text?.length! > 2}
           >
             {isRecording ? (
               <Image
@@ -201,7 +205,6 @@ const Microphone = ({
             data-tooltip-content="Click to delete recording"
           >
             <Image width={40} height={40} alt="" src="/assets/cancel.svg" />
-            {/* {isRecording && '......'} for {recordingTime}ms */}
           </button>
 
           <Tooltip id="my-tooltip">

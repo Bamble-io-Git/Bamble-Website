@@ -1,3 +1,4 @@
+import React from 'react';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
@@ -30,20 +31,20 @@ const Modal = ({
       icon: '/assets/bulb.svg',
     },
   ];
-  const isMobile = useMediaQuery(640);
+
   if (!isOpen) return null;
 
   return createPortal(
     <>
       <div
         ref={ref}
-        className="top-0 fixed z-50 bottom-0 right-0 left-0 bg-[#00000057]"
+        className="top-0 fixed z-50 bottom-0 right-0 left-0 bg-[#00000057] font-tertiary"
       />
-      <div className="fixed top-[15%] left-[7%] md:left-[50%] z-50">
-        <div className="relative rounded-md sm:p-6 p-2 max-w-[95%] md:max-w-[85%] bg-white-primary">
+      <div className="fixed top-[15%] left-[7%] md:left-[50%] z-50 font-tertiary">
+        <div className="relative rounded-md sm:p-6 p-2 max-w-[95%] md:max-w-[85%] bg-white-primary font-tertiary">
           <div className="flex gap-4 items-start">
             <div>
-              <p className="font-semibold mb-6">
+              <p className="font-semibold mb-6 font-tertiary">
                 {' '}
                 We will build a powerful intro in your resume for you!
               </p>
@@ -69,8 +70,11 @@ const Modal = ({
                       />
                     </div>
                     <div>
-                      <p className="text-[18px] font-bold"> {item.title}</p>
-                      <p className="text-base">{item.text}</p>
+                      <p className="text-[18px] font-bold font-tertiary">
+                        {' '}
+                        {item.title}
+                      </p>
+                      <p className="text-base font-tertiary">{item.text}</p>
                     </div>
                   </div>
                 ))}

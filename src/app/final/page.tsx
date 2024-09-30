@@ -648,28 +648,30 @@ const Final = () => {
 
         <ProgressBar value={100} />
 
-        <div className="mb-10 md:space-y-6 space-y-2">
-          <p className="text-sm">
+        <div className="mb-10 md:space-y-6 space-y-2 font-tertiary">
+          <p className="text-sm font-tertiary">
             Almost there! Get ready to unlock amazing opportunities.
           </p>
 
-          <p>Perfect, {state.cv.length ? state.cv[0].fullName + '!' : ''}</p>
+          <p className="font-tertiary">
+            Perfect, {state.cv.length ? state.cv[0].fullName + '!' : ''}
+          </p>
 
-          <p className="font-bold md:text-2xl text-lg">
+          <p className="font-bold md:text-2xl text-lg font-tertiary">
             Now submit the final details
           </p>
         </div>
 
-        <div className="my-12">
+        <div className="my-12 font-tertiary">
           <PdfUpload file={file} setFile={setFile} />
         </div>
 
         <form
-          className="flex flex-col space-y-5"
+          className="flex flex-col space-y-5 font-tertiary"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col space-y-3 mt-10">
-            <label htmlFor="" className="font-bold font-primary">
+            <label htmlFor="" className="font-bold  font-tertiary">
               Linkedin Link
             </label>
             <input
@@ -688,8 +690,8 @@ const Final = () => {
             )}
           </div>
 
-          <div className="flex flex-col space-y-3">
-            <label htmlFor="" className="font-bold font-primary">
+          <div className="flex flex-col space-y-3 font-tertiary">
+            <label htmlFor="" className="font-bold font-tertiary">
               Paste the job description (JD) of your desired job
             </label>
             <textarea
@@ -703,7 +705,9 @@ const Final = () => {
             />
 
             {formState.errors.job_description_link && (
-              <p className="text-[#FC5555] text-sm">Invalid Job description.</p>
+              <p className="text-[#FC5555] text-sm font-tertiary">
+                Invalid Job description.
+              </p>
             )}
           </div>
 
@@ -711,8 +715,8 @@ const Final = () => {
             <button
               className={
                 isButtonDisabled
-                  ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-not-allowed'
-                  : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer'
+                  ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-not-allowed font-tertiary'
+                  : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer font-tertiary'
               }
             >
               Submit
@@ -748,7 +752,7 @@ const Final = () => {
             <Link
               href={paymentLink}
               className={
-                'bg-green-600 text-white-primary px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer'
+                'bg-green-600 text-white-primary px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer font-tertiary'
               }
             >
               {isPaynowLoading ? (

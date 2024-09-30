@@ -30,7 +30,7 @@ const ProgressBar = ({ value }: { value: TNumber }) => {
     <section className="flex items-center justify-between gap-2">
       {!isMobile && (
         <span className="w-[20%]">
-          <strong> Step {getStep(value)}</strong> of 4
+          <strong className="font-tertiary"> Step {getStep(value)}</strong> of 4
         </span>
       )}
       <Progress value={value} />

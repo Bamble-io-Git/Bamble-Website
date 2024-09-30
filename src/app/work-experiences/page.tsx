@@ -105,17 +105,17 @@ const WorkExperiences = () => {
         <ProgressBar value={75} />
 
         <div className="mb-10 md:space-y-6 space-y-2">
-          <p className="text-sm">
+          <p className="text-sm font-tertiary">
             Amazing! You&lsquo;re almost at the finish line. Just a little more
             to go!
           </p>
 
-          <p>
+          <p className="font-tertiary">
             {state.cv.length ? state.cv[0].fullName : ''}, this is our last
             question!
           </p>
 
-          <p className="font-bold md:text-2xl text-lg">
+          <p className="font-bold md:text-2xl text-lg font-tertiary">
             Now is time to shine. Share with us about your 2 most relevant work
             experiences
           </p>
@@ -126,12 +126,14 @@ const WorkExperiences = () => {
             <Microphone
               setShowKeyboard={setShowKeyboard}
               setRecording={setRecording}
+              text={text}
             />
           ) : (
             <Keyboard
               setShowKeyboard={setShowKeyboard}
               setText={setText}
               text={text}
+              recording={recording}
             />
           )}
         </div>
@@ -141,8 +143,8 @@ const WorkExperiences = () => {
             onClick={onSubmit}
             className={
               isButtonDisabled
-                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed'
-                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer'
+                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed font-tertiary'
+                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer font-tertiary'
             }
           >
             Next
