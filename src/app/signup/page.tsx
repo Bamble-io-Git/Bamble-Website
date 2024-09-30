@@ -164,7 +164,7 @@ const Signup = () => {
             Already have an account?
             <Link href="/signin" className="text-blue-primary">
               {' '}
-              Signin
+              Sign in
             </Link>
           </p>
 
