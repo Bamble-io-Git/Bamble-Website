@@ -29,7 +29,7 @@ const WorkExperiences = () => {
   }, [router, state.cv]);
 
   const [text, setText] = useState<string>('');
-  console.log('recording?.size', recording?.size);
+
   useEffect(() => {
     if (!recording?.size && !text.length) {
       setIsButtonDisabled(true);
