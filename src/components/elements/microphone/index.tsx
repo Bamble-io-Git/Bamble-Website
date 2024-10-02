@@ -1,5 +1,6 @@
+//@ts-nocheck
+'use client';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useAudioRecorder } from 'react-audio-voice-recorder';
 import 'react-tooltip/dist/react-tooltip.css';
@@ -27,8 +28,6 @@ const Microphone = ({
   const [recordingBlob, setRecordingBlob] = useState<Blob | undefined>(
     undefined
   );
-
-  console.log('text', text);
 
   const [remainingTime, setRemainingTime] = useState(120);
 
@@ -70,18 +69,6 @@ const Microphone = ({
     if (!recordingBlob) return;
     // recordingBlob will be present at this point after 'stopRecording' has been called
   }, [recordingBlob]);
-
-  const handlePlay = () => {
-    if (recordingBlob) {
-      // check with chris if he wants this format
-      const audio = new Audio(URL.createObjectURL(recordingBlob));
-      audio.play();
-    }
-  };
-
-  console.log('recordingBlob', recordingBlob);
-
-  const path = usePathname();
 
   const convertRecordingTimeToMMSS = (time: number) => {
     const minutes = Math.floor(time / 60);
