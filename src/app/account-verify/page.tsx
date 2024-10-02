@@ -53,7 +53,7 @@ const AuthVerify = () => {
       }
     };
     verifyUser();
-  }, [email, router, state?.cv, token]);
+  }, [email, localStorage, router, state?.cv, token]);
 
   return (
     <section className="flex justify-between px-1.5 lg:px-0">
