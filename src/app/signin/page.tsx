@@ -66,9 +66,9 @@ const SignIn = () => {
   useEffect(() => {
     const token = localStorage?.getItem('token');
 
-    if (token) {
-      router.push('/intent');
-    }
+    // if (token) {
+    //   router.push('/intent');
+    // }
   }, [localStorage, router]);
 
   const login = async ({ email }: { email: string }) => {
