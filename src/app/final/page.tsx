@@ -401,9 +401,9 @@ const Final = () => {
   const state = useCvStore((state) => state);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [paymentLink, setPaymentLink] = useState('');
-  const [hasPaid, setHasPaid] = useState('');
-  const [isPaynowLoading, setIsPaynowLoading] = useState(true);
+  // const [paymentLink, setPaymentLink] = useState('');
+  // const [hasPaid, setHasPaid] = useState('');
+  // const [isPaynowLoading, setIsPaynowLoading] = useState(true);
   const [file, setFile] = useState(null);
 
   const localStorage =
@@ -435,32 +435,33 @@ const Final = () => {
     }
   }, [router]);
 
+  //  //TODO: Readd when needed (undo comments)
   // Generate Stripe link (used for payment)
-  useEffect(() => {
-    const generateStripeLink = async () => {
-      try {
-        setIsPaynowLoading(true);
-        const response = await axios.post(
-          'https://cv.backend.bamble.io/payments/pay',
-          {},
-          {
-            headers: {
-              accept: 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setPaymentLink(response.data.payment_link);
-        setIsPaynowLoading(false);
-        return response;
-      } catch (error) {
-        console.error(error);
-        toast.error('Failed to generate stripe link.');
-        setIsPaynowLoading(false);
-      }
-    };
-    generateStripeLink();
-  }, []);
+  // useEffect(() => {
+  //   const generateStripeLink = async () => {
+  //     try {
+  //       setIsPaynowLoading(true);
+  //       const response = await axios.post(
+  //         'https://cv.backend.bamble.io/payments/pay',
+  //         {},
+  //         {
+  //           headers: {
+  //             accept: 'application/json',
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+  //       setPaymentLink(response.data.payment_link);
+  //       setIsPaynowLoading(false);
+  //       return response;
+  //     } catch (error) {
+  //       console.error(error);
+  //       toast.error('Failed to generate stripe link.');
+  //       setIsPaynowLoading(false);
+  //     }
+  //   };
+  //   generateStripeLink();
+  // }, []);
 
   // Enable the button if the form is valid
   useEffect(() => {
@@ -519,7 +520,6 @@ const Final = () => {
             },
           }
         );
-        console.log(response);
 
         if (response.status === 201) {
           toast.success(response.data.message);
@@ -551,24 +551,24 @@ const Final = () => {
   };
 
   // Fetch user details
-  useEffect(() => {
-    const getUserDetails = async () => {
-      try {
-        setIsPaynowLoading(true);
-        const user = await axios.get(`https://cv.backend.bamble.io/users/me`, {
-          headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setIsPaynowLoading(false);
-        setHasPaid(user.data.is_paid);
-      } catch (error) {
-        setIsPaynowLoading(false);
-      }
-    };
-    getUserDetails();
-  }, [token]);
+  // useEffect(() => {
+  //   const getUserDetails = async () => {
+  //     try {
+  //       // setIsPaynowLoading(true);
+  //       const user = await axios.get(`https://cv.backend.bamble.io/users/me`, {
+  //         headers: {
+  //           accept: 'application/json',
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       // setIsPaynowLoading(false);
+  //       // setHasPaid(user.data.is_paid);
+  //     } catch (error) {
+  //       // setIsPaynowLoading(false);
+  //     }
+  //   };
+  //   getUserDetails();
+  // }, [token]);
 
   const onSubmit = async () => {
     if (linkedinUrl) {
@@ -711,44 +711,44 @@ const Final = () => {
             )}
           </div>
 
-          {hasPaid && (
-            <button
-              className={
-                isButtonDisabled
-                  ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-not-allowed font-tertiary'
-                  : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer font-tertiary'
-              }
-            >
-              Submit
-              {
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 13 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6.38281 2.38086L10.6982 6.50007L6.38281 10.6193"
-                    stroke="#202020"
-                    stroke-opacity="0.8"
-                    stroke-width="1.28571"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M10.6988 6.5L2.29883 6.5"
-                    stroke="#202020"
-                    stroke-opacity="0.8"
-                    stroke-width="1.28571"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              }
-            </button>
-          )}
-          {!hasPaid && (
+          {/* {hasPaid && ( */}
+          <button
+            className={
+              isButtonDisabled
+                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-not-allowed font-tertiary'
+                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer font-tertiary'
+            }
+          >
+            Submit
+            {
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.38281 2.38086L10.6982 6.50007L6.38281 10.6193"
+                  stroke="#202020"
+                  stroke-opacity="0.8"
+                  stroke-width="1.28571"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M10.6988 6.5L2.29883 6.5"
+                  stroke="#202020"
+                  stroke-opacity="0.8"
+                  stroke-width="1.28571"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            }
+          </button>
+          {/* )} */}
+          {/* {!hasPaid && (
             <Link
               href={paymentLink}
               className={
@@ -784,7 +784,7 @@ const Final = () => {
                 'Pay now'
               )}
             </Link>
-          )}
+          )} */}
         </form>
       </div>
     </section>
