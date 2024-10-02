@@ -51,7 +51,7 @@ const SignIn = () => {
         if (response.status === 200) {
           toast.success('User verified successfully');
 
-          router.push('/intent');
+          // router.push('/intent');
         } else {
           toast.error('User verification failed');
         }
