@@ -29,9 +29,9 @@ const WorkExperiences = () => {
   }, [router, state.cv]);
 
   const [text, setText] = useState<string>('');
-
+  console.log('recording?.size', recording?.size);
   useEffect(() => {
-    if (!recording && !text) {
+    if (!recording?.size && !text.length) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
@@ -53,7 +53,7 @@ const WorkExperiences = () => {
   const onSubmit = () => {
     if (recording || text) {
       //@ts-ignore
-      state.addToWorkExperiences(recording ? recording : text);
+      state.addToWorkExperiences(recording?.size ? recording : text);
       router.push('/final');
       sendGTMEvent({
         event: 'Event - Step3 Question 2',

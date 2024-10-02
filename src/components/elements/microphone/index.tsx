@@ -200,15 +200,11 @@ const Microphone = ({
         </div>
         <div>
           <button
-            className={clsx(!record?.size! && 'cursor-not-allowed')}
-            disabled={!record?.size!}
+            // className={clsx(!record?.size! && 'cursor-not-allowed')}
+            // disabled={!record?.size!}
             onClick={handleClearRecording}
             data-tooltip-id="my-tooltip"
-            data-tooltip-content={
-              record?.size! > 0
-                ? 'Click to delete recording'
-                : 'Cannot delete empty record'
-            }
+            data-tooltip-content={'Click to delete recording'}
           >
             <Image width={40} height={40} alt="" src="/assets/cancel.svg" />
           </button>
