@@ -64,7 +64,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
       const binary = atob(base64);
 
       try {
-        // Mock upload to demonstrate progress
+        // Mock upload to demonstrate progress...
         for (let i = 0; i <= 100; i++) {
           setUploadProgress(i);
           await new Promise((resolve) => setTimeout(resolve, 50)); // Simulating upload delay
