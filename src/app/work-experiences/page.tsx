@@ -29,16 +29,20 @@ const WorkExperiences = () => {
   }, [router, state.cv]);
 
   const [text, setText] = useState<string>('');
+  const [duration, setDuration] = useState<number | undefined>();
 
+  // Disable the button if recording duration is less than 30 secs or no text/recording is present
   useEffect(() => {
-    if (!recording?.size && !text.length) {
+    if (duration && duration >= 90 && text.length <= 60) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
     }
-  }, [recording, text]);
+  }, [duration, text]);
 
   const [showKeyboard, setShowKeyboard] = useState(false);
+
+  const handleDuration = (duration: number) => setDuration(duration);
 
   useEffect(() => {
     if (state.experience) {
@@ -127,6 +131,7 @@ const WorkExperiences = () => {
               setShowKeyboard={setShowKeyboard}
               setRecording={setRecording}
               text={text}
+              onDuration={handleDuration}
             />
           ) : (
             <Keyboard

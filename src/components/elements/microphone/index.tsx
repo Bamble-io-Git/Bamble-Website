@@ -12,10 +12,12 @@ const Microphone = ({
   setShowKeyboard,
   setRecording,
   text,
+  onDuration,
 }: {
   setShowKeyboard: Dispatch<SetStateAction<boolean>>;
   setRecording: Dispatch<SetStateAction<Blob | undefined>>;
   text?: string;
+  onDuration: (d: number) => void;
 }) => {
   const {
     startRecording,
@@ -77,6 +79,10 @@ const Microphone = ({
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
   };
 
+  useEffect(() => {
+    onDuration(remainingTime);
+  }, [onDuration, remainingTime]);
+
   return (
     <div>
       <p className="text-[#217DD1] text-center">
@@ -100,7 +106,7 @@ const Microphone = ({
             data-tooltip-id="my-tooltip"
             data-tooltip-content={
               isRecording
-                ? 'Click to finish'
+                ? 'Click to stop recording (minimum 30 seconds required)'
                 : text?.length! > 2
                 ? 'You have already written your experience'
                 : 'Click to record'

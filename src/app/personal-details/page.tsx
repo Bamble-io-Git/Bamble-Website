@@ -16,7 +16,7 @@ const PersonalDetails = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [recording, setRecording] = useState<Blob | undefined>(undefined);
   const [text, setText] = useState<string>('');
-  console.log(recording);
+  const [duration, setDuration] = useState<number | undefined>();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,13 +30,14 @@ const PersonalDetails = () => {
     };
   }, [router, state.cv]);
 
+  // Disable the button if recording duration is less than 30 secs or no text/recording is present
   useEffect(() => {
-    if (!recording && !text) {
+    if (duration && duration >= 90 && text.length <= 60) {
       setIsButtonDisabled(true);
     } else {
       setIsButtonDisabled(false);
     }
-  }, [recording, text]);
+  }, [duration, text]);
 
   const [showKeyboard, setShowKeyboard] = useState(false);
 
@@ -49,6 +50,8 @@ const PersonalDetails = () => {
       }
     }
   }, [state.personal]);
+
+  const handleDuration = (duration: number) => setDuration(duration);
 
   const onSubmit = () => {
     if (recording || text) {
@@ -65,6 +68,8 @@ const PersonalDetails = () => {
       });
     }
   };
+
+  console.log(state.personal);
 
   return (
     <section className="flex justify-between px-1.5 lg:px-0 font-tertiary">
@@ -125,6 +130,7 @@ const PersonalDetails = () => {
               setShowKeyboard={setShowKeyboard}
               setRecording={setRecording}
               text={text}
+              onDuration={handleDuration}
             />
           ) : (
             <Keyboard
@@ -138,6 +144,7 @@ const PersonalDetails = () => {
 
         <div className="mx-auto">
           <button
+            disabled={isButtonDisabled}
             onClick={onSubmit}
             className={
               isButtonDisabled
