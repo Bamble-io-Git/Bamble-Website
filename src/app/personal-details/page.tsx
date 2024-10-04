@@ -56,7 +56,7 @@ const PersonalDetails = () => {
   const onSubmit = () => {
     if (recording || text) {
       //@ts-ignore
-      state.addToPersonalDetails(recording ? recording : text);
+      state.addToPersonalDetails(recording?.size! ? recording : text);
       router.push('/work-experiences');
       sendGTMEvent({
         event: 'Event - Step2 Question 1',
@@ -68,8 +68,6 @@ const PersonalDetails = () => {
       });
     }
   };
-
-  console.log(state.personal);
 
   return (
     <section className="flex justify-between px-1.5 lg:px-0 font-tertiary">
