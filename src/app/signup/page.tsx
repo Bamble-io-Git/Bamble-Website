@@ -2,7 +2,7 @@
 
 import LeftStep from '@/components/elements/step/LeftStep';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { userDataValidation } from './schema/user-data';
 import { useCvStore } from '@/store/cv';
@@ -12,6 +12,18 @@ import axios, { AxiosError } from 'axios';
 import { sendGTMEvent } from '@next/third-parties/google';
 import Link from 'next/link';
 
+const organizations = [
+  'Utiva',
+  'Taltrix/Tech4Dev',
+  'SheCode Africa',
+  'Babcock University',
+  'ihiFix',
+  'OAU Ife',
+  'FUTA',
+  'FUOYE',
+  'Not Applicable',
+];
+
 type TCreateUserSchema = {
   email: string;
   fullName: string;
@@ -20,6 +32,10 @@ const Signup = () => {
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(userDataValidation),
   });
+
+  const [community, setCommunity] = useState('not-applicable');
+
+  const handleCommunity = (e: ChangeEvent<any>) => setCommunity(e.target.value);
 
   const router = useRouter();
 
@@ -39,6 +55,7 @@ const Signup = () => {
   }) => {
     const firstName = fullName.split(' ')[0];
     const lastName = fullName.split(' ')[1] ?? '';
+
     try {
       toast.loading('Authenticating....');
       const response = await axios.post(
@@ -48,6 +65,7 @@ const Signup = () => {
           last_name: lastName,
           email,
           password: 'stringcehw88938f28998efjkndj90rej9vdoijnsd',
+          partner_community: community,
         },
         {
           headers: {
@@ -56,8 +74,7 @@ const Signup = () => {
           },
         }
       );
-      console.log('ran');
-      console.log(response);
+
       if (response.status == 422) {
         toast.info(response?.data?.details);
       }
@@ -76,9 +93,11 @@ const Signup = () => {
   };
 
   const { formState, register, handleSubmit } = form;
+
   const state = useCvStore((state) => state);
 
   const onSubmit = async (values: TCreateUserSchema) => {
+    console.log(values);
     if (values) {
       state.addToCV(values);
       sendGTMEvent({
@@ -158,6 +177,32 @@ const Signup = () => {
                 Invalid email address.
               </p>
             )}
+          </div>
+
+          <div className="flex flex-col space-y-3">
+            <div className="w-full">
+              <label htmlFor="community" className="font-bold font-tertiary">
+                Your Community
+              </label>
+              <select
+                id="community"
+                name="community"
+                onChange={handleCommunity}
+                className="mt-3 block w-full bg-white  shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border rounded-lg p-3"
+              >
+                <option value="not-applicable" selected>
+                  Select Partner Community
+                </option>
+
+                {organizations.map((org) => {
+                  return (
+                    <option key={org} value={org}>
+                      {org}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
 
           <p className="text-[#414143] text-sm text-center font-tertiary">
