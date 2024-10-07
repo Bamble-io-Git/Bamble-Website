@@ -35,12 +35,15 @@ const Congrats = () => {
             <p className="text-sm"> Take a look at your resume.</p>
 
             <p>
-              CV would be ready in less than 5mins!
-              <strong> {state.cv.length ? state.cv[0].fullName : ''} </strong>
+              <strong>
+                {' '}
+                {state.cv.length ? `${state.cv[0].fullName}` : ''}
+              </strong>
+              your cv would be ready in less than 5mins!
             </p>
 
             <p className="font-bold md:text-2xl text-lg">
-              Check your email for your cv
+              Kindly check your email for your CV.
             </p>
           </div>
         </div>

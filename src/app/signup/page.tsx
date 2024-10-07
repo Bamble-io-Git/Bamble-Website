@@ -21,6 +21,7 @@ const organizations = [
   'OAU Ife',
   'FUTA',
   'FUOYE',
+  'NOVA SBE',
   'Not Applicable',
 ];
 
