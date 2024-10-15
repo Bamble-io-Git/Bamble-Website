@@ -1,3 +1,4 @@
+// TODO: intentionally left here incase we need to revert back to old behavior
 // 'use client';
 // import LeftStep from '@/components/elements/step/LeftStep';
 // import { zodResolver } from '@hookform/resolvers/zod';
@@ -401,6 +402,7 @@ const Final = () => {
   const state = useCvStore((state) => state);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  // TODO: payment integration WorkExperiences, would uncomment when we get the go ahead
   // const [paymentLink, setPaymentLink] = useState('');
   // const [hasPaid, setHasPaid] = useState('');
   // const [isPaynowLoading, setIsPaynowLoading] = useState(true);
