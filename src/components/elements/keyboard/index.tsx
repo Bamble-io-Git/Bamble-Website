@@ -9,11 +9,13 @@ const Keyboard = ({
   setText,
   text,
   recording,
+  placeholder,
 }: {
   setShowKeyboard: Dispatch<SetStateAction<boolean>>;
   setText: Dispatch<SetStateAction<string>>;
   text: string;
   recording?: Blob;
+  placeholder?: string;
 }) => {
   return (
     <div
@@ -57,6 +59,8 @@ const Keyboard = ({
           placeholder={
             recording?.size! > 0
               ? 'You have already recorded your details, delete to type'
+              : placeholder
+              ? placeholder
               : 'Type your details here..'
           }
         ></textarea>

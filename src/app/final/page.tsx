@@ -669,6 +669,9 @@ const Final = () => {
         </div>
 
         <div className="my-12 font-tertiary">
+          <label htmlFor="" className="font-bold  font-tertiary">
+            CV *
+          </label>
           <PdfUpload file={file} setFile={setFile} />
         </div>
 
@@ -678,7 +681,7 @@ const Final = () => {
         >
           <div className="flex flex-col space-y-3 mt-10">
             <label htmlFor="" className="font-bold  font-tertiary">
-              Linkedin Link
+              Linkedin Link *
             </label>
             <input
               type="text"

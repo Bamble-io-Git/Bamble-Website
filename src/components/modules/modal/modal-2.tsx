@@ -28,7 +28,7 @@ const Modal2 = ({
     {
       id: 3,
       title: 'Think of your achievements in this format:',
-      text: '🚀I achieved X, by doing Y, measured by Y',
+      text: '🚀 I achieved X, by doing Y, measured by Y',
       icon: '/assets/bulb.svg',
     },
   ];

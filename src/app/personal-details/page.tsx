@@ -17,6 +17,7 @@ const PersonalDetails = () => {
   const [recording, setRecording] = useState<Blob | undefined>(undefined);
   const [text, setText] = useState<string>('');
   const [duration, setDuration] = useState<number | undefined>();
+  const [showKeyboard, setShowKeyboard] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -38,8 +39,6 @@ const PersonalDetails = () => {
       setIsButtonDisabled(false);
     }
   }, [duration, text]);
-
-  const [showKeyboard, setShowKeyboard] = useState(false);
 
   useEffect(() => {
     if (state.personal) {

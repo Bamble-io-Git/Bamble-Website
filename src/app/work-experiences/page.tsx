@@ -40,7 +40,7 @@ const WorkExperiences = () => {
     }
   }, [duration, text]);
 
-  const [showKeyboard, setShowKeyboard] = useState(false);
+  const [showKeyboard, setShowKeyboard] = useState(true);
 
   const handleDuration = (duration: number) => setDuration(duration);
 
@@ -139,6 +139,7 @@ const WorkExperiences = () => {
               setText={setText}
               text={text}
               recording={recording}
+              placeholder="Type your work experiences here..."
             />
           )}
         </div>
