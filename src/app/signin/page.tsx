@@ -63,14 +63,6 @@ const SignIn = () => {
     verifyUser();
   }, [email, localStorage, router, state?.cv, token]);
 
-  useEffect(() => {
-    const token = localStorage?.getItem('token');
-
-    // if (token) {
-    //   router.push('/intent');
-    // }
-  }, [localStorage, router]);
-
   const login = async ({ email }: { email: string }) => {
     try {
       // toast.loading('Authenticating....');

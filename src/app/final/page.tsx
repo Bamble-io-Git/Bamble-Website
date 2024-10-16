@@ -703,7 +703,7 @@ const Final = () => {
 
           <div className="flex flex-col space-y-3 font-tertiary">
             <label htmlFor="" className="font-bold font-tertiary">
-              Paste the job description (JD) of your desired job
+              Paste the job description (JD) of your desired job *
             </label>
             <textarea
               placeholder={

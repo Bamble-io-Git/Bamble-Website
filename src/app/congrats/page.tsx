@@ -16,8 +16,22 @@ const Congrats = () => {
 
   useEffect(() => {
     if (localStorage) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('cv-state');
+      [
+        'linkedin_link',
+        'job_description_link',
+        'cv-state',
+        'token',
+        'pdf',
+      ].forEach((state) => {
+        localStorage.removeItem(state);
+      });
+
+      state.addToJD('');
+      state.addToLinkedinUrl('');
+      state.addToPdf({});
+      state.addToShare('');
+      state.addToWorkExperiences('');
+      state.addToPersonalDetails('');
     }
   }, [localStorage]);
 
@@ -37,8 +51,8 @@ const Congrats = () => {
             <p>
               <strong>
                 {' '}
-                {state.cv.length ? `${state.cv[0].fullName}` : ''}
-              </strong>
+                {state.cv.length ? `${state.cv[0].fullName}` : ''},
+              </strong>{' '}
               your cv would be ready in less than 5mins!
             </p>
 
