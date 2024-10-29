@@ -9,11 +9,12 @@ const Final = () => {
   const [showFeatureFlag, setShowFeatureFlag] = useState(false);
 
   useEffect(() => {
-    posthog.onFeatureFlags(function () {
-      if (posthog.isFeatureEnabled('payment-feature')) {
-        setShowFeatureFlag(true);
-      }
-    });
+    if (process.env.NODE_ENV !== 'development')
+      posthog.onFeatureFlags(function () {
+        if (posthog.isFeatureEnabled('payment-feature')) {
+          setShowFeatureFlag(true);
+        }
+      });
   }, []);
 
   useHeaderTitle('STEP4-Documents');

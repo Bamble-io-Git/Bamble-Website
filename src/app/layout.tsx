@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GTag />
-      <PosthogScript />
+      {process.env.NODE_ENV !== 'development' && <PosthogScript />}
 
       <body
         className={`${montserrat.variable} ${notoSans.variable} ${ubuntu.variable}`}
@@ -26,7 +26,7 @@ export default function RootLayout({
         <PHProvider>{children}</PHProvider>
       </body>
 
-      <GoogleAnalytics gaId="G-VCRDL8EWYD" />
+      {<GoogleAnalytics gaId="G-VCRDL8EWYD" />}
       <GoogleTagManager gtmId="GTM-KRPQNFLH" />
     </html>
   );
