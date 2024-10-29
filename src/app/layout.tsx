@@ -5,14 +5,11 @@ import './globals.css';
 import { montserrat, notoSans, ubuntu } from './theme/fonts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PHProvider from '@/lib/posthog';
+import PosthogScript from '@/scripts/posthog';
+import { pageMetadata } from './config';
 
-export const metadata: Metadata = {
-  title: 'Bamble',
-  description: 'Create AI powered high-quality CV in 3 clicks',
-  applicationName: 'Bamble CV Creator',
-  generator: 'Next.js',
-  keywords: 'CV, Resume, AI, CV Builder, Resume Builder',
-};
+export const metadata: Metadata = pageMetadata();
 
 export default function RootLayout({
   children,
@@ -22,13 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GTag />
+      <PosthogScript />
 
       <body
         className={`${montserrat.variable} ${notoSans.variable} ${ubuntu.variable}`}
         id="portal"
       >
         <ToastContainer position="top-right" />
-        {children}
+        <PHProvider>{children}</PHProvider>
       </body>
 
       <GoogleAnalytics gaId="G-VCRDL8EWYD" />

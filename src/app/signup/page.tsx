@@ -11,19 +11,9 @@ import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
 import { sendGTMEvent } from '@next/third-parties/google';
 import Link from 'next/link';
+import { orgs } from './data/orgs';
 
-const organizations = [
-  'Utiva',
-  'Taltrix/Tech4Dev',
-  'SheCode Africa',
-  'Babcock University',
-  'ihiFix',
-  'OAU Ife',
-  'FUTA',
-  'FUOYE',
-  'NOVA SBE',
-  'Not Applicable',
-];
+const organizations = orgs;
 
 type TCreateUserSchema = {
   email: string;
