@@ -7,9 +7,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PHProvider from '@/lib/posthog';
 import PosthogScript from '@/scripts/posthog';
-import { pageMetadata } from './config';
-
-export const metadata: Metadata = pageMetadata();
 
 export default function RootLayout({
   children,

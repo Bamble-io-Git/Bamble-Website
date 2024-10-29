@@ -13,8 +13,6 @@ import { sendGTMEvent } from '@next/third-parties/google';
 import Link from 'next/link';
 import { orgs } from './data/orgs';
 
-const organizations = orgs;
-
 type TCreateUserSchema = {
   email: string;
   fullName: string;
@@ -185,7 +183,7 @@ const Signup = () => {
                   Select Partner Community
                 </option>
 
-                {organizations.map((org) => {
+                {orgs.map((org) => {
                   return (
                     <option key={org} value={org}>
                       {org}
