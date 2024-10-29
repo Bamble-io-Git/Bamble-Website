@@ -48,14 +48,14 @@ const LandingPageTemplate = () => {
             </h2>
 
             <p className="text-base text-[#FCFCFCCC] max-w-[330px]">
-              Join our waiting list, get ready to land your dream job!
+              Ready to land your dream job?!
             </p>
 
             <button
               className="bg-white-primary text-sm sm:text-base text-[#45A6FF] text-center px-3 rounded-lg font-semibold sm:w-auto py-[12px] w-[200px]"
               onClick={() => router.push('/signup')}
             >
-              Try for free!
+              Start now for free!
             </button>
           </div>
 
