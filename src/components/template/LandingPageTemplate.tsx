@@ -3,32 +3,28 @@ import { useRef } from 'react';
 import PageLayout from '../layout';
 import Hero from '../sections/hero-new';
 import GiveTeamLife2 from '../sections/cards';
-import Image from 'next/image';
 import CVStack from '../elements/cv-stack';
 import TurboChargeCareer from '../elements/turbocharge-career';
-import FireYourWriter from '../elements/fire-your-writer';
-import { useRouter } from 'next/navigation';
 import LogoCarousel from '../sections/logos';
 import dynamic from 'next/dynamic';
 const LandingPageTemplate = () => {
   const ref = useRef<null | HTMLElement>(null);
   const handleScroll = () =>
     ref.current && ref?.current?.scrollIntoView({ behavior: 'smooth' });
-  const router = useRouter();
 
-  const CVStackLazy = dynamic(() => import('../elements/cv-stack'), {
+  const BannerCTALazy = dynamic(() => import('../elements/banner-cta'), {
     ssr: false,
   });
 
-  const BannerCTALazy = dynamic(() => import('../elements/banner-cta'), {
+  const FireWriterLazy = dynamic(() => import('../elements/fire-your-writer'), {
     ssr: false,
   });
 
   return (
     <PageLayout>
       <Hero handleScroll={handleScroll} />
-      <CVStackLazy />
-      <FireYourWriter />
+      <CVStack />
+      <FireWriterLazy />
       <GiveTeamLife2 handleScroll={handleScroll} />
 
       <TurboChargeCareer />
