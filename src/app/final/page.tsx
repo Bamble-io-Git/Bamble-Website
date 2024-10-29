@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import posthog from 'posthog-js';
 import FinalPageWithStripe from '@/components/modules/with-payment';
 import FinalPageWithoutPayment from '@/components/modules/without-payment';
+import useHeaderTitle from '@/hooks/useHeaderTitle';
 
 const Final = () => {
   const [showFeatureFlag, setShowFeatureFlag] = useState(false);
@@ -14,6 +15,8 @@ const Final = () => {
       }
     });
   }, []);
+
+  useHeaderTitle('STEP4-Documents');
 
   const showPayment =
     showFeatureFlag && posthog.isFeatureEnabled('payment-feature');

@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
+import useHeaderTitle from '@/hooks/useHeaderTitle';
 
 type TCreateUserSchema = {
   email: string;
@@ -29,6 +30,8 @@ const SignIn = () => {
 
   const localStorage =
     typeof window !== 'undefined' ? window.localStorage : null;
+
+  useHeaderTitle('SIGN-IN');
 
   useEffect(() => {
     const verifyUser = async () => {
