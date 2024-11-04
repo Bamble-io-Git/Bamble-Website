@@ -11,19 +11,7 @@ import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
 import { sendGTMEvent } from '@next/third-parties/google';
 import Link from 'next/link';
-
-const organizations = [
-  'Utiva',
-  'Taltrix/Tech4Dev',
-  'SheCode Africa',
-  'Babcock University',
-  'ihiFix',
-  'OAU Ife',
-  'FUTA',
-  'FUOYE',
-  'NOVA SBE',
-  'Not Applicable',
-];
+import { orgs } from './data/orgs';
 
 type TCreateUserSchema = {
   email: string;
@@ -60,7 +48,7 @@ const Signup = () => {
     try {
       toast.loading('Authenticating....');
       const response = await axios.post(
-        'https://cv.backend.bamble.io/users',
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users`,
         {
           first_name: firstName,
           last_name: lastName,
@@ -195,7 +183,7 @@ const Signup = () => {
                   Select Partner Community
                 </option>
 
-                {organizations.map((org) => {
+                {orgs.map((org) => {
                   return (
                     <option key={org} value={org}>
                       {org}

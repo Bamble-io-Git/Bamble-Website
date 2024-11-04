@@ -8,6 +8,7 @@ import Tips from '@/components/elements/tips';
 import Microphone from '@/components/elements/microphone';
 import Keyboard from '@/components/elements/keyboard';
 import { sendGTMEvent } from '@next/third-parties/google';
+import useHeaderTitle from '@/hooks/useHeaderTitle';
 
 const WorkExperiences = () => {
   const router = useRouter();
@@ -40,6 +41,8 @@ const WorkExperiences = () => {
   //     setIsButtonDisabled(false);
   //   }
   // }, [duration, text]);
+
+  useHeaderTitle('STEP3-Question2');
 
   useEffect(() => {
     if (Number(duration) >= 90 && !recording?.size) {

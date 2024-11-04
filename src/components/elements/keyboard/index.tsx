@@ -47,7 +47,7 @@ const Keyboard = ({
           <Image width={40} height={40} alt="" src="/assets/micro.svg" />
         </button>
       </div>
-      <div className="w-[465px]">
+      <div className="max-w-[465px]">
         <textarea
           readOnly={recording?.size! > 0}
           onChange={(e) => setText(e.target.value)}

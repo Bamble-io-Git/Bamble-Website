@@ -7,7 +7,7 @@ import { useState } from 'react';
 const CARDS = [
   {
     id: 0,
-    title: 'Our AI CV captures your potential',
+    title: 'Be the best',
     icon: (activeIndex: boolean) => (
       <svg
         width="24"
@@ -32,7 +32,7 @@ const CARDS = [
         />
       </svg>
     ),
-    text: 'Our AI improves your profile, we do not generate fluff or filler lines!',
+    text: 'Our AI CV elevates your profile and showcases your potential',
   },
   {
     id: 1,
@@ -73,11 +73,11 @@ const CARDS = [
         </defs>
       </svg>
     ),
-    text: 'We revamp your profile with added data points to exceed requirements and your job process fit.',
+    text: 'Your profile is revamped to show your qualities and job skills',
   },
   {
     id: 2,
-    title: 'Recruiter’s knowledge',
+    title: 'Recruiter Verified',
     icon: (activeIndex: boolean) => (
       <svg
         width="25"
@@ -114,7 +114,7 @@ const CARDS = [
         </defs>
       </svg>
     ),
-    text: 'Our expertise boosts your professional narrative and grants you better positioning.',
+    text: 'Guaranteed by recruiters to secure interviews for you.',
   },
 ];
 
@@ -130,9 +130,12 @@ const GiveTeamLife2 = ({ handleScroll }: { handleScroll: () => void }) => {
           width={58}
           height={30}
         />
-        <h2 className="mb-5 gradient-primary">How we help you land that job</h2>
+        <h2 className="mb-5 gradient-primary">
+          You are 70% more likely to get hired if you use
+          <br /> Bamble’s Career Co-pilot
+        </h2>
 
-        <p>No one knows recruiters and ATSs better than us!</p>
+        <p>Get hired by top companies worldwide</p>
 
         <div className="flex gap-10 flex-col lg:flex-row justify-center lg:items-start items-center mt-10 sm:mt-20 mb-14 group transition-all ease">
           {CARDS.map(({ title, icon, text, id }, i) => (

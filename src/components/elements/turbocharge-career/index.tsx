@@ -8,16 +8,18 @@ const TurboChargeCareer = () => {
   const isMobile = useMediaQuery(640);
   return (
     <section className="py-5 sm:py-20">
-      <div className="mx-auto max-w-[280px]">
-        <Banner text="Ready within minutes" type="pen" />
+      <div className="mx-auto max-w-[380px]">
+        <Banner
+          lg
+          text="3000+ Jobseekers are using Bamble’s Career Co-pilot "
+          type="pen"
+        />
       </div>
       <div className="text-center py-6">
         <h2 className="text-[30px] gradient-primary -mb-1 sm:-mb-4 font-bold">
-          Turbocharge your tech{' '}
+          We help job candidates{' '}
         </h2>
-        <h2 className="text-[30px] gradient-primary font-bold">
-          career with Bamble
-        </h2>
+        <h2 className="text-[30px] gradient-primary font-bold">succeed!</h2>
       </div>
 
       <div className="custom-border2 rounded-[20px] flex md:flex-row flex-col  md:w-[880px] mx-auto my-3 sm:my-12">
@@ -35,7 +37,7 @@ const TurboChargeCareer = () => {
             </span>
           </p>
           <div className="max-w-[100%] sm:max-w-[70%]">
-            <LinkComponent text="Try for free!" url="/signup" />
+            <LinkComponent text="Start now for free!" url="/signup" />
           </div>
         </div>
 
@@ -45,7 +47,7 @@ const TurboChargeCareer = () => {
             borderRadius: isMobile ? '0px 0px 20px 20px' : '0px 20px 20px 0px',
           }}
         >
-          <strong className="font-bold">What’s included</strong>
+          <strong className="font-bold">What you get:</strong>
 
           <div className="flex gap-x-3 items-center">
             <Image
@@ -54,7 +56,7 @@ const TurboChargeCareer = () => {
               width={26}
               height={26}
             />
-            <p className="text-base">Ready within minutes</p>
+            <p className="text-base">Ready within seconds</p>
           </div>
 
           <div className="flex gap-x-3 items-center">
@@ -64,7 +66,7 @@ const TurboChargeCareer = () => {
               width={26}
               height={26}
             />
-            <p className="text-base">AI Powered Tailor-made CV</p>
+            <p className="text-base">AI-Powered Job Specific CV</p>
           </div>
 
           <div className="flex gap-x-3 items-center">
@@ -74,9 +76,7 @@ const TurboChargeCareer = () => {
               width={26}
               height={26}
             />
-            <p className="text-base">
-              Sophisticated ATS screenings and optimization
-            </p>
+            <p className="text-base">Optimized for ATS Screening</p>
           </div>
           <div className="flex gap-x-3 items-center">
             <Image
@@ -85,9 +85,7 @@ const TurboChargeCareer = () => {
               width={26}
               height={26}
             />
-            <p className="text-base">
-              Approved by international technical recruiters
-            </p>
+            <p className="text-base">International Recruiter Approved</p>
           </div>
         </div>
       </div>

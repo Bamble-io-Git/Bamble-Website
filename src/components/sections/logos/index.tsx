@@ -19,6 +19,7 @@ export default function LogoCarousel() {
         {logos.map((logo, index) => (
           <li key={index}>
             <Image
+              priority
               src={logo.src}
               alt={logo.alt}
               width={index === 1 && !isMobile ? 400 : 120}

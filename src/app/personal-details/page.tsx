@@ -8,6 +8,7 @@ import Tips from '@/components/elements/tips';
 import Microphone from '@/components/elements/microphone';
 import Keyboard from '@/components/elements/keyboard';
 import { sendGTMEvent } from '@next/third-parties/google';
+import useHeaderTitle from '@/hooks/useHeaderTitle';
 
 const PersonalDetails = () => {
   const router = useRouter();
@@ -18,6 +19,8 @@ const PersonalDetails = () => {
   const [text, setText] = useState<string>('');
   const [duration, setDuration] = useState<number | undefined>();
   const [showKeyboard, setShowKeyboard] = useState(true);
+
+  useHeaderTitle('STEP2-Question1');
 
   useEffect(() => {
     const timer = setTimeout(() => {
