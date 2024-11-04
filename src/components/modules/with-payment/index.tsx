@@ -13,6 +13,8 @@ import { sendGTMEvent } from '@next/third-parties/google';
 import Link from 'next/link';
 import posthog from 'posthog-js';
 import { finalDataValidation } from '@/app/signin/schema/final-data';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 
 type TCreateUserSchema = {
   linkedin_link: string;
@@ -344,8 +346,14 @@ const FinalPageWithStripe = () => {
             )}
           </div>
 
+          <Tooltip id="payment" />
+
           {hasPaid && (
             <button
+              data-tooltip-id="payment"
+              data-tooltip-content={
+                !hasPaid && isButtonDisabled ? 'Upload your CV' : ''
+              }
               onClick={() => {
                 posthog.capture(
                   'final_submit',
