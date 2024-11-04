@@ -188,10 +188,11 @@ const FinalPageWithStripe = () => {
             },
           }
         );
-        // setIsPaynowLoading(false);
-        // setHasPaid(user.data.is_paid);
+
+        setIsPaynowLoading(false);
+        setHasPaid(user.data.is_paid);
       } catch (error) {
-        // setIsPaynowLoading(false);
+        setIsPaynowLoading(false);
       }
     };
     getUserDetails();
