@@ -290,12 +290,14 @@ const FinalPageWithStripe = () => {
           </p>
         </div>
 
-        <div className="my-12 font-tertiary">
-          <label htmlFor="" className="font-bold  font-tertiary">
-            CV *
-          </label>
-          <PdfUpload file={file} setFile={setFile} />
-        </div>
+        {hasPaid && (
+          <div className="my-12 font-tertiary">
+            <label htmlFor="" className="font-bold  font-tertiary">
+              CV *
+            </label>
+            <PdfUpload file={file} setFile={setFile} />
+          </div>
+        )}
 
         <form
           className="flex flex-col space-y-5 font-tertiary"
