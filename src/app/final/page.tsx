@@ -9,13 +9,15 @@ const Final = () => {
   const [showFeatureFlag, setShowFeatureFlag] = useState(false);
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'development')
-      posthog.onFeatureFlags(function () {
-        if (posthog.isFeatureEnabled('payment-feature')) {
-          setShowFeatureFlag(true);
-        }
-      });
+    // if (process.env.NODE_ENV !== 'development')
+    posthog.onFeatureFlags(function () {
+      if (posthog.isFeatureEnabled('payment-feature')) {
+        setShowFeatureFlag(true);
+      }
+    });
   }, []);
+
+  console.log(process.env.NEXT_PUBLIC_BAMBLE_URL);
 
   useHeaderTitle('STEP4-Documents');
 

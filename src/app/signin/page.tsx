@@ -37,7 +37,7 @@ const SignIn = () => {
     const verifyUser = async () => {
       try {
         const response = await axios.post(
-          `https://cv.backend.bamble.io/users/verify`,
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,
@@ -70,7 +70,7 @@ const SignIn = () => {
     try {
       // toast.loading('Authenticating....');
       const response = await axios.post(
-        'https://cv.backend.bamble.io/auth/token',
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/auth/token`,
         {
           username: email,
           password: 'stringcehw88938f28998efjkndj90rej9vdoijnsd',
@@ -83,12 +83,15 @@ const SignIn = () => {
         }
       );
 
-      const user = await axios.get(`https://cv.backend.bamble.io/users/me`, {
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${response.data.access_token}`,
-        },
-      });
+      const user = await axios.get(
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/me`,
+        {
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${response.data.access_token}`,
+          },
+        }
+      );
 
       state.addToCV({
         fullName: user.data.first_name + ' ' + user.data.last_name,

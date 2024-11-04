@@ -48,7 +48,7 @@ const Signup = () => {
     try {
       toast.loading('Authenticating....');
       const response = await axios.post(
-        'https://cv.backend.bamble.io/users',
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users`,
         {
           first_name: firstName,
           last_name: lastName,

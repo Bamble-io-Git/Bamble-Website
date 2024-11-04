@@ -118,7 +118,7 @@ const FinalPageWithoutPayment = () => {
         console.log(requestData);
 
         const response = await axios.post(
-          `https://cv.backend.bamble.io/users/generate_cv`,
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/generate_cv`,
           requestData,
           {
             headers: {

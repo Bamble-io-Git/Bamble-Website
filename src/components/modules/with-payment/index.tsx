@@ -65,7 +65,7 @@ const FinalPageWithStripe = () => {
       try {
         setIsPaynowLoading(true);
         const response = await axios.post(
-          'https://cv.backend.bamble.io/payments/pay',
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/payments/pay`,
           {},
           {
             headers: {
@@ -131,7 +131,7 @@ const FinalPageWithStripe = () => {
         }
 
         const response = await axios.post(
-          `https://cv.backend.bamble.io/users/generate_cv`,
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/generate_cv`,
           requestData,
           {
             headers: {
@@ -179,12 +179,15 @@ const FinalPageWithStripe = () => {
     const getUserDetails = async () => {
       try {
         // setIsPaynowLoading(true);
-        const user = await axios.get(`https://cv.backend.bamble.io/users/me`, {
-          headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const user = await axios.get(
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/me`,
+          {
+            headers: {
+              accept: 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         // setIsPaynowLoading(false);
         // setHasPaid(user.data.is_paid);
       } catch (error) {
