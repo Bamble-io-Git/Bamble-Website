@@ -39,7 +39,7 @@ const LandingPageTemplate = () => {
           <div className="sm:justify-self-start justify-self-center rounded-[31px] max-w-[382px] flex-col space-y-8 py-12">
             <div className="border-[#090923] px-4 py-1.5 rounded-[31px] border bg-white-primary max-w-[240px]">
               <h3 className="font-bold text-black text-sm">
-                Free for first 1,000 users!
+                Free for first 100,000 users!
               </h3>
             </div>
 

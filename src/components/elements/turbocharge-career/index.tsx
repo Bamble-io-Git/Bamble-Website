@@ -23,17 +23,20 @@ const TurboChargeCareer = () => {
       <div className="custom-border2 rounded-[20px] flex md:flex-row flex-col  md:w-[880px] mx-auto my-3 sm:my-12">
         <div className="w-auto md:w-[473px] px-3 md:px-10 py-16 flex-col space-y-10 ">
           <div className="max-w-[280px]">
-            <Banner text="Free for first 1,000 users!" />
+            <Banner text="Free for first 100,000 users!" />
           </div>
           <p className="text-base w-[90%] sm:w-[75%]">
             Landing your dream job costs the same as paying for Netflix!
           </p>
-          <p className="sm:w-full w-[90%] md:w-[85%]">
+
+          <p className="sm:w-full w-[90%] md:w-[85%] relative">
             <span className="text-[60px] font-bold text-gradient">€7.99</span>
+            <span className="w-[35%] md:w-[53%] h-[8px] bg-red-500 absolute md:top-3 top-2 left-0"></span>
             <span className="text-base text-black font-bold pl-1">
               /fixed price
             </span>
           </p>
+
           <div className="max-w-[100%] sm:max-w-[70%]">
             <LinkComponent text="Try for free!" url="/signup" />
           </div>

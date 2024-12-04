@@ -47,7 +47,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
     <section className="mt-5">
       <div className="flex justify-center flex-col text-center gap-y-6 pt-5 sm:pt-12 max-w-[667px] mx-auto px-1 sm:px-7 md:px-0 z-10">
         <div className="mx-auto sm:block hidden">
-          <Banner text="Free for first 1,000 users!" />
+          <Banner text="Free for first 100,000 users!" />
         </div>
 
         <h1
