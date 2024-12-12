@@ -377,20 +377,20 @@
 
 // export default Final;
 
-'use client';
-import LeftStep from '@/components/elements/step/LeftStep';
-import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useCvStore } from '@/store/cv';
-import { useRouter } from 'next/navigation';
-import { finalDataValidation } from '../signup/schema/final-data';
-import ProgressBar from '@/components/elements/ProgressBar';
-import axios from 'axios';
-import PdfUpload from '@/components/elements/pdf-uploader';
-import { toast } from 'react-toastify';
-import { sendGTMEvent } from '@next/third-parties/google';
-import Link from 'next/link';
+"use client";
+import LeftStep from "@/components/elements/step/LeftStep";
+import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useCvStore } from "@/store/cv";
+import { useRouter } from "next/navigation";
+import { finalDataValidation } from "../signup/schema/final-data";
+import ProgressBar from "@/components/elements/ProgressBar";
+import axios from "axios";
+import PdfUpload from "@/components/elements/pdf-uploader";
+import { toast } from "react-toastify";
+import { sendGTMEvent } from "@next/third-parties/google";
+import Link from "next/link";
 
 type TCreateUserSchema = {
   linkedin_link: string;
@@ -409,31 +409,31 @@ const Final = () => {
   const [file, setFile] = useState(null);
 
   const localStorage =
-    typeof window !== 'undefined' ? window.localStorage : null;
+    typeof window !== "undefined" ? window.localStorage : null;
 
   // Initialize the form
   const form = useForm<TCreateUserSchema>({
     resolver: zodResolver(finalDataValidation),
     defaultValues: {
       linkedin_link:
-        state.linkedinUrl ?? localStorage?.getItem('linkedin_link') ?? '',
+        state.linkedinUrl ?? localStorage?.getItem("linkedin_link") ?? "",
       job_description_link:
         state.jobDescription ??
-        localStorage?.getItem('job_description_link') ??
-        '',
+        localStorage?.getItem("job_description_link") ??
+        "",
     },
   });
 
   const { formState, register, handleSubmit, watch, setValue } = form;
 
-  const linkedinUrl = watch('linkedin_link');
-  const jobDescriptionUrl = watch('job_description_link');
+  const linkedinUrl = watch("linkedin_link");
+  const jobDescriptionUrl = watch("job_description_link");
 
   // Check if user is authenticated
   useEffect(() => {
-    const token = window?.localStorage?.getItem('token');
+    const token = window?.localStorage?.getItem("token");
     if (!token) {
-      router.push('/signin');
+      router.push("/signin");
     }
   }, [router]);
 
@@ -480,13 +480,16 @@ const Final = () => {
     }
   }, [linkedinUrl, jobDescriptionUrl, file, formState.errors.linkedin_link]);
 
-  const token = localStorage?.getItem('token');
+  const token = localStorage?.getItem("token");
 
   const generateCV = async () => {
+    router.push("/preview");
+    return;
+
     setIsLoading(true);
     try {
       const requestData = {
-        what_to_achieve: state.share ?? '',
+        what_to_achieve: state.share ?? "",
         linkedin_link: linkedinUrl,
         job_description_link: jobDescriptionUrl,
         cv_file: file,
@@ -494,7 +497,7 @@ const Final = () => {
 
       // Include either text or audio, but not both
       if (state.personal) {
-        if (typeof state.personal === 'string') {
+        if (typeof state.personal === "string") {
           //@ts-ignore
           requestData.about_self_text = state.personal;
         } else {
@@ -504,7 +507,7 @@ const Final = () => {
       }
 
       if (state.experience) {
-        if (typeof state.experience === 'string') {
+        if (typeof state.experience === "string") {
           //@ts-ignore
           requestData.work_experience_text = state.experience;
         } else {
@@ -519,9 +522,9 @@ const Final = () => {
           requestData,
           {
             headers: {
-              accept: 'application/json',
+              accept: "application/json",
               Authorization: `Bearer ${token}`,
-              'Content-Type': 'multipart/form-data',
+              "Content-Type": "multipart/form-data",
             },
           }
         );
@@ -530,7 +533,7 @@ const Final = () => {
 
         if (response.status === 201) {
           toast.success(response.data.message);
-          router.push('/congrats');
+          router.push("/congrats");
         }
 
         if (response.status == 400) {
@@ -538,7 +541,7 @@ const Final = () => {
         }
 
         if (response.status == 422) {
-          toast.error('Pro feature');
+          toast.error("Pro feature");
         }
         return response;
       }
@@ -553,7 +556,7 @@ const Final = () => {
         );
       } else {
         //@ts-ignore
-        toast.error(String(error?.response?.data?.detail).replace('_', ' '));
+        toast.error(String(error?.response?.data?.detail).replace("_", " "));
       }
     }
   };
@@ -582,9 +585,9 @@ const Final = () => {
     if (linkedinUrl) {
       await generateCV();
       sendGTMEvent({
-        event: 'Event - Step5 Submit',
-        clickText: 'Submit',
-        values: 'Successfully generated CV',
+        event: "Event - Step5 Submit",
+        clickText: "Submit",
+        values: "Successfully generated CV",
       });
     }
   };
@@ -606,14 +609,14 @@ const Final = () => {
   useEffect(() => {
     if (linkedinUrl?.length) {
       state.addToLinkedinUrl(linkedinUrl);
-      localStorage?.setItem('linkedin_link', linkedinUrl);
+      localStorage?.setItem("linkedin_link", linkedinUrl);
     }
   }, [linkedinUrl]);
 
   useEffect(() => {
     if (jobDescriptionUrl?.length) {
       state.addToJD(jobDescriptionUrl);
-      localStorage?.setItem('job_description_link', jobDescriptionUrl);
+      localStorage?.setItem("job_description_link", jobDescriptionUrl);
     }
   }, [jobDescriptionUrl]);
 
@@ -626,7 +629,7 @@ const Final = () => {
       <div className="w-[85%] md:w-[550px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
         <button
           className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
-          onClick={() => router.push('/work-experiences')}
+          onClick={() => router.push("/work-experiences")}
         >
           <svg
             width="24"
@@ -662,7 +665,7 @@ const Final = () => {
           </p>
 
           <p className="font-tertiary">
-            Perfect, {state.cv.length ? state.cv[0].fullName + '!' : ''}
+            Perfect, {state.cv.length ? state.cv[0].fullName + "!" : ""}
           </p>
 
           <p className="font-bold md:text-2xl text-lg font-tertiary">
@@ -688,10 +691,10 @@ const Final = () => {
             <input
               type="text"
               placeholder={
-                state.linkedinUrl ? state.linkedinUrl : 'Your link here...'
+                state.linkedinUrl ? state.linkedinUrl : "Your link here..."
               }
               className="border rounded-lg p-3"
-              {...register('linkedin_link')}
+              {...register("linkedin_link")}
             />
             {formState.errors.linkedin_link && (
               <p className="text-[#FC5555] text-sm">
@@ -709,10 +712,10 @@ const Final = () => {
               placeholder={
                 state.jobDescription
                   ? state.jobDescription
-                  : 'Job description here...'
+                  : "Job description here..."
               }
               className="border rounded-lg p-3 min-h-[200px]"
-              {...register('job_description_link')}
+              {...register("job_description_link")}
             />
 
             {formState.errors.job_description_link && (
@@ -727,8 +730,8 @@ const Final = () => {
             disabled={isButtonDisabled || isLoading}
             className={
               isButtonDisabled || isLoading
-                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-not-allowed font-tertiary'
-                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer font-tertiary'
+                ? "bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-not-allowed font-tertiary"
+                : "bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 mx-auto cursor-pointer font-tertiary"
             }
           >
             Submit
