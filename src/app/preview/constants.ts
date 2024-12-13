@@ -49,3 +49,17 @@ platforms.
 • Addressed cross-browser compatibility issues, leading to a significant reduction in user-reported bugs.
 EDUCATION
 University Name: Example university name`
+
+export const responseExample = {
+	"id": 1,
+	"overall": 40,
+	"points": 3,
+	"category": [
+	    {"name": "brevity", "score": 90, "scoreMax": 100, "description": `Tags: Bullets usage & length, filler words.\n\nAssessment:\nMost bullet points are appropriately concise but occasionally include filler words or redundancy.\nThe CV is a bit dense, with minor opportunities for streamlining content.\n\nSuggestions for Improvement:\nCombine or remove redundant bullet points (e.g., those describing similar responsibilities across roles).\nFocus on the most impactful experiences, particularly in roles where responsibilities overlap.\nUse a consistent structure for bullet points: Action + Task + Result (e.g., "Collaborated with teams to launch X, resulting in Y").`},
+	    {"name": "style", "score": 12, "scoreMax": 100, "description": "Description for style"},
+	    {"name": "sections", "score": 80, "scoreMax": 100, "description": "Description for sections"},
+	    {"name": "impact", "score": 94, "scoreMax": 100, "description": "Description for impact"},
+	    {"name": "soft skill", "score": 30, "scoreMax": 100, "description": "Description for soft skill"},
+	],
+	"cvFileUrl": "https://qdl.pr.dengun.net/uploads/files/The_Resume_of_Elon_Musk_-_By_Novor%C3%A9sum%C3%A9.pdf"
+}
