@@ -13,7 +13,9 @@ import {
   faArrowUp,
   faChevronDown,
   faChevronUp,
+  faFileAlt,
   faList,
+  faOutdent,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -136,6 +138,17 @@ const Preview = () => {
     router.push("/congrats");
   };
 
+  const iconVariant = (variant: string) => {
+    switch (variant) {
+      case "style":
+        return faFileAlt;
+      case "sections":
+        return faOutdent;
+      default:
+        return faList;
+    }
+  };
+
   // Check if user is authenticated
   useEffect(() => {
     const token = window?.localStorage?.getItem("token");
@@ -247,7 +260,7 @@ const Preview = () => {
                           }
                         >
                           <div className="flex items-center text-purple-600">
-                            <FontAwesomeIcon icon={faList} />
+                            <FontAwesomeIcon icon={iconVariant(name)} />
                             <span className="pl-2 font-bold capitalize">
                               {name}
                             </span>
