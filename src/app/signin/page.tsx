@@ -1,14 +1,14 @@
-'use client';
-import LeftStep from '@/components/elements/step/LeftStep';
-import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { userSigninDataValidation } from './schema/user-data';
-import { useCvStore } from '@/store/cv';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { toast } from 'react-toastify';
-import axios, { AxiosError } from 'axios';
-import Link from 'next/link';
+"use client";
+import LeftStep from "@/components/elements/step/LeftStep";
+import { useCvStore } from "@/store/cv";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios, { AxiosError } from "axios";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { userSigninDataValidation } from "./schema/user-data";
 
 type TCreateUserSchema = {
   email: string;
@@ -19,8 +19,8 @@ const SignIn = () => {
   });
 
   const searchParams = useSearchParams();
-  const token = searchParams.get('token');
-  const email = searchParams.get('email');
+  const token = searchParams.get("token");
+  const email = searchParams.get("email");
 
   const router = useRouter();
 
@@ -28,32 +28,32 @@ const SignIn = () => {
   const state = useCvStore((state) => state);
 
   const localStorage =
-    typeof window !== 'undefined' ? window.localStorage : null;
+    typeof window !== "undefined" ? window.localStorage : null;
 
   useEffect(() => {
     const verifyUser = async () => {
       try {
         const response = await axios.post(
-          `https://cv.backend.bamble.io/users/verify`,
+          `${process.env.NEXT_PUBLIC_API_HOST}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,
           },
           {
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
           }
         );
 
-        localStorage?.setItem('token', response.data.access_token);
+        localStorage?.setItem("token", response.data.access_token);
 
         if (response.status === 200) {
-          toast.success('User verified successfully');
+          toast.success("User verified successfully");
 
           // router.push('/intent');
         } else {
-          toast.error('User verification failed');
+          toast.error("User verification failed");
         }
       } catch (error) {
         console.log(error);
@@ -67,28 +67,31 @@ const SignIn = () => {
     try {
       // toast.loading('Authenticating....');
       const response = await axios.post(
-        'https://cv.backend.bamble.io/auth/token',
+        `${process.env.NEXT_PUBLIC_API_HOST}/auth/token`,
         {
-          username: email,
-          password: 'stringcehw88938f28998efjkndj90rej9vdoijnsd',
+          username: "denis@dengun.com", //email,
+          password: `${process.env.API_PASS}`, //"stringcehw88938f28998efjkndj90rej9vdoijnsd",
         },
         {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            accept: 'application/json',
+            "Content-Type": "application/x-www-form-urlencoded",
+            accept: "application/json",
           },
         }
       );
 
-      const user = await axios.get(`https://cv.backend.bamble.io/users/me`, {
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${response.data.access_token}`,
-        },
-      });
+      const user = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_HOST}/users/me`,
+        {
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${response.data.access_token}`,
+          },
+        }
+      );
 
       state.addToCV({
-        fullName: user.data.first_name + ' ' + user.data.last_name,
+        fullName: user.data.first_name + " " + user.data.last_name,
         email: user.data.email,
       });
 
@@ -96,9 +99,9 @@ const SignIn = () => {
         toast.info(response?.data?.details);
       }
       if (response.status === 200) {
-        toast.success('Login successful');
-        localStorage?.setItem('token', response.data.access_token);
-        router.push('/intent');
+        toast.success("Login successful");
+        localStorage?.setItem("token", response.data.access_token);
+        router.push("/intent");
       }
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -132,7 +135,7 @@ const SignIn = () => {
       <div className="max-w-[520px] mx-auto pt-20 text-black flex flex-col space-y-5 sm:px-0 px-5">
         <div className="mb-10">
           <h2 className="font-bold text-[32px] font-tertiary">
-            {' '}
+            {" "}
             Welcome to Bamble!
           </h2>
 
@@ -150,10 +153,10 @@ const SignIn = () => {
             <input
               type="email"
               placeholder={
-                state.cv.length ? state.cv[0].email : 'Your email here...'
+                state.cv.length ? state.cv[0].email : "Your email here..."
               }
               className="border rounded-lg p-3"
-              {...register('email')}
+              {...register("email")}
             />
 
             {formState.errors.email && (
@@ -162,17 +165,17 @@ const SignIn = () => {
           </div>
 
           <p className="text-[#414143] text-sm font-tertiary">
-            Welcome back, you are consenting to our{' '}
+            Welcome back, you are consenting to our{" "}
             <Link href="/terms" className="text-blue-primary font-tertiary">
-              {' '}
-              Terms of Service{' '}
-            </Link>{' '}
+              {" "}
+              Terms of Service{" "}
+            </Link>{" "}
             and confirming that you have reviewed and accepted the Global
             <Link
               href="/privacy-policy"
               className="text-blue-primary font-tertiary"
             >
-              {' '}
+              {" "}
               Privacy Statement
             </Link>
             .
@@ -181,8 +184,8 @@ const SignIn = () => {
           <button
             className={
               isButtonDisabled
-                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed font-tertiary'
-                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer font-tertiary'
+                ? "bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed font-tertiary"
+                : "bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer font-tertiary"
             }
           >
             Next

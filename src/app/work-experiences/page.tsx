@@ -1,13 +1,13 @@
 'use client';
-import LeftStep from '@/components/elements/step/LeftStep';
-import React, { useEffect, useState } from 'react';
-import { useCvStore } from '@/store/cv';
-import { useRouter } from 'next/navigation';
-import ProgressBar from '@/components/elements/ProgressBar';
-import Tips from '@/components/elements/tips';
-import Microphone from '@/components/elements/microphone';
 import Keyboard from '@/components/elements/keyboard';
+import Microphone from '@/components/elements/microphone';
+import ProgressBar from '@/components/elements/ProgressBar';
+import LeftStep from '@/components/elements/step/LeftStep';
+import Tips from '@/components/elements/tips';
+import { useCvStore } from '@/store/cv';
 import { sendGTMEvent } from '@next/third-parties/google';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const WorkExperiences = () => {
   const router = useRouter();
@@ -73,8 +73,9 @@ const WorkExperiences = () => {
 
   const onSubmit = () => {
     if (recording || text) {
-      //@ts-ignore
-      state.addToWorkExperiences(recording?.size ? recording : text);
+      state.addToWorkExperiences(
+        recording?.size !== undefined ? recording : text
+      );
       router.push('/final');
       sendGTMEvent({
         event: 'Event - Step3 Question 2',

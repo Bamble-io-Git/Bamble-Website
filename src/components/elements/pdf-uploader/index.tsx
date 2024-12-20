@@ -1,12 +1,11 @@
 //@ts-nocheck
 
-import React, { useState, useCallback, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import { useDropzone } from 'react-dropzone';
-import Image from 'next/image';
+import { useCvStore } from '@/store/cv';
 import { sendGTMEvent } from '@next/third-parties/google';
 import clsx from 'clsx';
-import { useCvStore } from '@/store/cv';
+import { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { toast } from 'react-toastify';
 
 function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -22,6 +21,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
       setFileSize(selectedFile?.size);
       handleUpload(selectedFile);
 
+      window.localStorage.setItem('pdfFile', selectedFile);
       window.localStorage.setItem(
         'pdf',
         JSON.stringify({

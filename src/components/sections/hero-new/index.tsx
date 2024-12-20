@@ -2,11 +2,11 @@
 
 import LinkComponent from '@/components/elements/link';
 
+import Banner from '@/components/elements/banner';
+import axios from 'axios';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { performanceIndex } from './data';
-import Banner from '@/components/elements/banner';
-import axios from 'axios';
 
 const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
   const [selectedCard, setSelectedCard] = useState(0);
@@ -30,7 +30,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          'https://cv.backend.bamble.io/counter/'
+          `${process.env.NEXT_PUBLIC_API_HOST}/counter/`
         );
 
         setCount(data.counter);

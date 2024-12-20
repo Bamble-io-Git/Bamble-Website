@@ -378,19 +378,18 @@
 // export default Final;
 
 "use client";
-import LeftStep from "@/components/elements/step/LeftStep";
-import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useCvStore } from "@/store/cv";
-import { useRouter } from "next/navigation";
-import { finalDataValidation } from "../signup/schema/final-data";
-import ProgressBar from "@/components/elements/ProgressBar";
-import axios from "axios";
 import PdfUpload from "@/components/elements/pdf-uploader";
-import { toast } from "react-toastify";
+import ProgressBar from "@/components/elements/ProgressBar";
+import LeftStep from "@/components/elements/step/LeftStep";
+import { useCvStore } from "@/store/cv";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { sendGTMEvent } from "@next/third-parties/google";
-import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { finalDataValidation } from "../signup/schema/final-data";
 
 type TCreateUserSchema = {
   linkedin_link: string;
@@ -478,6 +477,9 @@ const Final = () => {
     } else {
       setIsButtonDisabled(true);
     }
+
+    // Update the file from state, so it can be used in the next step: (Preview page)
+    state.addToPdf(file);
   }, [linkedinUrl, jobDescriptionUrl, file, formState.errors.linkedin_link]);
 
   const token = localStorage?.getItem("token");
@@ -518,7 +520,7 @@ const Final = () => {
         console.log(requestData);
 
         const response = await axios.post(
-          `https://cv.backend.bamble.io/users/generate_cv`,
+          `${process.env.NEXT_PUBLIC_API_HOST}/users/generate_cv`,
           requestData,
           {
             headers: {
@@ -603,6 +605,7 @@ const Final = () => {
     //   setFile(state.pdf);
     // }
     setFile(file);
+    window.localStorage?.setItem("file", JSON.stringify(file));
   }, [state.pdf]);
 
   // Store linkedinUrl and jobDescriptionUrl in the state and localStorage

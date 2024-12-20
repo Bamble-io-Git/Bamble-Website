@@ -3,7 +3,7 @@ import LeftStep from '@/components/elements/step/LeftStep';
 import { useCvStore } from '@/store/cv';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const AuthVerify = () => {
@@ -24,7 +24,7 @@ const AuthVerify = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          `https://cv.backend.bamble.io/users/verify`,
+          `${process.env.NEXT_PUBLIC_API_HOST}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,
