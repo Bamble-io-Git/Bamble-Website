@@ -69,8 +69,8 @@ const SignIn = () => {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_HOST}/auth/token`,
         {
-          username: "denis@dengun.com", //email,
-          password: `${process.env.API_PASS}`, //"stringcehw88938f28998efjkndj90rej9vdoijnsd",
+          username: email,
+          password: "stringcehw88938f28998efjkndj90rej9vdoijnsd",
         },
         {
           headers: {
