@@ -247,7 +247,7 @@ const Preview = () => {
               <object
                 width="100%"
                 height="100%"
-                data={`https://pdfobject.com/pdf/sample.pdf#toolbar=0&navpanes=0&scrollbar=0`}
+                data={`${pdfPreview}#toolbar=0&navpanes=0&scrollbar=0`}
                 type="application/pdf"
               ></object>
             </>
