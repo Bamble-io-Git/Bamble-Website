@@ -178,10 +178,8 @@ const Preview = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_HOST}/v2/users/generate_cv`,
-        {
-          id: scoresData!.id,
-        },
+        `${process.env.NEXT_PUBLIC_API_HOST}/v2/users/generate_cv?id=${scoresData!.id}`,
+        {},
         {
           headers: {
             accept: "application/json",
