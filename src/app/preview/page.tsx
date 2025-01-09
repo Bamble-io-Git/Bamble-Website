@@ -136,6 +136,9 @@ const Preview = () => {
 
   const submitDataForPDF = async () => {
     console.log("Submition: ", requestData);
+    if (!requestData?.what_to_achieve) {
+      return;
+    }
     setIsLoading(true);
     try {
       const response = await axios.post(
