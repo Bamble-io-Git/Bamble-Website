@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import LinkComponent from '@/components/elements/link';
+import LinkComponent from "@/components/elements/link";
 
-import Banner from '@/components/elements/banner';
-import axios from 'axios';
-import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
-import { performanceIndex } from './data';
+import Banner from "@/components/elements/banner";
+import axios from "axios";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
+import { performanceIndex } from "./data";
 
 const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
   const [selectedCard, setSelectedCard] = useState(0);
@@ -30,7 +30,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_HOST}/counter/`
+          `https://dev-cv.backend.bamble.io/counter/`
         );
 
         setCount(data.counter);
@@ -92,7 +92,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
                 src="/assets/face-2.png"
                 className="rounded-full absolute top-0 left-3"
                 alt=""
-              />{' '}
+              />{" "}
               <Image
                 width={30}
                 height={30}
@@ -104,12 +104,12 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
 
             <div>
               <span className="text-[#45A6FF] font-bold">
-                {' '}
-                {loading ? '.....' : count?.toLocaleString('en-US')} people
+                {" "}
+                {loading ? "....." : count?.toLocaleString("en-US")} people
               </span>
               <span className="text-[#45A6FF]">
-                {' '}
-                have guaranteed their spot{' '}
+                {" "}
+                have guaranteed their spot{" "}
               </span>
             </div>
           </div>

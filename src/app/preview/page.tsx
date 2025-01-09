@@ -139,7 +139,7 @@ const Preview = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_HOST}/v2/users/get_scores`,
+        `https://dev-cv.backend.bamble.io/v2/users/get_scores`,
         requestData,
         {
           headers: {
@@ -178,7 +178,9 @@ const Preview = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_HOST}/v2/users/generate_cv?id=${scoresData!.id}`,
+        `https://dev-cv.backend.bamble.io/v2/users/generate_cv?id=${
+          scoresData!.id
+        }`,
         {},
         {
           headers: {

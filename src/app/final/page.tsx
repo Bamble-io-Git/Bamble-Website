@@ -520,7 +520,7 @@ const Final = () => {
         console.log(requestData);
 
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_HOST}/users/generate_cv`,
+          `https://dev-cv.backend.bamble.io/users/generate_cv`,
           requestData,
           {
             headers: {
