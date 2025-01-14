@@ -17,15 +17,15 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
     const selectedFile = acceptedFiles[0];
     if (
       selectedFile &&
-      selectedFile.type === "application/pdf" &&
-      selectedFile.size < 10000 // 10 KB
+      selectedFile.type === "application/pdf" /*&&
+      selectedFile.size < 10000 // 10 KB*/
     ) {
       setFile(selectedFile);
       state(selectedFile);
       setFileSize(selectedFile?.size);
       handleUpload(selectedFile);
 
-      window.localStorage.setItem("pdfFile", selectedFile);
+      // window.localStorage.setItem("pdfFile", selectedFile);
       window.localStorage.setItem(
         "pdf",
         JSON.stringify({
@@ -65,7 +65,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
 
     reader.onload = async (e) => {
       const base64 = (e?.target?.result as string)?.split(",")[1];
-      const binary = atob(base64);
+      // const binary = atob(base64);
 
       try {
         // Mock upload to demonstrate progress...
@@ -75,9 +75,9 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
         }
 
         // After successful upload, handle the uploaded binary data here
-        console.log("Uploaded PDF binary:", binary);
-        localStorage.setItem("pdfBin", binary);
-        toast.success("PDF uploaded successfully!");
+        // console.log("PDF binary:", binary);
+        localStorage.setItem("pdfBin", base64);
+        toast.success("PDF loaded successfully!");
       } catch (error) {
         console.error("Upload failed:", error);
         toast.error("Failed to upload PDF.");
@@ -157,7 +157,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
               : "Select a file or drag and drop here"}
           </p>
 
-          <p className="text-[12px] text-gray-500">
+          <p className="text-[12px] text-gray-500 hidden">
             PDF file size no more than 10KB
           </p>
         </div>

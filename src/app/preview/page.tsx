@@ -98,9 +98,11 @@ const Preview = () => {
     let file: Blob | null = null;
 
     // Convert binary file to Blob for payload file submission:
-    const binFile = window.localStorage.getItem("pdfBin");
-    if (binFile) {
-      file = new Blob([binFile], { type: "application/pdf" });
+    const base64 = window.localStorage.getItem("pdfBin");
+
+    if (base64) {
+      const binary = atob(base64);
+      file = new Blob([binary], { type: "application/pdf" });
     }
 
     // Include either text or audio, but not both
@@ -195,7 +197,7 @@ const Preview = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `https://dev-cv.backend.bamble.io/v2/users/generate_cv?id=${
+        `https://deb3-194-65-159-44.ngrok-free.app/v2/users/generate_cv?id=${
           scoresData!.id
         }`,
         {},
