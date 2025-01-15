@@ -24,6 +24,7 @@ type TActions = {
   addToPersonalDetails: (values) => void;
   addToWorkExperiences: (values) => void;
   addToPdf: (values) => void;
+  getPdf: () => any;
   addToLinkedinUrl: (values) => void;
   addToJD: (values) => void;
 };
@@ -34,6 +35,7 @@ export const useCvStore = create(
       cv: [],
       step: 0,
       share: '',
+      pdf: null,
       addToCV: (cv: TCV) => {
         set((state: any) => {
           const cvState = state.cv;
@@ -97,6 +99,7 @@ export const useCvStore = create(
           };
         });
       },
+      getPdf: () => get().pdf,
       addToLinkedinUrl: (value) => {
         set((state) => {
           state.linkedinUrl = value;
