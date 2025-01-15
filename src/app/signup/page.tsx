@@ -60,12 +60,12 @@ const Signup = () => {
     try {
       toast.loading("Authenticating....");
       const response = await axios.post(
-        `https://dev-cv.backend.bamble.io/users`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/users`,
         {
           first_name: firstName,
           last_name: lastName,
           email,
-          password: "stringcehw88938f28998efjkndj90rej9vdoijnsd",
+          password: `${process.env.NEXT_PUBLIC_API_PASS}`,
           partner_community: community,
         },
         {

@@ -34,7 +34,7 @@ const SignIn = () => {
     const verifyUser = async () => {
       try {
         const response = await axios.post(
-          `https://dev-cv.backend.bamble.io/users/verify`,
+          `${process.env.NEXT_PUBLIC_API_HOST}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,
@@ -67,10 +67,10 @@ const SignIn = () => {
     try {
       // toast.loading('Authenticating....');
       const response = await axios.post(
-        `https://dev-cv.backend.bamble.io/auth/token`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/auth/token`,
         {
           username: email,
-          password: "stringcehw88938f28998efjkndj90rej9vdoijnsd",
+          password: `${process.env.NEXT_PUBLIC_API_PASS}`,
         },
         {
           headers: {
@@ -81,7 +81,7 @@ const SignIn = () => {
       );
 
       const user = await axios.get(
-        `https://dev-cv.backend.bamble.io/users/me`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/users/me`,
         {
           headers: {
             accept: "application/json",

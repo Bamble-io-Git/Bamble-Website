@@ -30,7 +30,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `https://dev-cv.backend.bamble.io/counter/`
+          `${process.env.NEXT_PUBLIC_API_HOST}/counter/`
         );
 
         setCount(data.counter);

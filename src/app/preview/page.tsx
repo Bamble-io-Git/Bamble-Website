@@ -151,7 +151,7 @@ const Preview = () => {
     setIsScoreLoading(true);
     try {
       const response = await axios.post(
-        `https://dev-cv.backend.bamble.io/v2/users/get_scores`,
+        `${process.env.NEXT_PUBLIC_API_HOST}/v2/users/get_scores`,
         requestData,
         {
           headers: {
@@ -190,7 +190,7 @@ const Preview = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `https://dev-cv.backend.bamble.io/v2/users/generate_cv?id=${
+        `${process.env.NEXT_PUBLIC_API_HOST}/v2/users/generate_cv?id=${
           scoresData!.id
         }`,
         {},
@@ -350,7 +350,7 @@ const Preview = () => {
                                   <span className="font-bold text-xl">
                                     {score}
                                   </span>
-                                  <span>/{scoreMax}</span>
+                                  <span>/25</span>
                                 </div>
                                 <FontAwesomeIcon
                                   style={{ color: "grey" }}

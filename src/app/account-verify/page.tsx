@@ -24,7 +24,7 @@ const AuthVerify = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          `https://dev-cv.backend.bamble.io/users/verify`,
+          `${process.env.NEXT_PUBLIC_API_HOST}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,
