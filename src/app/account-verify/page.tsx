@@ -24,7 +24,7 @@ const AuthVerify = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_HOST}/users/verify`,
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,

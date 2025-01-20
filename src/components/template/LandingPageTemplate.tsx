@@ -1,24 +1,34 @@
-'use client';
-import { useRef } from 'react';
-import PageLayout from '../layout';
-import Hero from '../sections/hero-new';
-import GiveTeamLife2 from '../sections/cards';
-import Image from 'next/image';
-import CVStack from '../elements/cv-stack';
-import TurboChargeCareer from '../elements/turbocharge-career';
-import FireYourWriter from '../elements/fire-your-writer';
-import { useRouter } from 'next/navigation';
-import LogoCarousel from '../sections/logos';
+"use client";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
+import CVStack from "../elements/cv-stack";
+import TurboChargeCareer from "../elements/turbocharge-career";
+import PageLayout from "../layout";
+import GiveTeamLife2 from "../sections/cards";
+import Hero from "../sections/hero-new";
+import LogoCarousel from "../sections/logos";
+
 const LandingPageTemplate = () => {
+  const router = useRouter();
   const ref = useRef<null | HTMLElement>(null);
   const handleScroll = () =>
-    ref.current && ref?.current?.scrollIntoView({ behavior: 'smooth' });
-  const router = useRouter();
+    ref.current && ref?.current?.scrollIntoView({ behavior: "smooth" });
+
+  const BannerCTALazy = dynamic(() => import("../elements/banner-cta"), {
+    ssr: false,
+  });
+
+  const FireWriterLazy = dynamic(() => import("../elements/fire-your-writer"), {
+    ssr: false,
+  });
+
   return (
     <PageLayout>
       <Hero handleScroll={handleScroll} />
       <CVStack />
-      <FireYourWriter />
+      <FireWriterLazy />
       <GiveTeamLife2 handleScroll={handleScroll} />
 
       <TurboChargeCareer />
@@ -53,7 +63,7 @@ const LandingPageTemplate = () => {
 
             <button
               className="bg-white-primary text-sm sm:text-base text-[#45A6FF] text-center px-3 rounded-lg font-semibold sm:w-auto py-[12px] w-[200px]"
-              onClick={() => router.push('/signup')}
+              onClick={() => router.push("/signup")}
             >
               Try for free!
             </button>
@@ -86,6 +96,7 @@ const LandingPageTemplate = () => {
           </div>
         </div>
       </section>
+      <BannerCTALazy />
     </PageLayout>
   );
 };

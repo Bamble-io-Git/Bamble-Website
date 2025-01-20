@@ -1,5 +1,6 @@
 "use client";
 import LeftStep from "@/components/elements/step/LeftStep";
+import useHeaderTitle from "@/hooks/useHeaderTitle";
 import { useCvStore } from "@/store/cv";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
@@ -30,11 +31,13 @@ const SignIn = () => {
   const localStorage =
     typeof window !== "undefined" ? window.localStorage : null;
 
+  useHeaderTitle("SIGN-IN");
+
   useEffect(() => {
     const verifyUser = async () => {
       try {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_HOST}/users/verify`,
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,
@@ -67,7 +70,7 @@ const SignIn = () => {
     try {
       // toast.loading('Authenticating....');
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_HOST}/auth/token`,
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/auth/token`,
         {
           username: email,
           password: `${process.env.NEXT_PUBLIC_API_PASS}`,
@@ -81,7 +84,7 @@ const SignIn = () => {
       );
 
       const user = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_HOST}/users/me`,
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/me`,
         {
           headers: {
             accept: "application/json",

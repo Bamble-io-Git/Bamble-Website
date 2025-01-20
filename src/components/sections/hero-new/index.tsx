@@ -30,7 +30,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_HOST}/counter/`
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/counter/`
         );
 
         setCount(data.counter);
@@ -56,30 +56,41 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
             lineHeight: 1.2,
           }}
         >
-          Create high-quality CV in 3 clicks
+          Unlock your tech career with AI
         </h1>
 
         <h2 className="text-black text-base sm:text-[14px] font-primary   sm:leading-7 font-normal z-10">
-          Bamble’s AI CV increases your chances of getting that first interview
-          and landing your dream job! Don’t waste time on poor,
-          non-representative and sub-par CVs.
+          Create a personalized, job-specific CV instantly!
         </h2>
 
         <div className="flex flex-col sm:flex-row justify-center gap-5 pt-6 pb-7 sm:mx-0 mx-auto z-10">
           <div>
-            <LinkComponent url="/signup" text="Try for free!" />
+            <LinkComponent url="/signup" text="Start now for free!" />
           </div>
 
           <div className="my-auto  sm:block hidden">
-            <Image height={30} width={2} src="/assets/divi.svg" alt="" />
+            <Image
+              priority
+              height={30}
+              width={2}
+              src="/assets/divi.svg"
+              alt=""
+            />
           </div>
 
           <div className="my-auto mx-auto block sm:hidden">
-            <Image height={2} width={30} src="/assets/div-hor.svg" alt="" />
+            <Image
+              priority
+              height={2}
+              width={30}
+              src="/assets/div-hor.svg"
+              alt=""
+            />
           </div>
           <div className="block">
             <div className="relative block h-[32px] left-[40%] sm:left-0 sm:w-auto w-[40px] mb-3 sm:mb-auto">
               <Image
+                priority
                 height={30}
                 width={30}
                 src="/assets/face-1.png"
@@ -87,6 +98,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
                 alt=""
               />
               <Image
+                priority
                 width={30}
                 height={30}
                 src="/assets/face-2.png"
@@ -94,6 +106,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
                 alt=""
               />{" "}
               <Image
+                priority
                 width={30}
                 height={30}
                 src="/assets/face-3.png"

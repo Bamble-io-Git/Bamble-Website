@@ -60,7 +60,7 @@ const FireYourWriter = () => {
 
       <div className="text-center py-5 space-y-4 mb-10 w-auto sm:max-w-[630px] mx-auto">
         <h2 className="gradient-primary font-bold text-3xl">
-          Fire your writer! Build a quality <br /> CV stress-free.
+          Bamble’s AI provides the CV you need <br /> Automatically, in seconds!
         </h2>
 
         <p>
@@ -100,7 +100,7 @@ const FireYourWriter = () => {
                   'transition-all duration-300 animate-fade text-base'
                 )}
               >
-                Tell us your goals
+                Matches your goals
               </p>
             </div>
             <div className="flex gap-x-3 items-center">
@@ -118,7 +118,7 @@ const FireYourWriter = () => {
                   'transition-all duration-300 animate-fade text-base'
                 )}
               >
-                Describe your profile in voice notes
+                Represents who you are
               </p>
             </div>
             <div className="flex gap-x-3 items-center">
@@ -141,11 +141,12 @@ const FireYourWriter = () => {
                   'transition-all duration-300 animate-fade text-base'
                 )}
               >
-                Upload your existing resources (CV, LinkedIn)
+                Transforms your old CV
               </p>
             </div>
             <div className="flex gap-x-3 items-center">
-              <div>
+              {/* TODO: intentionally left */}
+              {/* <div>
                 {selectedIndex === 3 && startAnimation ? (
                   <Image
                     src="/assets/download.svg"
@@ -156,8 +157,8 @@ const FireYourWriter = () => {
                 ) : (
                   <Image src="/assets/4.svg" alt="" width={40} height={40} />
                 )}
-              </div>
-              <p
+              </div> */}
+              {/* <p
                 onMouseEnter={() => setStartAnimation(true)}
                 className={clsx(
                   selectedIndex === 3 && 'font-bold text-[#45A6FF]',
@@ -165,7 +166,7 @@ const FireYourWriter = () => {
                 )}
               >
                 Download and start applying!
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

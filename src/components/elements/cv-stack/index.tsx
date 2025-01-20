@@ -29,6 +29,7 @@ const CVStack = () => {
           }}
         >
           <Image
+            priority
             src="/assets/rope.svg"
             className={clsx(
               isHover
@@ -49,6 +50,7 @@ const CVStack = () => {
         <div className="top-0 left-1/2 mx-auto">
           <div className="relative">
             <Image
+              priority
               src="/assets/cv-1-stand.svg"
               className={clsx(
                 isHover ? 'transform skew-y-0' : styles.skewRight,
@@ -70,6 +72,7 @@ const CVStack = () => {
           >
             {!isHover ? (
               <Image
+                priority
                 src="/assets/cv2.svg"
                 alt=""
                 width={1030}
@@ -80,6 +83,7 @@ const CVStack = () => {
               />
             ) : (
               <Image
+                priority
                 src="/assets/cv-2-stand.svg"
                 alt=""
                 className="-mx-3.5"
@@ -96,6 +100,7 @@ const CVStack = () => {
             className={clsx(!isHover ? 'top-[13.8%]' : 'top-[42%]', 'absolute')}
           >
             <Image
+              priority
               src="/assets/cv3.svg"
               className={!isHover ? styles.skewDown : ''}
               alt=""

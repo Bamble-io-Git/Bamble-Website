@@ -151,7 +151,7 @@ const Preview = () => {
     setIsScoreLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_HOST}/v2/users/get_scores`,
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/v2/users/get_scores`,
         requestData,
         {
           headers: {
@@ -190,7 +190,7 @@ const Preview = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_HOST}/v2/users/generate_cv?id=${
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/v2/users/generate_cv?id=${
           scoresData!.id
         }`,
         {},
@@ -202,7 +202,10 @@ const Preview = () => {
           },
         }
       );
-      router.push("/congrats");
+
+      if (response.status === 201) {
+        router.push("/congrats");
+      }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         if (Array.isArray(error.response.data.detail)) {

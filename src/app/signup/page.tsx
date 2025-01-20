@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { orgs } from "./data/orgs";
 import { userDataValidation } from "./schema/user-data";
 
 const organizations = [
@@ -60,7 +61,7 @@ const Signup = () => {
     try {
       toast.loading("Authenticating....");
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_HOST}/users`,
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users`,
         {
           first_name: firstName,
           last_name: lastName,
@@ -195,7 +196,7 @@ const Signup = () => {
                   Select Partner Community
                 </option>
 
-                {organizations.map((org) => {
+                {orgs.map((org) => {
                   return (
                     <option key={org} value={org}>
                       {org}

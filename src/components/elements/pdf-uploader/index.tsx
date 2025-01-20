@@ -3,6 +3,7 @@
 import { useCvStore } from "@/store/cv";
 import { sendGTMEvent } from "@next/third-parties/google";
 import clsx from "clsx";
+import posthog from "posthog-js";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-toastify";
@@ -11,6 +12,8 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
   const [fileSize, setFileSize] = useState<number | null>(null);
+
+  const stateData = useCvStore((state) => state);
 
   const state = useCvStore((state) => state.addToPdf);
   const onDrop = useCallback((acceptedFiles) => {
@@ -43,6 +46,18 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
         event: "Event - Step4 Upload Docs",
         values: "Upload Success",
       });
+
+      posthog.capture(
+        "cv_upload",
+        {
+          name: stateData.cv[0].fullName ?? "",
+          email: stateData.cv[0].email,
+          detail: `CV for ${stateData.cv[0].fullName} was successfully uploaded`,
+        },
+        {
+          transport: "sendBeacon",
+        }
+      );
     } else {
       toast.error("Please upload a valid PDF file (size).");
     }
