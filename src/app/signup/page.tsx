@@ -1,29 +1,29 @@
-"use client";
+'use client';
 
-import LeftStep from "@/components/elements/step/LeftStep";
-import { useCvStore } from "@/store/cv";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { sendGTMEvent } from "@next/third-parties/google";
-import axios, { AxiosError } from "axios";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ChangeEvent, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import { orgs } from "./data/orgs";
-import { userDataValidation } from "./schema/user-data";
+import LeftStep from '@/components/elements/step/LeftStep';
+import { useCvStore } from '@/store/cv';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { sendGTMEvent } from '@next/third-parties/google';
+import axios, { AxiosError } from 'axios';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { orgs } from './data/orgs';
+import { userDataValidation } from './schema/user-data';
 
 const organizations = [
-  "Utiva",
-  "Taltrix/Tech4Dev",
-  "SheCode Africa",
-  "Babcock University",
-  "ihiFix",
-  "OAU Ife",
-  "FUTA",
-  "FUOYE",
-  "NOVA SBE",
-  "Not Applicable",
+  'Utiva',
+  'Taltrix/Tech4Dev',
+  'SheCode Africa',
+  'Babcock University',
+  'ihiFix',
+  'OAU Ife',
+  'FUTA',
+  'FUOYE',
+  'NOVA SBE',
+  'Not Applicable',
 ];
 
 type TCreateUserSchema = {
@@ -35,17 +35,17 @@ const Signup = () => {
     resolver: zodResolver(userDataValidation),
   });
 
-  const [community, setCommunity] = useState("not-applicable");
+  const [community, setCommunity] = useState('not-applicable');
 
   const handleCommunity = (e: ChangeEvent<any>) => setCommunity(e.target.value);
 
   const router = useRouter();
 
   const localStorage =
-    typeof window !== "undefined" ? window.localStorage : null;
+    typeof window !== 'undefined' ? window.localStorage : null;
 
   useEffect(() => {
-    localStorage?.removeItem("token");
+    localStorage?.removeItem('token');
   }, [localStorage, router]);
 
   const login = async ({
@@ -55,24 +55,24 @@ const Signup = () => {
     fullName: string;
     email: string;
   }) => {
-    const firstName = fullName.split(" ")[0];
-    const lastName = fullName.split(" ")[1] ?? "";
+    const firstName = fullName.split(' ')[0];
+    const lastName = fullName.split(' ')[1] ?? '';
 
     try {
-      toast.loading("Authenticating....");
+      toast.loading('Authenticating....');
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users`,
         {
           first_name: firstName,
           last_name: lastName,
           email,
-          password: `${process.env.NEXT_PUBLIC_API_PASS}`,
+          password: `stringcehw88938f28998efjkndj90rej9vdoijnsd`,
           partner_community: community,
         },
         {
           headers: {
-            "Content-Type": "application/json",
-            accept: "application/json",
+            'Content-Type': 'application/json',
+            accept: 'application/json',
           },
         }
       );
@@ -82,14 +82,14 @@ const Signup = () => {
       }
       if (response.status === 201) {
         toast.dismiss();
-        toast.success("Please check your email for login credentials");
-        router.push("/account-verify");
+        toast.success('Please check your email for login credentials');
+        router.push('/account-verify');
       }
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.dismiss();
         toast.error(error?.response?.data.detail);
-        router.push("/signin");
+        router.push('/signin');
       }
     }
   };
@@ -103,7 +103,7 @@ const Signup = () => {
     if (values) {
       state.addToCV(values);
       sendGTMEvent({
-        event: "Event - Signup",
+        event: 'Event - Signup',
         value: values.email,
       });
       await login(values);
@@ -129,7 +129,7 @@ const Signup = () => {
       <div className="max-w-[520px] mx-auto pt-20 text-black flex flex-col space-y-5 sm:px-0 px-5">
         <div className="mb-10">
           <h2 className="font-bold text-[32px] font-tertiary">
-            {" "}
+            {' '}
             Welcome to Bamble!
           </h2>
 
@@ -149,10 +149,10 @@ const Signup = () => {
               placeholder={
                 state.cv.length
                   ? state.cv[0].fullName
-                  : "Your full name here..."
+                  : 'Your full name here...'
               }
               className="border rounded-lg p-3"
-              {...register("fullName")}
+              {...register('fullName')}
             />
             {formState.errors.fullName && (
               <p className="text-[#FC5555] text-sm">
@@ -168,10 +168,10 @@ const Signup = () => {
             <input
               type="email"
               placeholder={
-                state.cv.length ? state.cv[0].email : "Your email here..."
+                state.cv.length ? state.cv[0].email : 'Your email here...'
               }
               className="border rounded-lg p-3"
-              {...register("email")}
+              {...register('email')}
             />
 
             {formState.errors.email && (
@@ -210,7 +210,7 @@ const Signup = () => {
           <p className="text-[#414143] text-sm text-center font-tertiary">
             Already have an account?
             <Link href="/signin" className="text-blue-primary">
-              {" "}
+              {' '}
               Sign in
             </Link>
           </p>
@@ -218,12 +218,12 @@ const Signup = () => {
           <p className="text-[#414143] font-tertiary text-sm">
             By registering for an account, you are consenting to our
             <Link href="/terms" className="text-blue-primary">
-              {" "}
-              Terms of Service{" "}
+              {' '}
+              Terms of Service{' '}
             </Link>
             and confirming that you have reviewed and accepted the Global
             <Link href="/privacy-policy" className="text-blue-primary">
-              {" "}
+              {' '}
               Privacy Statement
             </Link>
             .
@@ -232,8 +232,8 @@ const Signup = () => {
           <button
             className={
               isButtonDisabled
-                ? "bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed"
-                : "bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer"
+                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed'
+                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer'
             }
           >
             Next
