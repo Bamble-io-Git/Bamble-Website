@@ -109,6 +109,9 @@ const SignIn = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(`${error?.message} contact admin`);
+        toast.error(
+          "Make sure to activate your account using the email we sent you."
+        );
       }
     }
   };
