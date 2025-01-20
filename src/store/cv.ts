@@ -21,9 +21,10 @@ type TActions = {
   updatecvQuantity: (id: number, quantity: number) => void;
   clearcv: () => void;
   addToShare: (values: string) => void;
-  addToPersonalDetails: (values: string) => void;
-  addToWorkExperiences: (values: string) => void;
+  addToPersonalDetails: (values) => void;
+  addToWorkExperiences: (values) => void;
   addToPdf: (values) => void;
+  getPdf: () => any;
   addToLinkedinUrl: (values) => void;
   addToJD: (values) => void;
 };
@@ -33,6 +34,8 @@ export const useCvStore = create(
     (set, get) => ({
       cv: [],
       step: 0,
+      share: '',
+      pdf: null,
       addToCV: (cv: TCV) => {
         set((state: any) => {
           const cvState = state.cv;
@@ -71,7 +74,7 @@ export const useCvStore = create(
         });
       },
 
-      addToPersonalDetails: (value: string) => {
+      addToPersonalDetails: (value) => {
         set((state) => {
           state.personal = value;
           return {
@@ -79,7 +82,7 @@ export const useCvStore = create(
           };
         });
       },
-      addToWorkExperiences: (value: string) => {
+      addToWorkExperiences: (value) => {
         set((state) => {
           state.experience = value;
           return {
@@ -96,6 +99,7 @@ export const useCvStore = create(
           };
         });
       },
+      getPdf: () => get().pdf,
       addToLinkedinUrl: (value) => {
         set((state) => {
           state.linkedinUrl = value;
