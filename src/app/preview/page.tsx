@@ -63,7 +63,7 @@ const Preloader = ({ text }: { text?: string }) => {
           className="text-gray-900"
         ></path>
       </svg>
-      {text && <p className="mt-8 text-gray-700">{text}</p>}
+      {text && <p className="mt-8 text-gray-700 w-[80%] text-center">{text}</p>}
     </div>
   );
 };
@@ -268,7 +268,7 @@ const Preview = () => {
       <div className="w-full md:w-[550px] mx-auto pt-12 lg:pt-18 pl-0 xl:pl-36 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
         {isScoreLoading || !scoresData ? (
           <div className="flex items-center justify-center h-full">
-            <Preloader text="We are calculating your data, please wait ..." />
+            <Preloader text="We are calculating your data, please wait, could take up to 2 minutes." />
           </div>
         ) : (
           <>
