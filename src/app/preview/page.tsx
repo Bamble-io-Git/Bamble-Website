@@ -1,10 +1,10 @@
-"use client";
-import { RadialProgress } from "@/components/elements/RadialProgress";
-import LeftStep from "@/components/elements/step/LeftStep";
-import { useCvStore } from "@/store/cv";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+'use client';
+import { RadialProgress } from '@/components/elements/RadialProgress';
+import LeftStep from '@/components/elements/step/LeftStep';
+import { useCvStore } from '@/store/cv';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import {
   faArrowDown,
@@ -14,9 +14,9 @@ import {
   faFileAlt,
   faList,
   faOutdent,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { toast } from "react-toastify";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { toast } from 'react-toastify';
 
 type TCreateUserSchema = {
   linkedin_link: string;
@@ -70,8 +70,8 @@ const Preloader = ({ text }: { text?: string }) => {
 
 const Preview = () => {
   const localStorage =
-    typeof window !== "undefined" ? window.localStorage : null;
-  const token = localStorage?.getItem("token");
+    typeof window !== 'undefined' ? window.localStorage : null;
+  const token = localStorage?.getItem('token');
 
   const router = useRouter();
   const state = useCvStore((state) => state);
@@ -80,8 +80,8 @@ const Preview = () => {
   const [isTruncated, setIsTruncated] = useState(true);
   const [isPDFLoading, setIsPDFLoading] = useState(false);
   const [isScoreLoading, setIsScoreLoading] = useState(false);
-  const [openAccordion, setOpenAccordion] = useState<string | null>("brevity");
-  const [pdfPreview, setPdfPreview] = useState("");
+  const [openAccordion, setOpenAccordion] = useState<string | null>('brevity');
+  const [pdfPreview, setPdfPreview] = useState('');
   const [scoresData, setScoresData] = useState<TResponseScoreSchema>();
   const [requestData, setRequestData] = useState({});
   const [isDataReady, setIsDataReady] = useState(false);
@@ -91,23 +91,23 @@ const Preview = () => {
   };
 
   useEffect(() => {
-    let aboutSelfText = "";
+    let aboutSelfText = '';
     let aboutSelfAudio = null;
-    let aboutExperienceText = "";
+    let aboutExperienceText = '';
     let aboutExperienceAudio = null;
 
     const file = state.getPdf();
 
     // Include either text or audio, but not both
     if (state.personal) {
-      if (typeof state.personal === "string") {
+      if (typeof state.personal === 'string') {
         aboutSelfText = state.personal;
       } else {
-        aboutSelfAudio = new Blob([state.personal], { type: "audio/webm" });
+        aboutSelfAudio = new Blob([state.personal], { type: 'audio/webm' });
       }
     }
     if (state.experience) {
-      if (typeof state.experience === "string") {
+      if (typeof state.experience === 'string') {
         aboutExperienceText = state.experience;
       } else {
         aboutExperienceAudio = state.experience;
@@ -124,7 +124,7 @@ const Preview = () => {
       isDataReady === false
     ) {
       setRequestData({
-        what_to_achieve: state.share ?? "Land my first job",
+        what_to_achieve: state.share ?? 'Land my first job',
         linkedin_link: state.linkedinUrl,
         job_description_link: state.jobDescription,
         about_self_text: aboutSelfText,
@@ -145,7 +145,7 @@ const Preview = () => {
   }, [isDataReady, requestData]);
 
   const submitDataForPDF = async () => {
-    console.log("Submition: ", requestData);
+    console.log('Submition: ', requestData);
 
     setIsPDFLoading(true);
     setIsScoreLoading(true);
@@ -155,9 +155,9 @@ const Preview = () => {
         requestData,
         {
           headers: {
-            accept: "application/json",
+            accept: 'application/json',
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -177,10 +177,10 @@ const Preview = () => {
             `Please reupload ${String(error.response.data.detail[0].loc[1])}`
           );
         } else {
-          toast.error(String(error.response.data.detail).replace("_", " "));
+          toast.error(String(error.response.data.detail).replace('_', ' '));
         }
       } else {
-        toast.error("An unexpected error occurred.");
+        toast.error('An unexpected error occurred.');
       }
     }
     setIsPDFLoading(false);
@@ -196,15 +196,15 @@ const Preview = () => {
         {},
         {
           headers: {
-            accept: "application/json",
+            accept: 'application/json',
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
       );
 
       if (response.status === 201) {
-        router.push("/congrats");
+        router.push('/congrats');
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -213,19 +213,19 @@ const Preview = () => {
             `Please reupload ${String(error.response.data.detail[0].loc[1])}`
           );
         } else {
-          toast.error(String(error.response.data.detail).replace("_", " "));
+          toast.error(String(error.response.data.detail).replace('_', ' '));
         }
       } else {
-        toast.error("An unexpected error occurred.");
+        toast.error('An unexpected error occurred.');
       }
     }
   };
 
   const iconVariant = (variant: string) => {
     switch (variant) {
-      case "style":
+      case 'style':
         return faFileAlt;
-      case "sections":
+      case 'sections':
         return faOutdent;
       default:
         return faList;
@@ -234,9 +234,9 @@ const Preview = () => {
 
   // Check if user is authenticated
   useEffect(() => {
-    const token = window?.localStorage?.getItem("token");
+    const token = window?.localStorage?.getItem('token');
     if (!token) {
-      router.push("/signin");
+      router.push('/signin');
     }
   }, [router]);
 
@@ -284,8 +284,8 @@ const Preview = () => {
                       <div
                         className={`mt-6 px-4 py-1 font-bold ${
                           (scoresData?.points ?? 0) > 0
-                            ? "bg-green-100 text-green-600"
-                            : "bg-red-100 text-red-600"
+                            ? 'bg-green-100 text-green-600'
+                            : 'bg-red-100 text-red-600'
                         } rounded-md text-sm uppercase`}
                       >
                         <FontAwesomeIcon
@@ -294,7 +294,7 @@ const Preview = () => {
                               ? faArrowUp
                               : faArrowDown
                           }
-                        />{" "}
+                        />{' '}
                         {scoresData?.points} Points
                       </div>
                     )}
@@ -306,7 +306,7 @@ const Preview = () => {
                     >
                       <div
                         className={`text-sm mb-2 ${
-                          isTruncated ? "line-clamp-3" : ""
+                          isTruncated ? 'line-clamp-3' : ''
                         }`}
                       >
                         This CV effectively showcases diverse experiences and
@@ -347,7 +347,7 @@ const Preview = () => {
                               <div className="flex items-center text-purple-600">
                                 <FontAwesomeIcon icon={iconVariant(tag)} />
                                 <span className="pl-2 font-bold capitalize">
-                                  {tag.replace("_", " ")}
+                                  {tag.replace('_', ' ')}
                                 </span>
                               </div>
                               <div className="flex items-baseline">
@@ -364,7 +364,7 @@ const Preview = () => {
                                   <span>/25</span>
                                 </div>
                                 <FontAwesomeIcon
-                                  style={{ color: "grey" }}
+                                  style={{ color: 'grey' }}
                                   icon={
                                     openAccordion === `${tag}`
                                       ? faChevronUp
@@ -378,12 +378,12 @@ const Preview = () => {
                               <div
                                 className={`text-sm transition-all duration-600 ease-out ${
                                   openAccordion === `${tag}`
-                                    ? "max-h-screen opacity-100"
-                                    : "max-h-0 opacity-0"
+                                    ? 'max-h-screen opacity-100'
+                                    : 'max-h-0 opacity-0'
                                 } overflow-hidden`}
                               >
                                 <div className="py-6">
-                                  {content.split("\n").map((line, index) => (
+                                  {content.split('\n').map((line, index) => (
                                     <div key={index}>
                                       {line
                                         .split(
@@ -391,16 +391,18 @@ const Preview = () => {
                                         )
                                         .map((part, idx) =>
                                           [
-                                            "Positive:",
-                                            "Negative:",
-                                            "Improvements:",
-                                            "Improvement:",
+                                            'Positive:',
+                                            'Negative:',
+                                            'Improvements:',
+                                            'Improvement:',
                                           ].includes(part) ? (
                                             <div key={idx}>
                                               <b>{part}</b>
                                             </div>
                                           ) : (
-                                            <div className="mb-4">{part}</div>
+                                            <div key={index} className="mb-4">
+                                              {part}
+                                            </div>
                                           )
                                         )}
                                     </div>
