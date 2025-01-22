@@ -1,14 +1,15 @@
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
-import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { userSigninDataValidation } from './schema/user-data';
+import useHeaderTitle from '@/hooks/useHeaderTitle';
 import { useCvStore } from '@/store/cv';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { toast } from 'react-toastify';
+import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { userSigninDataValidation } from './schema/user-data';
 
 type TCreateUserSchema = {
   email: string;
@@ -30,11 +31,13 @@ const SignIn = () => {
   const localStorage =
     typeof window !== 'undefined' ? window.localStorage : null;
 
+  useHeaderTitle('SIGN-IN');
+
   useEffect(() => {
     const verifyUser = async () => {
       try {
         const response = await axios.post(
-          `https://cv.backend.bamble.io/users/verify`,
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,
@@ -67,10 +70,10 @@ const SignIn = () => {
     try {
       // toast.loading('Authenticating....');
       const response = await axios.post(
-        'https://cv.backend.bamble.io/auth/token',
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/auth/token`,
         {
           username: email,
-          password: 'stringcehw88938f28998efjkndj90rej9vdoijnsd',
+          password: `stringcehw88938f28998efjkndj90rej9vdoijnsd`,
         },
         {
           headers: {
@@ -80,12 +83,15 @@ const SignIn = () => {
         }
       );
 
-      const user = await axios.get(`https://cv.backend.bamble.io/users/me`, {
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${response.data.access_token}`,
-        },
-      });
+      const user = await axios.get(
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/me`,
+        {
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${response.data.access_token}`,
+          },
+        }
+      );
 
       state.addToCV({
         fullName: user.data.first_name + ' ' + user.data.last_name,
@@ -103,6 +109,9 @@ const SignIn = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(`${error?.message} contact admin`);
+        toast.error(
+          "Make sure to activate your account using the email we sent you."
+        );
       }
     }
   };

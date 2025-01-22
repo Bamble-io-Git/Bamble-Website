@@ -1,16 +1,17 @@
 'use client';
 
 import LeftStep from '@/components/elements/step/LeftStep';
-import { zodResolver } from '@hookform/resolvers/zod';
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { userDataValidation } from './schema/user-data';
 import { useCvStore } from '@/store/cv';
-import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
-import axios, { AxiosError } from 'axios';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { sendGTMEvent } from '@next/third-parties/google';
+import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { orgs } from './data/orgs';
+import { userDataValidation } from './schema/user-data';
 
 const organizations = [
   'Utiva',
@@ -60,12 +61,12 @@ const Signup = () => {
     try {
       toast.loading('Authenticating....');
       const response = await axios.post(
-        'https://cv.backend.bamble.io/users',
+        `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users`,
         {
           first_name: firstName,
           last_name: lastName,
           email,
-          password: 'stringcehw88938f28998efjkndj90rej9vdoijnsd',
+          password: `stringcehw88938f28998efjkndj90rej9vdoijnsd`,
           partner_community: community,
         },
         {
@@ -195,7 +196,7 @@ const Signup = () => {
                   Select Partner Community
                 </option>
 
-                {organizations.map((org) => {
+                {orgs.map((org) => {
                   return (
                     <option key={org} value={org}>
                       {org}

@@ -1,22 +1,22 @@
-'use client';
-import LeftStep from '@/components/elements/step/LeftStep';
-import { useCvStore } from '@/store/cv';
-import axios from 'axios';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+"use client";
+import LeftStep from "@/components/elements/step/LeftStep";
+import { useCvStore } from "@/store/cv";
+import axios from "axios";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const AuthVerify = () => {
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
-  const token = searchParams.get('token');
-  const email = searchParams.get('email');
+  const token = searchParams.get("token");
+  const email = searchParams.get("email");
 
   const router = useRouter();
   const state = useCvStore((state) => state);
 
   const localStorage =
-    typeof window !== 'undefined' ? window.localStorage : null;
+    typeof window !== "undefined" ? window.localStorage : null;
 
   // TODO: extract to a Hook
   useEffect(() => {
@@ -24,26 +24,26 @@ const AuthVerify = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          `https://cv.backend.bamble.io/users/verify`,
+          `${process.env.NEXT_PUBLIC_BAMBLE_URL}/users/verify`,
           {
             token: token,
             email: email ?? state?.cv[0]?.email,
           },
           {
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
           }
         );
 
-        localStorage?.setItem('token', response.data.access_token);
+        localStorage?.setItem("token", response.data.access_token);
         setIsLoading(false);
         if (response.status === 200) {
-          toast.success('User verified successfully');
-          router.push('/intent');
+          toast.success("User verified successfully");
+          router.push("/intent");
           setIsLoading(false);
         } else {
-          toast.error('User verification failed');
+          toast.error("User verification failed");
           setIsLoading(false);
         }
       } catch (error) {

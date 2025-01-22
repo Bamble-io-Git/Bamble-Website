@@ -10,6 +10,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import ProgressBar from '@/components/elements/ProgressBar';
 import { sendGTMEvent } from '@next/third-parties/google';
+import useHeaderTitle from '@/hooks/useHeaderTitle';
 
 const Intent = () => {
   const router = useRouter();
@@ -37,6 +38,8 @@ const Intent = () => {
     typeof window !== 'undefined' ? window.localStorage : null;
 
   const token = localStorage?.getItem('token');
+
+  useHeaderTitle('STEP1-GOAL');
 
   useEffect(() => {
     const timer = setTimeout(() => {

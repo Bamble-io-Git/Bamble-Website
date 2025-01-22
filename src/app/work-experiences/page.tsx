@@ -1,13 +1,14 @@
-'use client';
-import LeftStep from '@/components/elements/step/LeftStep';
-import React, { useEffect, useState } from 'react';
-import { useCvStore } from '@/store/cv';
-import { useRouter } from 'next/navigation';
-import ProgressBar from '@/components/elements/ProgressBar';
-import Tips from '@/components/elements/tips';
-import Microphone from '@/components/elements/microphone';
-import Keyboard from '@/components/elements/keyboard';
-import { sendGTMEvent } from '@next/third-parties/google';
+"use client";
+import Keyboard from "@/components/elements/keyboard";
+import Microphone from "@/components/elements/microphone";
+import ProgressBar from "@/components/elements/ProgressBar";
+import LeftStep from "@/components/elements/step/LeftStep";
+import Tips from "@/components/elements/tips";
+import useHeaderTitle from "@/hooks/useHeaderTitle";
+import { useCvStore } from "@/store/cv";
+import { sendGTMEvent } from "@next/third-parties/google";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const WorkExperiences = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const WorkExperiences = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!state?.cv[0]?.fullName) {
-        router.push('/signup');
+        router.push("/signup");
       }
     }, 2000);
 
@@ -28,7 +29,7 @@ const WorkExperiences = () => {
     };
   }, [router, state.cv]);
 
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>("");
   const [duration, setDuration] = useState<number | undefined>();
 
   // Disable the button if recording duration is less than 30 secs or no text/recording is present
@@ -40,6 +41,8 @@ const WorkExperiences = () => {
   //     setIsButtonDisabled(false);
   //   }
   // }, [duration, text]);
+
+  useHeaderTitle("STEP3-Question2");
 
   useEffect(() => {
     if (Number(duration) >= 90 && !recording?.size) {
@@ -63,8 +66,8 @@ const WorkExperiences = () => {
 
   useEffect(() => {
     if (state.experience) {
-      if (typeof state.experience === 'string') {
-        setText(state.experience || '');
+      if (typeof state.experience === "string") {
+        setText(state.experience || "");
       } else {
         setRecording(state.experience || undefined);
       }
@@ -73,12 +76,13 @@ const WorkExperiences = () => {
 
   const onSubmit = () => {
     if (recording || text) {
-      //@ts-ignore
-      state.addToWorkExperiences(recording?.size ? recording : text);
-      router.push('/final');
+      state.addToWorkExperiences(
+        recording?.size !== undefined ? recording : text
+      );
+      router.push("/final");
       sendGTMEvent({
-        event: 'Event - Step3 Question 2',
-        clickText: 'Next',
+        event: "Event - Step3 Question 2",
+        clickText: "Next",
         values: {
           step: 1,
         },
@@ -95,7 +99,7 @@ const WorkExperiences = () => {
       <div className="max-w-[520px] mx-auto pt-12 lg:pt-20 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
         <button
           className="absolute top-[4%] lg:top-[9.6%] left-4 lg:-left-20"
-          onClick={() => router.push('/personal-details')}
+          onClick={() => router.push("/personal-details")}
         >
           <svg
             width="24"
@@ -132,7 +136,7 @@ const WorkExperiences = () => {
           </p>
 
           <p className="font-tertiary">
-            {state.cv.length ? state.cv[0].fullName : ''}, this is our last
+            {state.cv.length ? state.cv[0].fullName : ""}, this is our last
             question!
           </p>
 
@@ -166,8 +170,8 @@ const WorkExperiences = () => {
             onClick={onSubmit}
             className={
               isButtonDisabled
-                ? 'bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed font-tertiary'
-                : 'bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer font-tertiary'
+                ? "bg-[#979797] text-[#202020CC] px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-not-allowed font-tertiary"
+                : "bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 ml-auto cursor-pointer font-tertiary"
             }
           >
             Next

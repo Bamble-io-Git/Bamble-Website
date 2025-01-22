@@ -1,13 +1,14 @@
 'use client';
-import LeftStep from '@/components/elements/step/LeftStep';
-import React, { useEffect, useState } from 'react';
-import { useCvStore } from '@/store/cv';
-import { useRouter } from 'next/navigation';
-import ProgressBar from '@/components/elements/ProgressBar';
-import Tips from '@/components/elements/tips';
-import Microphone from '@/components/elements/microphone';
 import Keyboard from '@/components/elements/keyboard';
+import Microphone from '@/components/elements/microphone';
+import ProgressBar from '@/components/elements/ProgressBar';
+import LeftStep from '@/components/elements/step/LeftStep';
+import Tips from '@/components/elements/tips';
+import useHeaderTitle from '@/hooks/useHeaderTitle';
+import { useCvStore } from '@/store/cv';
 import { sendGTMEvent } from '@next/third-parties/google';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const PersonalDetails = () => {
   const router = useRouter();
@@ -18,6 +19,8 @@ const PersonalDetails = () => {
   const [text, setText] = useState<string>('');
   const [duration, setDuration] = useState<number | undefined>();
   const [showKeyboard, setShowKeyboard] = useState(true);
+
+  useHeaderTitle('STEP2-Question1');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -72,8 +75,9 @@ const PersonalDetails = () => {
 
   const onSubmit = () => {
     if (recording || text) {
-      //@ts-ignore
-      state.addToPersonalDetails(recording?.size! ? recording : text);
+      state.addToPersonalDetails(
+        recording?.size !== undefined ? recording : text
+      );
       router.push('/work-experiences');
       sendGTMEvent({
         event: 'Event - Step2 Question 1',
