@@ -63,7 +63,7 @@ const Preloader = ({ text }: { text?: string }) => {
           className="text-gray-900"
         ></path>
       </svg>
-      {text && <p className="mt-8 text-gray-700">{text}</p>}
+      {text && <p className="mt-8 text-gray-700 w-[80%] text-center">{text}</p>}
     </div>
   );
 };
@@ -268,7 +268,7 @@ const Preview = () => {
       <div className="w-full md:w-[550px] mx-auto pt-12 lg:pt-18 pl-0 xl:pl-36 text-black flex flex-col space-y-5 relative sm:px-0 px-5">
         {isScoreLoading || !scoresData ? (
           <div className="flex items-center justify-center h-full">
-            <Preloader text="We are calculating your data, please wait ..." />
+            <Preloader text="We are calculating your data, please wait, could take up to 2 minutes." />
           </div>
         ) : (
           <>
@@ -310,11 +310,19 @@ const Preview = () => {
                         }`}
                       >
                         This CV effectively showcases diverse experiences and
-                        transferable skills but can be improved by: Quantifying
-                        accomplishments. Reducing redundancy and filler
-                        language. Enhancing readability through consistent
-                        formatting and avoiding buzzwords. Highlighting
-                        measurable impact and leadership examples to stand out.
+                        transferable skills but can be improved by: <br />
+                        <ul className="list-disc pl-6 mt-4">
+                          <li>Quantifying accomplishments.</li>
+                          <li>Reducing redundancy and filler language.</li>
+                          <li>
+                            Enhancing readability through consistent formatting
+                            and avoiding buzzwords.
+                          </li>
+                          <li>
+                            Highlighting measurable impact and leadership
+                            examples to stand out.
+                          </li>
+                        </ul>
                       </div>
                       {isTruncated && (
                         <div className="text-center mb-4">
@@ -339,7 +347,7 @@ const Preview = () => {
                               <div className="flex items-center text-purple-600">
                                 <FontAwesomeIcon icon={iconVariant(tag)} />
                                 <span className="pl-2 font-bold capitalize">
-                                  {tag}
+                                  {tag.replace("_", " ")}
                                 </span>
                               </div>
                               <div className="flex items-baseline">
@@ -374,12 +382,28 @@ const Preview = () => {
                                     : "max-h-0 opacity-0"
                                 } overflow-hidden`}
                               >
-                                <div className="py-4">
+                                <div className="py-6">
                                   {content.split("\n").map((line, index) => (
-                                    <span key={index}>
-                                      {line}
-                                      <br />
-                                    </span>
+                                    <div key={index}>
+                                      {line
+                                        .split(
+                                          /(Positive:|Negative:|Improvements:|Improvement:)/g
+                                        )
+                                        .map((part, idx) =>
+                                          [
+                                            "Positive:",
+                                            "Negative:",
+                                            "Improvements:",
+                                            "Improvement:",
+                                          ].includes(part) ? (
+                                            <div key={idx}>
+                                              <b>{part}</b>
+                                            </div>
+                                          ) : (
+                                            <div className="mb-4">{part}</div>
+                                          )
+                                        )}
+                                    </div>
                                   ))}
                                 </div>
                               </div>
@@ -392,12 +416,12 @@ const Preview = () => {
                       <div className="flex justify-between align-middle">
                         <a
                           href="/personal-details"
-                          className="bg-gray-300 text-white px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 cursor-pointer font-tertiary"
+                          className="transition-colors bg-blue-600 hover:bg-blue-500 text-white-primary px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 cursor-pointer font-tertiary"
                         >
                           Improve
                         </a>
                         <button
-                          className="bg-yellow-primary text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 cursor-pointer font-tertiary"
+                          className="transition-colors bg-yellow-primary hover:bg-yellow-200 text-black px-10 py-3 rounded-md font-bold flex justify-center items-center gap-2 cursor-pointer font-tertiary"
                           onClick={() => handleSubmit()}
                         >
                           Submit
