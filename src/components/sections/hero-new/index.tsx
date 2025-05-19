@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import LinkComponent from "@/components/elements/link";
+import LinkComponent from '@/components/elements/link';
 
-import Banner from "@/components/elements/banner";
-import axios from "axios";
-import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
-import { performanceIndex } from "./data";
+import Banner from '@/components/elements/banner';
+import axios from 'axios';
+import Image from 'next/image';
+import { useCallback, useEffect, useState } from 'react';
+import { performanceIndex } from './data';
 
 const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
   const [selectedCard, setSelectedCard] = useState(0);
@@ -47,7 +47,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
     <section className="mt-5">
       <div className="flex justify-center flex-col text-center gap-y-6 pt-5 sm:pt-12 max-w-[667px] mx-auto px-1 sm:px-7 md:px-0 z-10">
         <div className="mx-auto sm:block hidden">
-          <Banner text="Free for first 100,000 users!" />
+          <Banner text="Free for all users!" />
         </div>
 
         <h1
@@ -56,7 +56,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
             lineHeight: 1.2,
           }}
         >
-          Unlock your tech career with AI
+          Unlock your career with AI
         </h1>
 
         <h2 className="text-black text-base sm:text-[14px] font-primary   sm:leading-7 font-normal z-10">
@@ -104,7 +104,7 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
                 src="/assets/face-2.png"
                 className="rounded-full absolute top-0 left-3"
                 alt=""
-              />{" "}
+              />{' '}
               <Image
                 priority
                 width={30}
@@ -117,12 +117,12 @@ const Hero = ({ handleScroll }: { handleScroll: () => void }) => {
 
             <div>
               <span className="text-[#45A6FF] font-bold">
-                {" "}
-                {loading ? "....." : count?.toLocaleString("en-US")} people
+                {' '}
+                {loading ? '.....' : count?.toLocaleString('en-US')} people
               </span>
               <span className="text-[#45A6FF]">
-                {" "}
-                have guaranteed their spot{" "}
+                {' '}
+                have guaranteed their spot{' '}
               </span>
             </div>
           </div>
