@@ -1,3 +1,4 @@
+//@ts-nocheck
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
 import { zodResolver } from '@hookform/resolvers/zod';

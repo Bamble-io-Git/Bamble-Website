@@ -1,3 +1,4 @@
+//@ts-ignore
 'use client';
 import LeftStep from '@/components/elements/step/LeftStep';
 import React, { useEffect } from 'react';

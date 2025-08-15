@@ -1,12 +1,12 @@
 //@ts-nocheck
 
-import { useCvStore } from "@/store/cv";
-import { sendGTMEvent } from "@next/third-parties/google";
-import clsx from "clsx";
-import posthog from "posthog-js";
-import { useCallback, useState } from "react";
-import { useDropzone } from "react-dropzone";
-import { toast } from "react-toastify";
+import { useCvStore } from '@/store/cv';
+import { sendGTMEvent } from '@next/third-parties/google';
+import clsx from 'clsx';
+import posthog from 'posthog-js';
+import { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { toast } from 'react-toastify';
 
 function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -20,7 +20,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
     const selectedFile = acceptedFiles[0];
     if (
       selectedFile &&
-      selectedFile.type === "application/pdf" /*&&
+      selectedFile.type === 'application/pdf' /*&&
       selectedFile.size < 10000 // 10 KB*/
     ) {
       setFile(selectedFile);
@@ -30,36 +30,36 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
 
       // window.localStorage.setItem("pdfFile", selectedFile);
       window.localStorage.setItem(
-        "pdf",
+        'pdf',
         JSON.stringify({
           ...selectedFile,
           lastModified: selectedFile?.lastModified,
           lastModifiedDate: selectedFile?.lastModifiedDate,
           name: selectedFile?.name,
           size: selectedFile?.size,
-          type: "application/pdf",
-          webkitRelativePath: "",
+          type: 'application/pdf',
+          webkitRelativePath: '',
         })
       );
 
       sendGTMEvent({
-        event: "Event - Step4 Upload Docs",
-        values: "Upload Success",
+        event: 'Event - Step4 Upload Docs',
+        values: 'Upload Success',
       });
 
       posthog.capture(
-        "cv_upload",
+        'cv_upload',
         {
-          name: stateData.cv[0].fullName ?? "",
+          name: stateData.cv[0].fullName ?? '',
           email: stateData.cv[0].email,
           detail: `CV for ${stateData.cv[0].fullName} was successfully uploaded`,
         },
         {
-          transport: "sendBeacon",
+          transport: 'sendBeacon',
         }
       );
     } else {
-      toast.error("Please upload a valid PDF file (size).");
+      toast.error('Please upload a valid PDF file (size).');
     }
   }, []);
 
@@ -79,7 +79,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
     reader.readAsDataURL(file);
 
     reader.onload = async (e) => {
-      const base64 = (e?.target?.result as string)?.split(",")[1];
+      const base64 = (e?.target?.result as string)?.split(',')[1];
       // const binary = atob(base64);
 
       try {
@@ -91,11 +91,11 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
 
         // After successful upload, handle the uploaded binary data here
         // console.log("PDF binary:", binary);
-        localStorage.setItem("pdfBin", base64);
-        toast.success("PDF loaded successfully!");
+        localStorage.setItem('pdfBin', base64);
+        toast.success('PDF loaded successfully!');
       } catch (error) {
-        console.error("Upload failed:", error);
-        toast.error("Failed to upload PDF.");
+        console.error('Upload failed:', error);
+        toast.error('Failed to upload PDF.');
       } finally {
         setUploading(false);
         setUploadProgress(0);
@@ -103,14 +103,14 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
     };
 
     reader.onerror = () => {
-      console.error("Failed to read the file");
+      console.error('Failed to read the file');
       setUploading(false);
     };
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: "application/pdf",
+    accept: 'application/pdf',
     multiple: false,
   });
 
@@ -119,8 +119,8 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
       <div
         {...getRootProps()}
         className={clsx(
-          file && "border-dashed border-green-600 border bg-green-100",
-          "border-dashed border-2 p-3 sm:p-8 min-w-full flex  max-h-[100px]"
+          file && 'border-dashed border-green-600 border bg-green-100',
+          'border-dashed border-2 p-3 sm:p-8 min-w-full flex  max-h-[100px]'
         )}
       >
         <input {...getInputProps()} />
@@ -168,8 +168,8 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
         <div className="ml-5">
           <p className="text-[13px] font-semibold">
             {file
-              ? "File upload successful"
-              : "Select a file or drag and drop here"}
+              ? 'File upload successful'
+              : 'Select a file or drag and drop here'}
           </p>
 
           <p className="text-[12px] text-gray-500 hidden">
@@ -201,7 +201,7 @@ function MyDropzone({ setFile, file }: { setFile: (file: File) => void }) {
             </svg>
           </div>
           <div className="flex-2">
-            {" "}
+            {' '}
             {uploading && (
               <div className="w-full h-2 mt-4 min-w-[400px] bg-gray-300 rounded">
                 <div

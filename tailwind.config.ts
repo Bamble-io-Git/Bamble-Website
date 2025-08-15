@@ -24,6 +24,10 @@ const config: Config = {
         darkYellow: {
           primary: '#D0C710',
         },
+        primary: '#3B82F6', // blue-ish
+        'primary-glow': '#8B5CF6', // purple-ish
+        accent: '#F59E0B', // orange
+        success: '#10B981', // green
       },
       backgroundColor: {
         gray: {
